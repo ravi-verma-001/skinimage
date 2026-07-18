@@ -11,13 +11,13 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 const FALLBACK_PRODUCTS: ProductType[] = [
   {
     _id: "p1",
-    name: "Gentle Centella Hydrating Cleanser",
+    name: "Oil Cleanser with Squalane & Jojoba Oil | Removes Makeup & Sunscreen, Non-Greasy",
     category: "Cleanser",
-    price: 24.00,
-    discountPrice: 19.99,
+    price: 1599.00,
+    discountPrice: 1329.00,
     stock: 85,
-    images: ["/cleanser.png"],
-    description: "A pH-balanced foaming cleanser designed to remove impurities, excess sebum, and makeup without stripping the skin barrier.",
+    images: ["/cleanser.png", "/CleanserVideo.mp4"],
+    description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: true,
@@ -25,13 +25,13 @@ const FALLBACK_PRODUCTS: ProductType[] = [
   },
   {
     _id: "p2",
-    name: "15% Vitamin C Glow Brightening Serum",
+    name: "AHA & BHA FACE SERUM",
     category: "Serum",
-    price: 38.00,
-    discountPrice: 32.00,
+    price: 1199.00,
+    discountPrice: 899.00,
     stock: 50,
-    images: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"],
-    description: "A high-potency antioxidant serum formulated with pure L-Ascorbic Acid, Vitamin E, and Ferulic Acid.",
+    images: ["/aha_bha_face_serum.jpg"],
+    description: "Give your skin a fresh new glow with this powerful AHA BHA Face Serum. Specially formulated for those struggling with dull, rough, and uneven skin texture.",
     rating: 4.7,
     reviewsCount: 98,
     isFeatured: true,
@@ -39,13 +39,13 @@ const FALLBACK_PRODUCTS: ProductType[] = [
   },
   {
     _id: "p3",
-    name: "Niacinamide + Ceramide Barrier Restore Gel Cream",
-    category: "Moisturizer",
-    price: 28.00,
-    discountPrice: 24.50,
+    name: "UV-Aurora Sunscreen",
+    category: "Sunscreen",
+    price: 999.00,
+    discountPrice: 798.00,
     stock: 120,
-    images: ["https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600"],
-    description: "An ultra-lightweight gel cream packed with 5% Niacinamide and 3 essential Ceramides.",
+    images: ["/uv_aurora_sunscreen.png"],
+    description: "Protect your skin the smart way with UV-Aurora Sunscreen — a lightweight formula that shields against harmful sun rays while doubling up as a hydrating skincare step.",
     rating: 4.9,
     reviewsCount: 215,
     isFeatured: true,
@@ -53,13 +53,13 @@ const FALLBACK_PRODUCTS: ProductType[] = [
   },
   {
     _id: "p8",
-    name: "Broad-Spectrum SPF 50 Airy Daily Sunscreen",
-    category: "Sunscreen",
-    price: 30.00,
-    discountPrice: 25.00,
+    name: "AHA BHA Face Wash",
+    category: "Cleanser",
+    price: 999.00,
+    discountPrice: 799.00,
     stock: 150,
-    images: ["https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"],
-    description: "A ultra-lightweight, fluid sunscreen that delivers high-performance SPF 50 PA++++ broad-spectrum protection.",
+    images: ["/aha_bha_face_wash.jpg"],
+    description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
     rating: 4.8,
     reviewsCount: 210,
     isFeatured: true,
@@ -128,31 +128,25 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Promotional Ribbon */}
-      <div className="bg-emerald-800 text-stone-100 py-2 px-4 text-center text-xs tracking-wider font-semibold uppercase flex items-center justify-center gap-1.5">
-        <Sparkles className="h-3.5 w-3.5" /> Use Code <strong className="text-white">WELCOME10</strong> for 10% off your first purchase + Free Shipping over $50
+      <div className="bg-emerald-800 text-stone-100 py-2.5 px-4 text-center text-xs tracking-widest font-semibold uppercase flex items-center justify-center gap-1.5 overflow-hidden">
+        <span className="animate-banner-text flex items-center gap-2">
+          <Sparkles className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '8s' }} />
+          Your Skin Deserves the Best. We&apos;re Building It
+          <Sparkles className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '8s' }} />
+        </span>
       </div>
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden bg-white">
         <div className="w-full relative">
-          <img 
-            src="/hero_banner.png" 
-            alt="Skin Image Banner" 
-            className="w-full h-auto md:h-[75vh] md:max-h-[650px] object-contain md:object-cover object-center block"
+          <video 
+            src="/Aha_Bha_video.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-auto md:h-[85vh] md:max-h-[800px] object-cover object-center block"
           />
-          {/* Curved Bottom Divider to match design */}
-          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
-            <svg 
-              viewBox="0 0 1200 120" 
-              preserveAspectRatio="none" 
-              className="relative block w-full h-[20px] sm:h-[60px] md:h-[100px]"
-            >
-              <path 
-                d="M0,0 C300,90 900,10 1200,80 L1200,120 L0,120 Z" 
-                fill="#ffffff"
-              ></path>
-            </svg>
-          </div>
         </div>
       </section>
 
@@ -273,29 +267,99 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Brand Story Philosophy */}
-      <section id="brand-story" className="py-20 bg-white">
+      {/* Brand Story Philosophy / Why Choose Us */}
+      <section id="brand-story" className="py-24 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden bg-stone-100">
-              <img
-                src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=800"
-                alt="Skincare laboratory"
-                className="w-full h-full object-cover"
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left: Premium Product Image with floating effect */}
+            <div className="lg:col-span-6 relative flex justify-center">
+              {/* Soft Lavender Background Glow Accent */}
+              <div className="absolute -inset-4 rounded-[24px] bg-[#F6F1FB] opacity-70 blur-xl"></div>
+              
+              <div className="relative aspect-square w-full max-w-[500px] overflow-hidden rounded-[18px] bg-[#F8F8F8] border border-stone-100 shadow-md transition-all duration-700 hover:shadow-xl hover:-translate-y-2 group">
+                <img
+                  src="/skinimage-skincare-active-ingredients.jpg"
+                  alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                />
+              </div>
             </div>
-            <div className="space-y-6">
-              <span className="text-xs font-semibold tracking-widest uppercase text-emerald-800">Our Story</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">Formulated with Intent, Proven by Science</h2>
-              <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
-                We believe that premium skincare shouldn&apos;t be an guessing game. At NextSkin, we strip away all unnecessary fragrances, fillers, and micro-irritants, delivering pure clinical molecules in pH-balanced, soothing bases.
+
+            {/* Right: Content details */}
+            <div className="lg:col-span-6 space-y-8 flex flex-col justify-center">
+              <div className="space-y-4">
+                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#6F4A8E] block">
+                  SCIENCE • CARE • RESULTS
+                </span>
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-[54px] font-semibold text-[#6F4A8E] tracking-tight leading-[110%]">
+                  Healthy Skin Starts with Science.
+                </h2>
+                <h3 className="text-lg font-medium text-[#6F4A8E]/80 leading-relaxed max-w-xl">
+                  Premium skincare powered by clinically inspired active ingredients for visible, long-lasting results.
+                </h3>
+              </div>
+
+              <p className="text-[#5F6368] leading-[170%] text-base sm:text-[18px] max-w-xl">
+                At <strong>Skinimage Skincare</strong>, we believe effective skincare combines science, quality, and simplicity. Our formulas are enriched with proven active ingredients such as Niacinamide, Vitamin C, Hyaluronic Acid, AHA, and BHA to help brighten, hydrate, repair, and protect your skin. Every product is carefully crafted to deliver real results while remaining gentle enough for daily use, giving your skin the care it deserves.
               </p>
-              <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
-                Every launch is formulated in our clean labs using clinically validated actives (Retinol, Vitamin C, Ceramides, BHA) stabilized with bio-compatible botanicals such as Centella Asiatica and Licorice Root. The result? Fast cellular recovery, clean skin barriers, and long-term radiance.
-              </p>
-              <div className="pt-2">
-                <Link href="/shop" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
-                  Shop Our Philosophy <ArrowRight className="ml-1 h-4 w-4" />
+
+              {/* Feature Highlights with icons matching the screenshot */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl">
+                <div className="flex items-center space-x-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Clinically Inspired</h4>
+                    <p className="text-xs text-stone-500">Formulas</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Premium Active</h4>
+                    <p className="text-xs text-stone-500">Ingredients</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Suitable for</h4>
+                    <p className="text-xs text-stone-500">All Skin Types</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Visible, Long-</h4>
+                    <p className="text-xs text-stone-500">Lasting Results</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <Link 
+                  href="/shop" 
+                  className="inline-flex items-center justify-center rounded-[14px] bg-[#6F4A8E] text-white font-semibold px-8 py-3.5 text-sm tracking-wide shadow-md transition-all duration-300 hover:bg-[#5C3C7A] hover:shadow-lg hover:scale-[1.03] group"
+                >
+                  Shop Now <span className="ml-2 transition-transform duration-350 group-hover:translate-x-1">→</span>
                 </Link>
               </div>
             </div>

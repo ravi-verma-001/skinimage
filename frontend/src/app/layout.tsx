@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Poppins, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
@@ -13,8 +13,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-serif",
+const poppins = Poppins({
+  weight: ["600", "700"],
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
+  variable: "--font-dmsans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -38,9 +46,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white font-sans text-stone-800">
+      <body className="min-h-full flex flex-col bg-white font-sans text-stone-850">
         <AuthProvider>
           <CartProvider>
             <Header />

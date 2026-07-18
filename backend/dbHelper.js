@@ -116,21 +116,32 @@ const DUMMY_PRODUCTS = [
   {
     id: "p1",
     sku: "SK-HYDRA-FW",
-    name: "Gentle Centella Hydrating Cleanser",
+    name: "Oil Cleanser with Squalane & Jojoba Oil | Removes Makeup & Sunscreen, Non-Greasy",
     category: "Cleanser",
-    price: 24.00,
-    discountPrice: 19.99,
+    price: 1599.00,
+    discountPrice: 1329.00,
     stock: 85,
     images: [
       "/cleanser.png",
+      "/CleanserVideo.mp4",
       "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A pH-balanced foaming cleanser designed to remove impurities, excess sebum, and makeup without stripping the skin barrier. Infused with 40% Centella Asiatica extract and multi-weight Hyaluronic Acid to soothe irritation and retain essential moisture.",
-    ingredients: ["Centella Asiatica Extract", "Glycerin", "Sodium Cocoyl Isethionate", "Hyaluronic Acid", "Green Tea Extract", "Panthenol"],
-    benefits: ["Maintains skin pH balance", "Soothes redness and sensitive skin", "Deeply cleanses without tight feeling"],
-    howToUse: "Apply a nickel-sized amount to damp face and neck. Gently massage in circular motions for 60 seconds. Rinse thoroughly with lukewarm water. Use morning and night.",
+    description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
+    ingredients: [
+      "Plant-derived Squalane 3% — deeply nourishes and mimics skin's natural oils",
+      "Jojoba Oil 2% — balances oil production, non-comedogenic",
+      "Rosehip Oil 2% — rich in antioxidants, supports skin repair",
+      "Vitamin E 1% — protects and conditions the skin"
+    ],
+    benefits: [
+      "Removes waterproof makeup & sunscreen effectively",
+      "Dissolves excess sebum and impurities",
+      "Nourishes and strengthens the skin barrier",
+      "Leaves skin soft, hydrated, and non-greasy"
+    ],
+    howToUse: "Massage onto dry face for 30-60 seconds to dissolve makeup and sunscreen, then rinse with water or follow up with your regular face wash.",
     skinType: ["Sensitive", "Dry", "Normal", "Oily", "Combination"],
-    specs: { "Volume": "150ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Gel-to-foam" },
+    specs: { "Volume": "150ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" },
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: true,
@@ -140,21 +151,30 @@ const DUMMY_PRODUCTS = [
   {
     id: "p2",
     sku: "SK-VITC-GLOW",
-    name: "15% Vitamin C Glow Brightening Serum",
+    name: "AHA & BHA FACE SERUM",
     category: "Serum",
-    price: 38.00,
-    discountPrice: 32.00,
+    price: 1199.00,
+    discountPrice: 899.00,
     stock: 50,
     images: [
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600",
+      "/aha_bha_face_serum.jpg",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A high-potency antioxidant serum formulated with pure L-Ascorbic Acid, Vitamin E, and Ferulic Acid. This clinical combination brightens dull complexion, fades hyperpigmentation and dark spots, and shields skin against oxidative environmental stressors.",
-    ingredients: ["L-Ascorbic Acid (15%)", "Tocopherol (Vitamin E)", "Ferulic Acid", "Ethoxydiglycol", "Sodium Hyaluronate"],
-    benefits: ["Fades dark spots and sun damage", "Boosts collagen production", "Provides daily antioxidant defense"],
-    howToUse: "Apply 4-5 drops in the morning onto clean, dry face and neck before moisturizer and sunscreen. Store in a cool, dark place to avoid oxidation.",
-    skinType: ["Normal", "Dry", "Combination", "Oily"],
-    specs: { "Volume": "30ml", "Active Ingredients": "15% Vitamin C, 1% Vitamin E, 0.5% Ferulic", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
+    description: "Give your skin a fresh new glow with this powerful AHA BHA Face Serum. Specially formulated for those struggling with dull, rough, and uneven skin texture.",
+    ingredients: [
+      "AHA BHA 10% — gently removes dead skin cells",
+      "Niacinamide — evens out skin tone and tightens pores",
+      "Ascorbyl Glucoside (Vitamin C derivative) — brightens skin and protects against free radicals"
+    ],
+    benefits: [
+      "Effectively removes dead skin cells",
+      "Reduces fine lines and wrinkles",
+      "Fixes uneven skin tone, restores natural glow",
+      "Regular use leaves skin smoother and more refined"
+    ],
+    howToUse: "Apply 3-4 drops on clean skin at night, gently massage in. Always follow with sunscreen during the day.",
+    skinType: ["Normal", "Dry", "Combination", "Oily", "Acne-Prone"],
+    specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
     rating: 4.7,
     reviewsCount: 98,
     isFeatured: true,
@@ -164,21 +184,30 @@ const DUMMY_PRODUCTS = [
   {
     id: "p3",
     sku: "SK-NIACIN-MOIST",
-    name: "Niacinamide + Ceramide Barrier Restore Gel Cream",
-    category: "Moisturizer",
-    price: 28.00,
-    discountPrice: 24.50,
+    name: "UV-Aurora Sunscreen",
+    category: "Sunscreen",
+    price: 999.00,
+    discountPrice: 798.00,
     stock: 120,
     images: [
-      "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600",
+      "/uv_aurora_sunscreen.png",
       "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "An ultra-lightweight gel cream packed with 5% Niacinamide and 3 essential Ceramides (EOP, AP, NP). Strengthens compromised skin barriers, regulates oil production, minimizes pore appearance, and provides deep 24-hour hydration without heavy residue.",
-    ingredients: ["Niacinamide (5%)", "Ceramide NP", "Ceramide AP", "Ceramide EOP", "Squalane", "Allantoin"],
-    benefits: ["Restores damaged skin barrier", "Regulates excess sebum", "Smoothes skin texture & reduces pores"],
-    howToUse: "Smooth a blueberry-sized amount over clean face and neck. Can be used in both AM and PM routines. Layer after serums.",
+    description: "Protect your skin the smart way with UV-Aurora Sunscreen — a lightweight formula that shields against harmful sun rays while doubling up as a hydrating skincare step.",
+    ingredients: [
+      "Hyaluronic Acid 1% — provides deep, lasting hydration",
+      "Kakadu Plum Extract 1% — rich in Vitamin C, brightens and protects skin",
+      "Vitamin E 2% — antioxidant protection against environmental damage"
+    ],
+    benefits: [
+      "Protects from UVA & UVB rays",
+      "Deeply hydrates and nourishes the skin",
+      "Strengthens the skin barrier",
+      "Lightweight, non-sticky formula for daily use"
+    ],
+    howToUse: "Apply generously as the last step of your morning skincare routine, 15-20 minutes before sun exposure. Reapply every 3-4 hours if outdoors.",
     skinType: ["Combination", "Oily", "Normal", "Sensitive"],
-    specs: { "Volume": "50ml", "Texture": "Water-gel-cream", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
+    specs: { "Volume": "50ml", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
     rating: 4.9,
     reviewsCount: 215,
     isFeatured: true,
@@ -187,22 +216,30 @@ const DUMMY_PRODUCTS = [
   },
   {
     id: "p4",
-    sku: "SK-RETINOL-NIGHT",
-    name: "0.3% Retinol Wrinkle Repair Night Cream",
-    category: "Serum",
-    price: 42.00,
-    discountPrice: 35.99,
+    sku: "SK-BENZOTREE-FW",
+    name: "Benzotree Face Wash with Benzoyl Peroxide & Tea Tree Oil | Acne & Breakout Control Face Wash",
+    category: "Cleanser",
+    price: 885.00,
     stock: 45,
     images: [
-      "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=600"
+      "/benzotree_face_wash.png"
     ],
-    description: "An advanced night-time treatment designed to accelerate cellular turnover, reduce fine lines, wrinkles, and boost firmness. Formulated with microencapsulated Retinol to deliver benefits slowly and minimize irritation, combined with nourishing Rosehip Oil.",
-    ingredients: ["Retinol (0.3%)", "Rosehip Seed Oil", "Bakuchiol", "Peptides", "Shea Butter", "Adenosine"],
-    benefits: ["Reduces fine lines and deep wrinkles", "Improves skin elasticity and firmness", "Fades post-acne marks"],
-    howToUse: "In the evening, apply a pea-sized amount to clean, dry skin. Limit initial use to 2-3 times per week, gradually increasing frequency as tolerated. Always apply sunscreen the following morning.",
-    skinType: ["Normal", "Dry", "Combination", "Aging"],
-    specs: { "Volume": "30ml", "Retinol Concentration": "0.3%", "Formulation": "Emulsion Cream", "Cruelty-Free": "Yes" },
+    description: "The best solution for acne-prone skin — Benzotree Face Wash. Specially formulated to target breakouts, excess oil, and clogged pores.",
+    ingredients: [
+      "Benzoyl Peroxide 1% — fights acne-causing bacteria",
+      "Vitamin C — helps with skin brightening and healing",
+      "Tea Tree Oil — natural antibacterial properties, controls oil",
+      "Vitamin E — soothes and nourishes the skin"
+    ],
+    benefits: [
+      "Controls excess oil",
+      "Clears clogged pores",
+      "Works effectively on active breakouts",
+      "Treats mild to moderate acne"
+    ],
+    howToUse: "Wet your face, take a small amount, gently massage for 1 minute, then rinse off. Use 1-2 times a day (to avoid over-drying)",
+    skinType: ["Oily", "Combination", "Acne-Prone"],
+    specs: { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
     rating: 4.6,
     reviewsCount: 88,
     isFeatured: false,
@@ -211,22 +248,31 @@ const DUMMY_PRODUCTS = [
   },
   {
     id: "p5",
-    sku: "SK-SALICYLIC-TNR",
-    name: "2% BHA Salicylic Acid Exfoliating Toner",
-    category: "Toner",
-    price: 22.00,
-    discountPrice: 18.00,
+    sku: "SK-CPEPTIDE-SRM",
+    name: "C-Peptide Face Serum",
+    category: "Serum",
+    price: 1299.00,
     stock: 90,
     images: [
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600",
+      "/c_peptide_serum.png",
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A gentle leave-on liquid exfoliant that unclogs pores, targets blackheads, and controls breakouts. Powered by 2% Salicylic Acid (BHA) and Willow Bark Extract, it sweeps away dead skin cells to reveal a refined, smooth, and clear complexion.",
-    ingredients: ["Salicylic Acid (BHA 2%)", "Willow Bark Extract", "Methylpropanediol", "Licorice Root Extract", "Tea Tree Extract"],
-    benefits: ["Unclogs and shrinks enlarged pores", "Clears blackheads and blemishes", "Reduces redness and inflammation"],
-    howToUse: "Apply a small amount to a cotton pad or pat directly with hands onto clean, dry skin. Do not rinse. Start using 3 times a week, increasing to daily use if skin permits.",
-    skinType: ["Oily", "Combination", "Acne-Prone"],
-    specs: { "Volume": "120ml", "pH Range": "3.5 - 3.8", "Active BHA": "2%", "Cruelty-Free": "Yes" },
+    description: "C-Peptide Face Serum is the name in age-defying skincare. Its advanced 6-Peptide Complex formula works deep within the skin's layers, keeping your skin firm, hydrated, and youthful.",
+    ingredients: [
+      "6 Peptide Complex — Boosts collagen production",
+      "Hyaluronic Acid — Provides deep hydration, locks in moisture",
+      "Niacinamide — Strengthens the skin barrier",
+      "Allantoin — Soothes and repairs skin"
+    ],
+    benefits: [
+      "Locks moisture into skin cells",
+      "Visibly reduces fine lines and wrinkles",
+      "Promotes natural collagen production",
+      "Makes skin plump, firm, and youthful"
+    ],
+    howToUse: "Apply 3–4 drops of the serum to a clean face—morning or night—before your moisturizer.",
+    skinType: ["Normal", "Dry", "Combination", "Sensitive", "Aging"],
+    specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" },
     rating: 4.8,
     reviewsCount: 167,
     isFeatured: false,
@@ -235,22 +281,38 @@ const DUMMY_PRODUCTS = [
   },
   {
     id: "p6",
-    sku: "SK-HYALURONIC-PLUMP",
-    name: "Triple Hyaluronic Acid + B5 Plumping Serum",
+    sku: "SK-PDRN-SRM",
+    name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
     category: "Serum",
-    price: 26.00,
-    discountPrice: 21.99,
+    price: 1440.00,
     stock: 110,
     images: [
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600",
+      "/pdrn_regenerating_serum.jpg",
       "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A supercharged hydrating serum utilizing three distinct molecular weights of Hyaluronic Acid to penetrate multiple layers of the skin. Fortified with 2% Vitamin B5 (Panthenol) to soothe skin and trap hydration for instant bounce and dewiness.",
-    ingredients: ["Sodium Hyaluronate (Multi-Weight)", "Panthenol (Vitamin B5 2%)", "Glycerin", "Centella Extract", "Avena Sativa (Oat) Kernel Extract"],
-    benefits: ["Multi-layer skin hydration", "Smoothes dehydrated fine lines", "Plumps skin for a dewy glow"],
-    howToUse: "Apply 3-4 drops onto damp skin after cleansing and toning. Pat gently. Follow immediately with your favorite moisturizer to lock in the hydration.",
-    skinType: ["Dry", "Normal", "Combination", "Sensitive", "Dehydrated"],
-    specs: { "Volume": "30ml", "Hyaluronic Acid": "2.5% Complex", "Panthenol": "2%", "Cruelty-Free": "Yes" },
+    description: "Give your skin the tools to repair and renew itself with PDRN Regenerating Serum — an advanced formula built on DNA repair technology and clinically studied peptides. Designed for anyone looking to restore firmness, improve elasticity, and support long-term skin recovery.",
+    ingredients: [
+      "0.5% PDRN (Polydeoxyribonucleotide) — DNA repair technology that supports skin regeneration",
+      "5% Acetyl Hexapeptide-8 — helps smooth the look of expression lines",
+      "Copper Peptide Complex — supports collagen and elastin production",
+      "Growth Factor Technology (EGF) — aids skin renewal and repair",
+      "Matrixyl Peptide Complex, 5% Niacinamide, 2% Ceramide Complex — strengthen and even out the skin",
+      "2% Centella Asiatica, 2% Panthenol (Pro-Vitamin B5), 1% Ectoin, 1% Beta-Glucan — soothe and hydrate",
+      "Multi Molecular Hyaluronic Acid & Polyglutamic Acid — deep, multi-level hydration"
+    ],
+    benefits: [
+      "Advanced skin regeneration and repair",
+      "Supports collagen and elastin synthesis for firmer, younger-looking skin",
+      "Helps reduce the appearance of fine lines and wrinkles",
+      "Deeply hydrates and improves skin elasticity",
+      "Restores and strengthens the skin's protective barrier",
+      "Calms redness and supports recovery after dermatological or aesthetic procedures",
+      "Improves overall skin texture, radiance, and quality",
+      "Suitable for ageing, dehydrated, sensitive, and post-procedure skin"
+    ],
+    howToUse: "After cleansing and toning, apply 2-3 drops evenly over the face and neck. Gently pat until fully absorbed. Follow with a moisturizer. During the day, use a broad-spectrum sunscreen (SPF 30 or higher). Use morning and evening, or as directed by your dermatologist.",
+    skinType: ["Dry", "Normal", "Combination", "Sensitive", "Aging"],
+    specs: { "Volume": "30ml", "Active Ingredients": "0.5% PDRN, Peptides, EGF", "Cruelty-Free": "Yes" },
     rating: 4.9,
     reviewsCount: 189,
     isFeatured: false,
@@ -266,7 +328,7 @@ const DUMMY_PRODUCTS = [
     discountPrice: 20.00,
     stock: 75,
     images: [
-      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=600",
+      "/centella_soothing_gel.png",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
     description: "An instant cooling, calming gel cream designed for highly sensitive, irritated, or compromised skin. Formulated with 70% Centella Asiatica Extract and Aloe Vera, it reduces skin temperature, alleviates itching, and minimizes redness.",
@@ -284,21 +346,31 @@ const DUMMY_PRODUCTS = [
   {
     id: "p8",
     sku: "SK-SPF50-SUN",
-    name: "Broad-Spectrum SPF 50 Airy Daily Sunscreen",
-    category: "Sunscreen",
-    price: 30.00,
-    discountPrice: 25.00,
+    name: "AHA BHA Face Wash",
+    category: "Cleanser",
+    price: 999.00,
+    discountPrice: 799.00,
     stock: 150,
     images: [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600",
+      "/aha_bha_face_wash.jpg",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A ultra-lightweight, fluid sunscreen that delivers high-performance SPF 50 PA++++ broad-spectrum protection against UVA and UVB rays. Dries down to a natural, invisible finish with zero white cast or greasy film. Enriched with Hyaluronic Acid.",
-    ingredients: ["Homosalate", "Ethylhexyl Salicylate", "Zinc Oxide", "Hyaluronic Acid", "Niacinamide", "Adenosine"],
-    benefits: ["Protects against UVA and UVB rays", "Zero white cast or sticky feel", "Hydrates and functions as a makeup primer"],
-    howToUse: "Apply liberally as the final step in your AM skincare routine, at least 15 minutes before sun exposure. Reapply every 2 hours if active outdoors.",
+    description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
+    ingredients: [
+      "Niacinamide 5% — brightens and evens out skin tone",
+      "Centella Asiatica 2% — soothes and calms irritated skin",
+      "Panthenol (Vitamin B5) 2% — hydrates and repairs the skin barrier",
+      "Salicylic Acid 2% — unclogs pores and fights acne-causing bacteria"
+    ],
+    benefits: [
+      "Brightens and evens out skin tone",
+      "Helps reduce acne and blackheads",
+      "Controls excess oil",
+      "Soothes and calms the skin"
+    ],
+    howToUse: "Wet your face, apply a small amount, gently massage for 30-60 seconds, then rinse off. Use twice daily (morning and night).",
     skinType: ["Normal", "Dry", "Combination", "Oily", "Sensitive"],
-    specs: { "Volume": "50ml", "Protection": "SPF 50 / PA++++", "White Cast": "None", "Water Resistant": "Yes (40 min)" },
+    specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
     rating: 4.8,
     reviewsCount: 210,
     isFeatured: true,
@@ -314,7 +386,7 @@ const DUMMY_PRODUCTS = [
     discountPrice: 27.50,
     stock: 60,
     images: [
-      "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600",
+      "/sugarcane_squalane_oil.jpg",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
     description: "A pure, sustainably-sourced squalane oil that mimics skin's natural lipids to lock in intense moisture. This lightweight, dry facial oil absorbs instantly, helping to soften skin, improve texture, and bring back a healthy, natural radiance.",
@@ -375,6 +447,173 @@ const seedMongoDB = async () => {
         { code: "WELCOME10", discountType: "percentage", discountValue: 10, expiryDate: new Date("2030-12-31"), usageLimit: 1000, usageCount: 0 },
         { code: "SKINCARE20", discountType: "percentage", discountValue: 20, expiryDate: new Date("2030-12-31"), usageLimit: 500, usageCount: 0 }
       ]);
+    } else {
+      // Update Squalane Cleanser images to include CleanserVideo.mp4 if missing
+      const targetName = "Oil Cleanser with Squalane & Jojoba Oil | Removes Makeup & Sunscreen, Non-Greasy";
+      const product = await Product.findOne({ name: targetName });
+      if (product && !product.images.includes("/CleanserVideo.mp4")) {
+        product.images = [
+          "/cleanser.png",
+          "/CleanserVideo.mp4",
+          "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
+        ];
+        await product.save();
+        console.log('Successfully updated Squalane Cleanser in MongoDB with the video.');
+      }
+
+      // Update Toner to C-Peptide Face Serum if it exists
+      const oldToner = await Product.findOne({ $or: [{ sku: "SK-SALICYLIC-TNR" }, { name: "2% BHA Salicylic Acid Exfoliating Toner" }, { sku: "SK-CPEPTIDE-SRM" }, { name: "C-Peptide Face Serum" }] });
+      if (oldToner) {
+        oldToner.name = "C-Peptide Face Serum";
+        oldToner.sku = "SK-CPEPTIDE-SRM";
+        oldToner.category = "Serum";
+        oldToner.price = 1299.00;
+        oldToner.discountPrice = undefined;
+        oldToner.images = [
+          "/c_peptide_serum.png",
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"
+        ];
+        oldToner.description = "C-Peptide Face Serum is the name in age-defying skincare. Its advanced 6-Peptide Complex formula works deep within the skin's layers, keeping your skin firm, hydrated, and youthful.";
+        oldToner.ingredients = [
+          "6 Peptide Complex — Boosts collagen production",
+          "Hyaluronic Acid — Provides deep hydration, locks in moisture",
+          "Niacinamide — Strengthens the skin barrier",
+          "Allantoin — Soothes and repairs skin"
+        ];
+        oldToner.benefits = [
+          "Locks moisture into skin cells",
+          "Visibly reduces fine lines and wrinkles",
+          "Promotes natural collagen production",
+          "Makes skin plump, firm, and youthful"
+        ];
+        oldToner.howToUse = "Apply 3–4 drops of the serum to a clean face—morning or night—before your moisturizer.";
+        oldToner.specs = { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" };
+        await oldToner.save();
+        console.log('Successfully updated/verified C-Peptide Face Serum in MongoDB with the correct image.');
+      }
+
+      // Update Night Cream to Benzotree Face Wash if it exists
+      const oldNightCream = await Product.findOne({ $or: [{ sku: "SK-RETINOL-NIGHT" }, { name: "0.3% Retinol Wrinkle Repair Night Cream" }, { sku: "SK-BENZOTREE-FW" }, { name: "Benzotree Face Wash with Benzoyl Peroxide & Tea Tree Oil | Acne & Breakout Control Face Wash" }] });
+      if (oldNightCream) {
+        oldNightCream.name = "Benzotree Face Wash with Benzoyl Peroxide & Tea Tree Oil | Acne & Breakout Control Face Wash";
+        oldNightCream.sku = "SK-BENZOTREE-FW";
+        oldNightCream.category = "Cleanser";
+        oldNightCream.price = 885.00;
+        oldNightCream.discountPrice = undefined;
+        oldNightCream.images = [
+          "/benzotree_face_wash.png"
+        ];
+        oldNightCream.description = "The best solution for acne-prone skin — Benzotree Face Wash. Specially formulated to target breakouts, excess oil, and clogged pores.";
+        oldNightCream.ingredients = [
+          "Benzoyl Peroxide 1% — fights acne-causing bacteria",
+          "Vitamin C — helps with skin brightening and healing",
+          "Tea Tree Oil — natural antibacterial properties, controls oil",
+          "Vitamin E — soothes and nourishes the skin"
+        ];
+        oldNightCream.benefits = [
+          "Controls excess oil",
+          "Clears clogged pores",
+          "Works effectively on active breakouts",
+          "Treats mild to moderate acne"
+        ];
+        oldNightCream.howToUse = "Wet your face, take a small amount, gently massage for 1 minute, then rinse off. Use 1-2 times a day (to avoid over-drying)";
+        oldNightCream.specs = { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" };
+        await oldNightCream.save();
+        console.log('Successfully updated/verified Benzotree Face Wash in MongoDB with the correct image.');
+      }
+
+      // Update Plumping Serum to PDRN Regenerating Serum if it exists
+      const oldPlumpingSerum = await Product.findOne({ $or: [{ sku: "SK-HYALURONIC-PLUMP" }, { name: "Triple Hyaluronic Acid + B5 Plumping Serum" }, { sku: "SK-PDRN-SRM" }, { name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum" }] });
+      if (oldPlumpingSerum) {
+        oldPlumpingSerum.name = "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum";
+        oldPlumpingSerum.sku = "SK-PDRN-SRM";
+        oldPlumpingSerum.category = "Serum";
+        oldPlumpingSerum.price = 1440.00;
+        oldPlumpingSerum.discountPrice = undefined;
+        oldPlumpingSerum.images = [
+          "/pdrn_regenerating_serum.jpg",
+          "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600"
+        ];
+        oldPlumpingSerum.description = "Give your skin the tools to repair and renew itself with PDRN Regenerating Serum — an advanced formula built on DNA repair technology and clinically studied peptides. Designed for anyone looking to restore firmness, improve elasticity, and support long-term skin recovery.";
+        oldPlumpingSerum.ingredients = [
+          "0.5% PDRN (Polydeoxyribonucleotide) — DNA repair technology that supports skin regeneration",
+          "5% Acetyl Hexapeptide-8 — helps smooth the look of expression lines",
+          "Copper Peptide Complex — supports collagen and elastin production",
+          "Growth Factor Technology (EGF) — aids skin renewal and repair",
+          "Matrixyl Peptide Complex, 5% Niacinamide, 2% Ceramide Complex — strengthen and even out the skin",
+          "2% Centella Asiatica, 2% Panthenol (Pro-Vitamin B5), 1% Ectoin, 1% Beta-Glucan — soothe and hydrate",
+          "Multi Molecular Hyaluronic Acid & Polyglutamic Acid — deep, multi-level hydration"
+        ];
+        oldPlumpingSerum.benefits = [
+          "Advanced skin regeneration and repair",
+          "Supports collagen and elastin synthesis for firmer, younger-looking skin",
+          "Helps reduce the appearance of fine lines and wrinkles",
+          "Deeply hydrates and improves skin elasticity",
+          "Restores and strengthens the skin's protective barrier",
+          "Calms redness and supports recovery after dermatological or aesthetic procedures",
+          "Improves overall skin texture, radiance, and quality",
+          "Suitable for ageing, dehydrated, sensitive, and post-procedure skin"
+        ];
+        oldPlumpingSerum.howToUse = "After cleansing and toning, apply 2-3 drops evenly over the face and neck. Gently pat until fully absorbed. Follow with a moisturizer. During the day, use a broad-spectrum sunscreen (SPF 30 or higher). Use morning and evening, or as directed by your dermatologist.";
+        oldPlumpingSerum.specs = { "Volume": "30ml", "Active Ingredients": "0.5% PDRN, Peptides, EGF", "Cruelty-Free": "Yes" };
+        await oldPlumpingSerum.save();
+        console.log('Successfully updated/verified PDRN Regenerating Serum in MongoDB.');
+      }
+
+      // Update UV-Aurora Sunscreen images if they exist
+      const sunScreen = await Product.findOne({ name: "UV-Aurora Sunscreen" });
+      if (sunScreen) {
+        sunScreen.images = [
+          "/uv_aurora_sunscreen.png",
+          "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=600"
+        ];
+        await sunScreen.save();
+        console.log('Successfully updated/verified UV-Aurora Sunscreen in MongoDB.');
+      }
+
+      // Update Centella Soothing Recovery Gel images if they exist
+      const centellaGel = await Product.findOne({ name: "Centella Soothing Recovery Gel" });
+      if (centellaGel) {
+        centellaGel.images = [
+          "/centella_soothing_gel.png",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
+        ];
+        await centellaGel.save();
+        console.log('Successfully updated/verified Centella Soothing Recovery Gel in MongoDB.');
+      }
+
+      // Update 100% Sugarcane Squalane Facial Oil images if they exist
+      const squalaneOil = await Product.findOne({ name: "100% Sugarcane Squalane Facial Oil" });
+      if (squalaneOil) {
+        squalaneOil.images = [
+          "/sugarcane_squalane_oil.jpg",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
+        ];
+        await squalaneOil.save();
+        console.log('Successfully updated/verified 100% Sugarcane Squalane Facial Oil in MongoDB.');
+      }
+
+      // Update AHA & BHA FACE SERUM images if they exist
+      const faceSerum = await Product.findOne({ name: "AHA & BHA FACE SERUM" });
+      if (faceSerum) {
+        faceSerum.images = [
+          "/aha_bha_face_serum.jpg",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
+        ];
+        await faceSerum.save();
+        console.log('Successfully updated/verified AHA & BHA FACE SERUM in MongoDB.');
+      }
+
+      // Update AHA BHA Face Wash images if they exist
+      const faceWash = await Product.findOne({ name: "AHA BHA Face Wash" });
+      if (faceWash) {
+        faceWash.images = [
+          "/aha_bha_face_wash.jpg",
+          "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
+        ];
+        await faceWash.save();
+        console.log('Successfully updated/verified AHA BHA Face Wash in MongoDB.');
+      }
     }
   } catch (err) {
     console.warn("Could not seed MongoDB:", err.message);

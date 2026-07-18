@@ -78,7 +78,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-lg border border-stone-200/80 bg-white transition-all duration-300 hover:shadow-md">
       {/* Product Image & Badges */}
-      <Link href={`/product/${id}`} className="relative block aspect-square w-full overflow-hidden bg-stone-100">
+      <Link href={`/product/${id}`} className="relative block aspect-[4/5] w-full overflow-hidden bg-stone-100">
         <img
           src={product.images[0] || 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600'}
           alt={product.name}
@@ -139,12 +139,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="mt-auto pt-4 flex items-center justify-between">
           <div className="flex items-baseline space-x-2">
             {hasDiscount ? (
-              <>
-                <span className="text-base font-bold text-stone-950">${product.discountPrice}</span>
-                <span className="text-xs text-stone-400 line-through">${product.price}</span>
-              </>
+              <span className="text-base font-bold text-stone-950">₹{product.discountPrice}</span>
             ) : (
-              <span className="text-base font-bold text-stone-950">${product.price}</span>
+              <span className="text-base font-bold text-stone-950">₹{product.price}</span>
             )}
           </div>
 

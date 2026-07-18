@@ -1,9 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  --color-emerald-50: #faf8ff;
+  --color-emerald-100: #f5f0ff;
+  --color-emerald-250: #ede5ff;
+  --color-emerald-600: #a78bfa;
+  --color-emerald-700: #8E6BBE; /* Requested Lavender */
+  --color-emerald-800: #7A59A7; /* Hover Lavender */
+  --color-emerald-850: #6D4EB3;
+  --color-emerald-900: #6D4EB3;
+  --color-emerald-950: #6F4A8E; /* Deep Lavender heading color */
+  
+  --font-sans: var(--font-dmsans), var(--font-sans), sans-serif;
+  --font-serif: var(--font-poppins), var(--font-serif), serif;
+}
+
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #1c1917;
+    --foreground: #5F6368; /* Requested Paragraph Color */
   }
   
   html {
@@ -13,6 +28,16 @@
   body {
     background-color: #ffffff;
     color: var(--foreground);
+    font-family: var(--font-dmsans), var(--font-sans), sans-serif;
+    line-height: 1.7; /* Line height 170% */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), var(--font-serif), serif;
+    color: #6F4A8E; /* Deep Lavender headings color */
+    letter-spacing: -1px;
+    line-height: 1.1; /* Line height 110% */
+    font-weight: 600;
   }
 }
 
@@ -36,4 +61,21 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes bannerText {
+  0%, 100% {
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.animate-banner-text {
+  animation: bannerText 4s ease-in-out infinite;
+  display: inline-block;
 }
