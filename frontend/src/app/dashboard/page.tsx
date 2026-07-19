@@ -8,7 +8,7 @@ import { ProductCard, ProductType } from '@/components/ProductCard';
 import { Heart, Package, User as UserIcon, MapPin, RefreshCw, Eye, ExternalLink } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/config';
 
 const MOCK_ORDERS = [
   {

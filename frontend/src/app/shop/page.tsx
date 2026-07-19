@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { ProductCard, ProductType } from '@/components/ProductCard';
 import { SlidersHorizontal, Search, RefreshCw, X } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/config';
 
 const DUMMY_PRODUCTS: ProductType[] = [
   {

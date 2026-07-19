@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import { BarChart3, Package, ShoppingCart, Percent, RefreshCw, Trash2, Plus, Edit2, ShieldAlert } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/config';
 
 export default function AdminPanel() {
   const router = useRouter();

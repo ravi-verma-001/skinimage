@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ProductCard, ProductType } from '@/components/ProductCard';
 import { Sparkles, ArrowRight, ShieldCheck, Award, Heart, CheckCircle2, ChevronDown, RefreshCw, Star, Camera, CheckCircle } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/config';
 
 // Fallback dummy products in case API is loading or fails
 const FALLBACK_PRODUCTS: ProductType[] = [

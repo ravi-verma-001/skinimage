@@ -8,7 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Check, CreditCard, ChevronRight, ShieldCheck, ShoppingBag, Truck, RefreshCw } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/config';
 
 export default function CheckoutPage() {
   const router = useRouter();
