@@ -31,6 +31,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Shop All', href: '/shop' },
+    { name: 'Skin Analyzer', href: '/skin-analyzer' },
     { name: 'Our Story', href: '/#brand-story' },
     { name: 'FAQ', href: '/#faq' },
   ];
@@ -55,7 +56,7 @@ export const Header: React.FC = () => {
             <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
               <Link href="/" className="transition hover:opacity-85 flex items-center">
                 <img
-                  src="/skin_image_logo.svg"
+                  src="/skinimagelogo.jpg"
                   alt="Skin Image Logo"
                   className="h-10 w-auto object-contain"
                 />

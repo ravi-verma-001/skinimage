@@ -31,7 +31,7 @@ export default function LoginPage() {
       await login(email, password);
       toast.success('Logged in successfully!');
     } catch (err: any) {
-      toast.error(err.message || 'Invalid credentials. Try admin@nextskin.com / password123');
+      toast.error(err.message || 'Invalid credentials. Try admin@skinimage.com / password123');
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export default function LoginPage() {
           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
             <Sparkles className="h-3 w-3" /> Welcome Back
           </span>
-          <h1 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">Login to NextSkin</h1>
+          <h1 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">Login to Skinimage</h1>
           <p className="text-stone-500 text-xs">Access your saved products, purchase history, and tracking codes.</p>
         </div>
 
@@ -73,8 +73,8 @@ export default function LoginPage() {
           <p className="font-bold text-emerald-850 flex items-center">
             <KeyRound className="h-3.5 w-3.5 mr-1" /> Quick Sandbox Sandbox Credentials:
           </p>
-          <p><strong>Admin:</strong> admin@nextskin.com | admin123 (Register role: admin)</p>
-          <p><strong>User:</strong> user@nextskin.com | user123 (Register role: user)</p>
+          <p><strong>Admin:</strong> admin@skinimage.com | admin123 (Register role: admin)</p>
+          <p><strong>User:</strong> user@skinimage.com | user123 (Register role: user)</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
@@ -119,7 +119,7 @@ export default function LoginPage() {
         </form>
 
         <div className="text-center pt-2 border-t border-stone-100 text-xs text-stone-500">
-          New to NextSkin?{' '}
+          New to Skinimage?{' '}
           <Link href="/register" className="font-bold text-emerald-700 hover:underline">
             Create an Account
           </Link>

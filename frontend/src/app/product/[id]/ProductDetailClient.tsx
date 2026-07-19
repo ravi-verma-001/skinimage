@@ -53,10 +53,10 @@ const DUMMY_PRODUCTS = [
   {
     id: "p2",
     sku: "SK-VITC-GLOW",
-    name: "AHA & BHA FACE SERUM",
+    name: "Clinq 10% AHA BHA Face Serum",
     category: "Serum",
-    price: 1199.00,
-    discountPrice: 899.00,
+    price: 899.00,
+    discountPrice: 849.00,
     stock: 50,
     images: [
       "/aha_bha_face_serum.jpg",
@@ -89,7 +89,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-NIACIN-MOIST",
     name: "UV-Aurora Sunscreen",
     category: "Sunscreen",
-    price: 999.00,
+    price: 899.00,
     discountPrice: 798.00,
     stock: 120,
     images: [
@@ -256,7 +256,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-SPF50-SUN",
     name: "AHA BHA Face Wash",
     category: "Cleanser",
-    price: 999.00,
+    price: 899.00,
     discountPrice: 799.00,
     stock: 150,
     images: [
@@ -313,6 +313,126 @@ const DUMMY_PRODUCTS = [
   }
 ];
 
+const PRODUCT_FAQS: Record<string, { question: string; answer: string }[]> = {
+  p2: [
+    {
+      question: "What is Clinq 10% AHA BHA Face Serum?",
+      answer: "Clinq 10% AHA BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more even skin tone."
+    },
+    {
+      question: "What are the key ingredients in Clinq 10% AHA BHA Face Serum?",
+      answer: "The key active ingredients are Glycolic Acid (AHA), Salicylic Acid (BHA), Niacinamide, and Ascorbyl Glucoside (Vitamin C derivative), which work synergistically to exfoliate, brighten, and soothe the skin."
+    },
+    {
+      question: "How does Clinq 10% AHA BHA Face Serum work?",
+      answer: "The AHAs gently dissolve the bonds holding dead skin cells on the surface, while BHAs penetrate deep into the pores to clear out sebum and prevent breakouts. Niacinamide and Vitamin C work together to target dark spots and smooth skin texture."
+    },
+    {
+      question: "How should Clinq 10% AHA BHA Face Serum be used?",
+      answer: "Apply 3-4 drops to clean, dry skin in your evening routine, gently patting it in. Avoid the eye area. Always follow up with a moisturizer and apply a broad-spectrum sunscreen during the day while using this product."
+    },
+    {
+      question: "Is Clinq 10% AHA BHA Face Serum suitable for regular use?",
+      answer: "Yes, it is suitable for regular use, but if you are new to chemical exfoliants, start by using it 2-3 times a week and gradually increase to daily evening use as your skin builds tolerance."
+    },
+    {
+      question: "What benefits can I expect from Clinq 10% AHA BHA Face Serum?",
+      answer: "You can expect smoother skin texture, reduced appearance of pores, improved radiance, fewer breakouts, and a visible reduction in fine lines and uneven skin tone over 4-6 weeks of consistent use."
+    }
+  ],
+  p1: [
+    {
+      question: "What is the Oil Cleanser with Squalane & Jojoba Oil?",
+      answer: "This is a premium first-step oil cleanser designed to melt away stubborn makeup, water-resistant sunscreen, and excess sebum while nourishing the skin barrier."
+    },
+    {
+      question: "Can it be used on oily or acne-prone skin?",
+      answer: "Yes! Jojoba oil balances sebum production and is non-comedogenic, making this cleanser excellent for balancing all skin types, including oily and acne-prone skin."
+    },
+    {
+      question: "Does it leave a greasy residue?",
+      answer: "No, it emulsifies into a light milk when mixed with water, rinsing off cleanly without leaving any greasy residue behind."
+    }
+  ],
+  p3: [
+    {
+      question: "What makes UV-Aurora Sunscreen special?",
+      answer: "It provides broad-spectrum SPF 50 / PA++++ protection against UVA and UVB rays, featuring a lightweight, hydrating formula that leaves zero white cast and doubles as a moisturizer."
+    },
+    {
+      question: "How often should I reapply the sunscreen?",
+      answer: "For maximum protection, reapply every 3 to 4 hours, especially if you are outdoors, sweating, or swimming."
+    },
+    {
+      question: "Is it suitable for acne-prone skin?",
+      answer: "Yes, UV-Aurora Sunscreen is non-comedogenic, meaning it won't clog your pores, and contains soothing ingredients suitable for sensitive, acne-prone skin."
+    }
+  ],
+  p4: [
+    {
+      question: "How does Benzotree Face Wash help with acne?",
+      answer: "It combines Benzoyl Peroxide (which targets acne-causing bacteria) and Tea Tree Oil (a natural anti-inflammatory agent) to deep-clean pores and control breakouts."
+    },
+    {
+      question: "Should I use it daily?",
+      answer: "Yes, but if your skin experiences mild dryness, start by using it once a day or every other day, gradually increasing to twice daily as tolerated."
+    }
+  ],
+  p5: [
+    {
+      question: "What is the primary benefit of C-Peptide Face Serum?",
+      answer: "It boosts collagen production, locks in deep moisture, and strengthens the skin barrier to make skin look firm, plump, and youthful."
+    },
+    {
+      question: "At what age should I start using peptide serums?",
+      answer: "Peptide serums can be introduced into your routine starting in your early-to-mid 20s as a preventative measure to retain skin elasticity and firmness."
+    }
+  ],
+  p6: [
+    {
+      question: "What is PDRN Regenerating Serum?",
+      answer: "PDRN is DNA repair technology that actively supports skin regeneration, cell renewal, and long-term recovery, particularly after aesthetic procedures or skin irritation."
+    },
+    {
+      question: "How do I pair PDRN with other actives?",
+      answer: "PDRN pairs beautifully with Niacinamide, Hyaluronic Acid, and Centella. If using strong exfoliants or retinoids, apply PDRN afterward to soothe and speed up skin barrier recovery."
+    }
+  ]
+};
+
+const CATEGORY_FAQS: Record<string, { question: string; answer: string }[]> = {
+  Cleanser: [
+    {
+      question: "Why should I use a specialized cleanser?",
+      answer: "A specialized cleanser removes dirt, sweat, makeup, and skin care products without stripping your skin's natural moisture barrier, laying a healthy foundation for the rest of your routine."
+    },
+    {
+      question: "Should I wash my face twice a day?",
+      answer: "Generally, yes. Washing once in the evening is critical to remove daily impurities. A gentle rinse or light cleanse in the morning keeps your skin fresh and ready for active treatments."
+    }
+  ],
+  Serum: [
+    {
+      question: "How does a serum differ from a moisturizer?",
+      answer: "Serums are lightweight, fast-absorbing liquids formulated with high concentrations of active ingredients to target specific concerns like dark spots, acne, or fine lines, whereas moisturizers focus on sealing in hydration."
+    },
+    {
+      question: "How do I layer multiple serums?",
+      answer: "Layer them from thinnest consistency (water-like) to thickest. Allow each serum to absorb for a minute before applying the next one."
+    }
+  ],
+  generic: [
+    {
+      question: "Are NextSkin products cruelty-free?",
+      answer: "Yes, all NextSkin formulations are 100% cruelty-free and developed without any testing on animals."
+    },
+    {
+      question: "How long does it take to see results?",
+      answer: "While hydration benefits are immediate, targeting concerns like texture, pigmentation, and fine lines typically takes 4-6 weeks of consistent daily usage."
+    }
+  ]
+};
+
 interface ProductDetailClientProps {
   id: string;
 }
@@ -326,7 +446,55 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
-  const [openSection, setOpenSection] = useState<string>('ingredients');
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    description: true,
+    benefits: true,
+    howToUse: true,
+    ingredients: true,
+  });
+  const [openFaq, setOpenFaq] = useState<Record<number, boolean>>({});
+
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
+  const getProductFaqs = () => {
+    const productId = product?._id || product?.id;
+    if (productId && PRODUCT_FAQS[productId]) {
+      return PRODUCT_FAQS[productId];
+    }
+    const category = product?.category;
+    if (category && CATEGORY_FAQS[category]) {
+      return CATEGORY_FAQS[category];
+    }
+    return CATEGORY_FAQS.generic;
+  };
+
+  const getProductTags = () => {
+    const tagsMap: Record<string, string[]> = {
+      p2: ["Skin Exfoliation", "Skin Brightening", "Skin Renewal"],
+      p1: ["Deep Cleansing", "Makeup Removal", "Skin Hydration"],
+      p3: ["UV Protection", "Zero White Cast", "Deep Hydration"],
+      p4: ["Acne Control", "Pore Cleansing", "Oil Regulation"],
+      p5: ["Anti-Aging", "Collagen Boosting", "Barrier Support"],
+      p6: ["Cell Regeneration", "Elasticity Boost", "Barrier Repair"],
+      p7: ["Redness Relief", "Instant Cooling", "Barrier Repair"],
+      p8: ["Gentle Exfoliation", "Brightening", "Acne Control"],
+      p9: ["Intense Moisture", "Texture Smoothing", "Eco-Friendly"]
+    };
+    const productId = product?._id || product?.id;
+    return tagsMap[productId] || ["100% Organic", "Dermatologically Tested", "Cruelty-Free"];
+  };
 
   // Review Form state
   const [rating, setRating] = useState(5);
@@ -438,10 +606,10 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
   };
 
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-800 pb-20 pt-28">
+    <main className="min-h-screen bg-stone-50 text-stone-800 pb-20 pt-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <nav className="flex space-x-2 text-xs text-stone-500 mb-8 items-center">
+        <nav className="flex space-x-2 text-xs text-stone-500 mb-2 items-center">
           <Link href="/" className="hover:text-stone-800">Home</Link>
           <span>/</span>
           <Link href="/shop" className="hover:text-stone-800">Shop</Link>
@@ -449,10 +617,41 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
           <span className="text-stone-800 truncate max-w-[200px]">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Images Section */}
-          <div className="space-y-4">
-            <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-stone-200 bg-white flex items-center justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          {/* Images Section (Column Span: 5/12) */}
+          <div className="lg:col-span-5 flex flex-col md:flex-row gap-3">
+            {/* Vertical Thumbnails (hidden/scrollable horizontally on mobile, stacked vertically on md+) */}
+            {product.images && product.images.length > 1 && (
+              <div className="flex md:flex-col gap-2 order-2 md:order-1 overflow-x-auto md:overflow-x-visible shrink-0 pb-1 md:pb-0 justify-start">
+                {product.images.map((img: string, idx: number) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImage(img)}
+                    className={`relative w-12 h-12 rounded-lg border overflow-hidden bg-white flex items-center justify-center p-0.5 transition-all ${
+                      activeImage === img ? 'border-purple-600 ring-2 ring-purple-50' : 'border-stone-200 hover:border-stone-300'
+                    }`}
+                  >
+                    {img.toLowerCase().endsWith('.mp4') ? (
+                      <div className="relative w-full h-full flex items-center justify-center bg-stone-50">
+                        <video src={img} className="object-contain max-h-full max-w-full opacity-60" preload="metadata" muted />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-purple-600/80 text-white rounded-full p-0.5 shadow-sm">
+                            <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <img src={img} alt="" className="object-contain max-h-full max-w-full" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Main Image Display */}
+            <div className="relative flex-1 w-full max-w-[340px] aspect-square overflow-hidden rounded-xl border border-stone-200 bg-white flex items-center justify-center order-1 md:order-2 shadow-sm">
               {activeImage.toLowerCase().endsWith('.mp4') ? (
                 <video
                   src={activeImage}
@@ -470,198 +669,379 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
                 />
               )}
               {product.discountPrice && (
-                <div className="absolute top-4 left-4 bg-emerald-800 text-white text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded">
+                <div className="absolute top-3 left-3 bg-purple-600 text-white text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded shadow-sm">
                   Sale
                 </div>
               )}
-            </div>
-            
-            {/* Thumbnails */}
-            {product.images && product.images.length > 1 && (
-              <div className="flex gap-4">
-                {product.images.map((img: string, idx: number) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImage(img)}
-                    className={`relative w-20 aspect-square rounded-lg border overflow-hidden bg-white flex items-center justify-center p-1 transition-all ${
-                      activeImage === img ? 'border-emerald-800 ring-1 ring-emerald-800' : 'border-stone-200 hover:border-stone-400'
-                    }`}
-                  >
-                    {img.toLowerCase().endsWith('.mp4') ? (
-                      <div className="relative w-full h-full flex items-center justify-center bg-stone-100">
-                        <video src={img} className="object-contain max-h-full max-w-full opacity-60" preload="metadata" muted />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="bg-emerald-800/80 text-white rounded-full p-1.5 shadow-sm">
-                            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <img src={img} alt="" className="object-contain max-h-full max-w-full" />
-                    )}
-                  </button>
-                ))}
+              {/* Zoom glass icon at bottom right */}
+              <div className="absolute bottom-3 right-3 bg-white p-2 rounded-full shadow border border-stone-100 text-stone-400 hover:text-stone-700 transition-colors cursor-pointer">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </div>
-            )}
+            </div>
           </div>
 
-          {/* Product Details Section */}
-          <div className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest text-emerald-800 font-semibold mb-2">
-              {product.category}
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-serif text-stone-900 leading-tight mb-3">
+          {/* Product Details Section (Column Span: 7/12) */}
+          <div className="lg:col-span-7 flex flex-col">
+            <h1 className="text-xl sm:text-2xl font-bold text-stone-900 leading-tight mb-2 tracking-tight">
               {product.name}
             </h1>
+
+            {/* Key Feature Tags */}
+            <div className="flex flex-wrap gap-x-3 gap-y-1.5 mb-2.5">
+              {getProductTags().map((tag: string, idx: number) => (
+                <div key={idx} className="flex items-center gap-1 text-green-700 text-[11px] sm:text-xs font-medium">
+                  <svg className="w-3.5 h-3.5 text-green-600 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" fill="none" />
+                    <path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>{tag}</span>
+                </div>
+              ))}
+            </div>
             
             {/* Rating */}
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="flex items-center text-amber-500">
+            <div className="flex items-center gap-1.5 mb-3.5">
+              <div className="flex items-center text-[#EAB308]">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-4 w-4 ${
+                    className={`h-3.5 w-3.5 ${
                       i < Math.round(product.rating || 0) ? 'fill-current' : 'text-stone-300'
                     }`}
                   />
                 ))}
               </div>
-              <span className="text-xs text-stone-500 font-medium">
-                ({product.reviewsCount || 0} reviews)
-              </span>
+              <span className="text-xs font-semibold text-stone-850 mt-0.5">{product.rating || 4.8}</span>
+              <span className="text-xs text-stone-500 mt-0.5">({product.reviewsCount || 15} Reviews)</span>
             </div>
 
             {/* Price */}
-            <div className="flex items-baseline space-x-4 mb-6">
-              {product.discountPrice ? (
-                <>
-                  <span className="text-2xl font-medium text-stone-900">₹{product.discountPrice.toFixed(2)}</span>
-                  <span className="text-stone-400 line-through text-sm">₹{product.price.toFixed(2)}</span>
-                </>
-              ) : (
-                <span className="text-2xl font-medium text-stone-900">₹{product.price.toFixed(2)}</span>
+            <div className="flex items-center gap-2 mb-5 flex-wrap">
+              {product.discountPrice && (
+                <span className="text-stone-400 line-through text-sm">₹{product.price.toFixed(0)}</span>
+              )}
+              <span className="text-xl sm:text-2xl font-bold text-green-600">
+                ₹{(product.discountPrice || product.price).toFixed(0)}
+              </span>
+              <span className="text-[10px] text-stone-400 font-light mt-1">(incl. of all taxes.)</span>
+              {product.discountPrice && (
+                <span className="bg-[#8B5CF6] text-white text-[9px] font-bold tracking-wide uppercase px-1.5 py-0.5 rounded shadow-sm">
+                  SAVE {Math.round(((product.price - product.discountPrice) / product.price) * 100)}%
+                </span>
               )}
             </div>
 
-            <p className="text-stone-600 text-sm leading-relaxed mb-8">
-              {product.description}
-            </p>
+            {/* Size Selector */}
+            <div className="mb-5">
+              <span className="block text-xs font-medium text-stone-500 mb-1.5">Size:</span>
+              <button className="px-3.5 py-1 rounded-lg border border-purple-600 bg-purple-50 text-purple-700 font-semibold text-xs">
+                {product.specs?.Volume || "30 ml"}
+              </button>
+            </div>
 
-            {/* Quick Specs */}
-            {product.specs && (
-              <div className="grid grid-cols-2 gap-y-3 gap-x-4 border-t border-b border-stone-200 py-4 mb-8 text-xs">
-                {Object.entries(product.specs).map(([key, val]: any) => (
-                  <div key={key} className="flex justify-between pr-4">
-                    <span className="text-stone-400">{key}:</span>
-                    <span className="font-medium text-stone-700">{val}</span>
-                  </div>
-                ))}
+            {/* Actions Bar */}
+            <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-5 max-w-[420px]">
+              {/* Qty dropdown dropdown */}
+              <div className="relative border border-stone-300 rounded-lg px-3 py-2.5 bg-white flex items-center justify-between gap-3 hover:border-stone-400 transition-colors shrink-0">
+                <span className="text-xs text-stone-600">Qty:</span>
+                <select
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  className="bg-transparent pr-5 text-xs font-bold text-stone-900 focus:outline-none cursor-pointer appearance-none"
+                >
+                  {[...Array(Math.min(product.stock || 10, 10))].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+                <ChevronDown className="w-3.5 h-3.5 text-stone-500 absolute right-2.5 pointer-events-none" />
               </div>
-            )}
 
-            {/* Quantity and Actions */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-4">
-                <span className="text-xs text-stone-400 uppercase tracking-wider">Quantity:</span>
-                <div className="flex items-center border border-stone-300 rounded bg-white">
-                  <button
-                    onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                    className="px-3 py-1 text-stone-600 hover:bg-stone-100"
-                  >
-                    -
-                  </button>
-                  <span className="px-3 text-sm font-medium text-stone-800">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(q => Math.min(product.stock || 10, q + 1))}
-                    className="px-3 py-1 text-stone-600 hover:bg-stone-100"
-                  >
-                    +
-                  </button>
+              {/* Add to Cart button */}
+              <button
+                onClick={handleAddToCart}
+                disabled={!product.stock}
+                className="flex-1 border border-purple-600 bg-white text-purple-700 font-bold text-xs py-2.5 px-4 rounded-xl hover:bg-purple-50 transition-all flex items-center justify-center gap-1.5"
+              >
+                <div className="w-4.5 h-4.5 rounded-full bg-purple-600 text-white flex items-center justify-center">
+                  <ShoppingCart className="h-2.5 w-2.5" />
                 </div>
-                <span className="text-xs text-stone-400">
-                  ({product.stock || 0} items available)
-                </span>
-              </div>
+                <span>{product.stock ? 'Add to cart' : 'Out of Stock'}</span>
+              </button>
 
-              <div className="flex gap-4">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={!product.stock}
-                  className="flex-1 bg-emerald-800 hover:bg-emerald-950 disabled:bg-stone-300 text-white font-medium text-xs tracking-wider uppercase py-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
-                >
-                  <ShoppingCart className="h-4 w-4" />
-                  <span>{product.stock ? 'Add to Cart' : 'Out of Stock'}</span>
-                </button>
-                
-                <button
-                  onClick={handleWishlistToggle}
-                  className={`p-4 rounded-lg border transition-all flex items-center justify-center ${
-                    isWishlisted
-                      ? 'border-red-200 bg-red-50 text-red-600'
-                      : 'border-stone-300 hover:border-stone-500 text-stone-600'
-                  }`}
-                >
-                  <Heart className={`h-5 w-5 ${isWishlisted ? 'fill-current' : ''}`} />
-                </button>
+              {/* Buy It Now button */}
+              <button
+                onClick={() => {
+                  handleAddToCart();
+                  router.push('/cart');
+                }}
+                disabled={!product.stock}
+                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-sm"
+              >
+                <svg className="w-3.5 h-3.5 text-white fill-current" viewBox="0 0 24 24">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <span>Buy It Now</span>
+              </button>
+            </div>
+
+
+            {/* Available offers */}
+            <div className="mb-4 bg-purple-50/40 border border-purple-100 rounded-xl p-3">
+              <div className="flex items-center gap-1.5 text-purple-900 font-bold text-xs mb-1.5">
+                <svg className="w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20">
+                  <path d="M8.433 7.418c.554-.589 1.448-.589 2.002 0l3.507 3.727c.554.59.554 1.54 0 2.13l-3.507 3.727c-.554.589-1.448.589-2.002 0l-3.507-3.727c-.554-.59-.554-1.54 0-2.13l3.507-3.727z" />
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                </svg>
+                <span>Available offers</span>
               </div>
+              <ul className="space-y-1.5 text-[10px] text-stone-600">
+                <li className="flex items-start gap-1.5">
+                  <span className="text-green-600 font-bold">•</span>
+                  <span>Get 5% Extra discount on UPI transactions.</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-green-600 font-bold">•</span>
+                  <span>Buy 2 Get 1 Free on all Face Serums. Use code: <span className="font-bold text-purple-700">GLOW3</span></span>
+                </li>
+              </ul>
             </div>
 
             {/* Accordion Sections */}
-            <div className="border-t border-stone-200 pt-2 space-y-2">
-              {[
-                { id: 'ingredients', label: 'Ingredients', data: product.ingredients?.join(', ') },
-                { id: 'howToUse', label: 'How to Use', data: product.howToUse },
-                { id: 'benefits', label: 'Benefits', data: product.benefits?.join('. ') }
-              ].map(section => (
-                <div key={section.id} className="border-b border-stone-200 pb-2">
+            <div className="border-t border-stone-200 pt-1 space-y-2">
+              {/* Product Description */}
+              <div className="border-b border-stone-200 pb-2.5">
+                <button
+                  onClick={() => toggleSection('description')}
+                  className="w-full flex justify-between items-center py-2 text-left font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors"
+                >
+                  <span className="font-serif">Product Description</span>
+                  <ChevronDown className={`h-4 w-4 text-violet-600 transform transition-transform duration-200 ${openSections.description ? 'rotate-180' : ''}`} />
+                </button>
+                {openSections.description && (
+                  <p className="text-stone-500 text-xs sm:text-sm leading-relaxed py-1 font-light">
+                    {product.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Key Benefits */}
+              {product.benefits && product.benefits.length > 0 && (
+                <div className="border-b border-stone-200 pb-2.5">
                   <button
-                    onClick={() => setOpenSection(openSection === section.id ? '' : section.id)}
-                    className="w-full flex justify-between items-center py-2 text-left font-serif text-sm font-semibold text-stone-800 hover:text-stone-600"
+                    onClick={() => toggleSection('benefits')}
+                    className="w-full flex justify-between items-center py-2 text-left font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors"
                   >
-                    <span>{section.label}</span>
-                    <ChevronDown className={`h-4 w-4 transform transition-transform ${openSection === section.id ? 'rotate-180' : ''}`} />
+                    <span className="font-serif">Key Benefits</span>
+                    <ChevronDown className={`h-4 w-4 text-violet-600 transform transition-transform duration-200 ${openSections.benefits ? 'rotate-180' : ''}`} />
                   </button>
-                  {openSection === section.id && (
-                    <p className="text-xs text-stone-600 leading-relaxed py-1">
-                      {section.data || 'Not specified.'}
-                    </p>
+                  {openSections.benefits && (
+                    <ul className="space-y-2 py-1">
+                      {product.benefits.map((benefit: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          {/* Circular Green Checkmark */}
+                          <svg className="h-4 w-4 text-green-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="#00C853" strokeWidth="2" fill="none" />
+                            <path d="M8 12L11 15L16 9" stroke="#00C853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                          <span className="text-stone-600 text-xs sm:text-sm leading-relaxed font-light">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
-              ))}
+              )}
+
+              {/* How to Use */}
+              {product.howToUse && (
+                <div className="border-b border-stone-200 pb-2.5">
+                  <button
+                    onClick={() => toggleSection('howToUse')}
+                    className="w-full flex justify-between items-center py-2 text-left font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors"
+                  >
+                    <span className="font-serif">How to Use</span>
+                    <ChevronDown className={`h-4 w-4 text-violet-600 transform transition-transform duration-200 ${openSections.howToUse ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openSections.howToUse && (
+                    <div className="flex items-start gap-3 py-1">
+                      {/* Purple Hand holding droplet icon */}
+                      <div className="text-purple-600 shrink-0 mt-0.5">
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          {/* Droplet */}
+                          <path d="M12 2.5C12 2.5 8 6.5 8 9C8 11.2 9.8 13 12 13C14.2 13 16 11.2 16 9C16 6.5 12 2.5 12 2.5Z" fill="currentColor" />
+                          {/* Hand palm up */}
+                          <path d="M2 17H8.5C9.8 17 11 17.8 11.5 19L12 20H19C20.1 20 21 19.1 21 18V17C21 15.9 20.1 15 19 15H16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M15 15C15 13.9 14.1 13 13 13H10.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                      <p className="text-stone-600 text-xs sm:text-sm leading-relaxed font-light">
+                        {product.howToUse}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Key Ingredients */}
+              {product.ingredients && product.ingredients.length > 0 && (
+                <div className="border-b border-stone-200 pb-2.5">
+                  <button
+                    onClick={() => toggleSection('ingredients')}
+                    className="w-full flex justify-between items-center py-2 text-left font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors"
+                  >
+                    <span className="font-serif">Key Ingredients</span>
+                    <ChevronDown className={`h-4 w-4 text-violet-600 transform transition-transform duration-200 ${openSections.ingredients ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openSections.ingredients && (
+                    <ul className="space-y-3 py-2">
+                      {product.ingredients.map((ingredient: string, idx: number) => {
+                        const parts = ingredient.split('—');
+                        const name = parts[0].trim();
+                        const desc = parts[1]?.trim();
+                        return (
+                          <li key={idx} className="flex items-center gap-3">
+                            {/* Purple Beaker flask icon */}
+                            <div className="text-purple-600 shrink-0">
+                              <svg className="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 3H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                <path d="M10 3V8L4.5 17.5C3.8 18.8 4.7 20.5 6.2 20.5H17.8C19.3 20.5 20.2 18.8 19.5 17.5L14 8V3" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                                <path d="M6.2 18.5L8.5 14.5H15.5L17.8 18.5H6.2Z" fill="currentColor" opacity="0.6" />
+                              </svg>
+                            </div>
+                            <div>
+                              <span className="text-stone-850 text-xs sm:text-sm font-semibold">{name}</span>
+                              {desc && <span className="block text-[10px] text-stone-500 font-light mt-0.5">{desc}</span>}
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )}
+
+              {/* Product Specifications */}
+              {product.specs && (
+                <div className="border-b border-stone-200 pb-2.5">
+                  <button
+                    onClick={() => toggleSection('specs')}
+                    className="w-full flex justify-between items-center py-2 text-left font-semibold text-sm sm:text-base text-stone-900 hover:text-stone-700 transition-colors"
+                  >
+                    <span className="font-serif">Specifications</span>
+                    <ChevronDown className={`h-4 w-4 text-violet-600 transform transition-transform duration-200 ${openSections.specs ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openSections.specs && (
+                    <div className="grid grid-cols-2 gap-y-2.5 gap-x-5 py-2 text-xs">
+                      {Object.entries(product.specs).map(([key, val]: any) => (
+                        <div key={key} className="flex justify-between border-b border-stone-100 pb-1.5">
+                          <span className="text-stone-400 font-light">{key}:</span>
+                          <span className="font-semibold text-stone-700">{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Brand Core Badges */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-b border-stone-200 py-10 my-16 bg-stone-100/50 rounded-xl px-6 sm:px-8">
-          <div className="flex items-start space-x-4">
-            <div className="p-3 bg-emerald-50 rounded-lg text-emerald-800">
-              <ShieldCheck className="h-6 w-6" />
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-b border-stone-200 py-10 my-16 items-center px-4">
+          {/* COD Available */}
+          <div className="flex items-center space-x-4">
+            <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-[#E9D5FF] border-2 border-[#D8B4FE] text-[#7E22CE] shrink-0">
+              <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7" y="12" width="10" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+                <path d="M7 15h10" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M12 12v7" stroke="currentColor" strokeWidth="1.5" />
+                <rect x="5" y="5" width="14" height="6" rx="1" fill="currentColor" opacity="0.3" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M9 7.5h6M9 9.2h5.5M10.8 7.5v2.8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+              </svg>
             </div>
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 mb-1">Clean & Honest</h4>
-              <p className="text-xs text-stone-500 leading-relaxed">Sourced from non-toxic ingredients without synthetic fillers or toxic additives.</p>
+              <h4 className="text-sm font-semibold text-stone-900 leading-tight">COD Available</h4>
+              <p className="text-xs text-stone-400 mt-0.5">Pan-India</p>
             </div>
           </div>
-          <div className="flex items-start space-x-4">
-            <div className="p-3 bg-emerald-50 rounded-lg text-emerald-800">
-              <RefreshCcw className="h-6 w-6" />
+
+          {/* Free Delivery */}
+          <div className="flex items-center space-x-4">
+            <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-[#E9D5FF] border-2 border-[#D8B4FE] text-[#7E22CE] shrink-0">
+              <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 8h3M1 11h4M2 14h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M7 6h8l4 4v7h-2M7 6v11h2M12 17h3" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                <circle cx="10.5" cy="17.5" r="2" stroke="currentColor" strokeWidth="2" fill="currentColor" />
+                <circle cx="16.5" cy="17.5" r="2" stroke="currentColor" strokeWidth="2" fill="currentColor" />
+                <path d="M15 6v4h4L17.5 6h-2.5z" fill="currentColor" opacity="0.3" />
+                <text x="8" y="12" fill="currentColor" fontSize="4.5" fontWeight="bold" fontFamily="sans-serif">FREE</text>
+              </svg>
             </div>
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 mb-1">Eco-Conscious</h4>
-              <p className="text-xs text-stone-500 leading-relaxed">100% recyclable bottles and sustainable sugarcane packaging blocks.</p>
+              <h4 className="text-sm font-semibold text-stone-900 leading-tight">Free Delivery</h4>
+              <p className="text-xs text-stone-400 mt-0.5">Above ₹599</p>
             </div>
           </div>
-          <div className="flex items-start space-x-4">
-            <div className="p-3 bg-emerald-50 rounded-lg text-emerald-800">
-              <Award className="h-6 w-6" />
+
+          {/* 100% Real */}
+          <div className="flex items-center space-x-4">
+            <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-[#E9D5FF] border-2 border-[#D8B4FE] text-[#7E22CE] shrink-0">
+              <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l2.4 1.8 2.9-.8.7 3 2.2 2-1 2.8 1.8 2.4-1.8 2.4 1 2.8-2.2 2-.7 3-2.9-.8L12 22l-2.4-1.8-2.9.8-.7-3-2.2-2 1-2.8-1.8-2.4 1.8-2.4-1-2.8 2.2-2 .7-3 2.9.8L12 2Z" fill="currentColor" opacity="0.25" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                <text x="12" y="13.5" textAnchor="middle" fill="currentColor" fontSize="3.5" fontWeight="900" fontFamily="sans-serif" letterSpacing="0.2">CERTIFIED</text>
+                <circle cx="12" cy="7.5" r="0.8" fill="currentColor" />
+                <circle cx="9.5" cy="16.5" r="0.8" fill="currentColor" />
+                <circle cx="12" cy="16.5" r="0.8" fill="currentColor" />
+                <circle cx="14.5" cy="16.5" r="0.8" fill="currentColor" />
+              </svg>
             </div>
             <div>
-              <h4 className="text-sm font-serif font-bold text-stone-900 mb-1">Clinical Strength</h4>
-              <p className="text-xs text-stone-500 leading-relaxed">Scientifically tested and dermatologically approved formulas.</p>
+              <h4 className="text-sm font-semibold text-stone-900 leading-tight">100% Real</h4>
+              <p className="text-xs text-stone-400 mt-0.5">Products</p>
             </div>
+          </div>
+
+          {/* Dermatologist */}
+          <div className="flex items-center space-x-4">
+            <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-[#E9D5FF] border-2 border-[#D8B4FE] text-[#7E22CE] shrink-0">
+              <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="3.5" fill="currentColor" opacity="0.3" stroke="currentColor" strokeWidth="2" />
+                <path d="M8.5 8c0-2.5 5-2.5 5 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                <path d="M6.5 20v-1.5c0-1.8 1.5-3.3 3.3-3.3h4.4c1.8 0 3.3 1.5 3.3 3.3V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M10 14v1.8a2 2 0 004 0V14" stroke="currentColor" strokeWidth="1.5" />
+                <rect x="15" y="11" width="6" height="7" rx="0.5" fill="white" stroke="currentColor" strokeWidth="1" />
+                <line x1="17" y1="13" x2="19" y2="13" stroke="currentColor" strokeWidth="0.8" />
+                <line x1="17" y1="15" x2="19" y2="15" stroke="currentColor" strokeWidth="0.8" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-stone-900 leading-tight">Dermatologist</h4>
+              <p className="text-xs text-stone-400 mt-0.5">Written</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Frequently Asked Questions Section */}
+        <section className="mt-16 border-t border-stone-200 pt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-8">Frequently Asked Questions</h2>
+          <div className="space-y-1">
+            {getProductFaqs().map((faq, idx) => (
+              <div key={idx} className="border-b border-stone-200 py-4">
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex justify-between items-center text-left text-stone-900 hover:text-stone-700 transition-colors"
+                >
+                  <span className="text-base font-semibold tracking-tight text-stone-950">{faq.question}</span>
+                  <ChevronDown className={`h-5 w-5 text-violet-600 transform transition-transform duration-200 shrink-0 ml-4 ${openFaq[idx] ? 'rotate-180' : ''}`} />
+                </button>
+                {openFaq[idx] && (
+                  <p className="text-stone-500 text-sm sm:text-base leading-relaxed mt-3 font-light max-w-4xl">
+                    {faq.answer}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 

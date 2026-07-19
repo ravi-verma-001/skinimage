@@ -427,6 +427,28 @@ app.get('/api/admin/analytics', protect, adminOnly, async (req, res) => {
   }
 });
 
+// 7. AI SKIN ANALYZER ENDPOINTS
+const { analyzeSkin, getReports } = require('./skinAnalyzerController');
+
+const optionalProtect = async (req, res, next) => {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'supersecret_skincare_jwt_token_key_123!');
+      const user = await dbHelper.findUserById(decoded.id);
+      if (user) {
+        req.user = user;
+      }
+    } catch (error) {
+      console.warn("Optional auth token verification failed, continuing as guest.");
+    }
+  }
+  next();
+};
+
+app.post('/api/skin-analyzer/analyze', optionalProtect, analyzeSkin);
+app.get('/api/skin-analyzer/reports', protect, getReports);
+
 // Add a startup test message
 app.get('/', (req, res) => {
   res.send('NextSkin Premium Skincare REST API is Running.');

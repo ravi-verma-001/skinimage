@@ -28,11 +28,11 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "NextSkin | Premium Science-Backed Luxury Skincare",
+  title: "Skinimage | Premium Science-Backed Luxury Skincare",
   description: "Formulated for maximum results, minimum irritation. We design luxury skincare backed by clinical science and powered by bio-active botanicals.",
   keywords: ["skincare", "serum", "cleanser", "moisturizer", "luxury skincare", "clean beauty"],
   openGraph: {
-    title: "NextSkin | Science-Backed Luxury Skincare",
+    title: "Skinimage | Science-Backed Luxury Skincare",
     description: "Experience the ultimate collection of premium, dermatologist-formulated skincare solutions.",
     type: "website",
   }

@@ -29,7 +29,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await register(name, email, password, role);
-      toast.success('Registration successful! Welcome to NextSkin.');
+      toast.success('Registration successful! Welcome to Skinimage.');
     } catch (err: any) {
       toast.error(err.message || 'Registration failed. Try a different email address.');
     } finally {

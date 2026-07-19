@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ProductCard, ProductType } from '@/components/ProductCard';
-import { Sparkles, ArrowRight, ShieldCheck, Award, Heart, CheckCircle2, ChevronDown, RefreshCw, Star } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Award, Heart, CheckCircle2, ChevronDown, RefreshCw, Star, Camera, CheckCircle } from 'lucide-react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
@@ -119,10 +119,10 @@ export default function Home() {
   ];
 
   const faqs = [
-    { q: "Are your products suitable for sensitive skin?", a: "Yes, all NextSkin products are formulated with dermatological sensitivity in mind. We use soothing buffers like Centella Asiatica, Panthenol, and Ceramides to support skin health without triggering irritation." },
+    { q: "Are your products suitable for sensitive skin?", a: "Yes, all Skinimage products are formulated with dermatological sensitivity in mind. We use soothing buffers like Centella Asiatica, Panthenol, and Ceramides to support skin health without triggering irritation." },
     { q: "How should I store my Vitamin C Serum?", a: "To maintain maximum potency, store your 15% Vitamin C Serum in a cool, dark place away from direct sunlight (or in a cosmetics fridge). Keep the cap tightly sealed to prevent oxidation." },
     { q: "When will I start seeing results?", a: "Hydration benefits (Hyaluronic Acid & Centella Cleanser) are immediate. Skin texture and pore improvements (BHA & Niacinamide) can be seen within 2-3 weeks, while pigment fading and wrinkle repair (Vitamin C & Retinol) typically require 4-6 weeks of consistent use." },
-    { q: "Are NextSkin products cruelty-free?", a: "100%. We never test our formulas or ingredients on animals, and we only partner with cruelty-free suppliers." }
+    { q: "Are Skinimage products cruelty-free?", a: "100%. We never test our formulas or ingredients on animals, and we only partner with cruelty-free suppliers." }
   ];
 
   return (
@@ -448,53 +448,141 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-stone-50 border-t border-stone-200">
+      {/* AI Skin Analyzer Banner */}
+      <section className="py-20 bg-white border-t border-stone-200 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-purple-900 to-indigo-950 rounded-[32px] overflow-hidden shadow-xl text-white relative">
+            {/* Background glowing shapes */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 sm:p-12 lg:p-16 relative z-10">
+              {/* Text Left */}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-200 text-xs font-semibold uppercase tracking-wider">
+                  <Sparkles className="h-3.5 w-3.5 text-purple-300" />
+                  Instant Skin Scan
+                </div>
+                
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                  Discover Your Skin Health Score in 60 Seconds
+                </h2>
+                
+                <p className="text-purple-100 text-sm sm:text-base leading-relaxed font-light font-sans">
+                  Powered by advanced AI Vision analysis, our analyzer processes a single selfie to evaluate key characteristics like hydration, pores, acne, and redness, generating a personalized product catalog mapping.
+                </p>
+
+                <div className="space-y-3 pt-2 text-sm text-purple-200">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0" />
+                    <span>Get an objective Skin Health Score (0–100)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0" />
+                    <span>Real-time detection of hydration, oiliness, and open pores</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0" />
+                    <span>Personalized ingredient-to-product routine matches</span>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <Link
+                    href="/skin-analyzer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-750 text-white font-bold py-3.5 px-7 transition duration-200 shadow-lg text-sm group"
+                  >
+                    <span>Launch AI Skin Analyzer</span>
+                    <ArrowRight className="h-4.5 w-4.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Graphic/Scan Animation Mockup Right */}
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative w-full max-w-[280px] aspect-square rounded-2xl border border-purple-500/30 bg-purple-950/40 p-4 shadow-2xl overflow-hidden flex items-center justify-center">
+                  {/* Glowing neon scanner animation */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-purple-400 shadow-[0_0_15px_#A855F7] animate-scan-line z-20" />
+                  
+                  {/* Mock profile image vector */}
+                  <div className="flex flex-col items-center justify-center gap-3 text-purple-300">
+                    <div className="p-5 rounded-full bg-purple-900/60 border border-purple-400/20 text-purple-400 relative">
+                      <Camera className="h-10 w-10 animate-pulse" />
+                      <div className="absolute inset-0 border border-purple-400/40 rounded-full animate-ping opacity-35" />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-purple-200">Face Scanner Frame</span>
+                    <span className="text-[10px] text-purple-400/70 text-center max-w-[180px]">Upload selfie to start real-time calibration</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-[#FAF5FF] border-t border-stone-200 relative overflow-hidden">
+        {/* Background Dot grids for styling */}
+        <div className="absolute top-10 left-5 text-purple-200/50 hidden md:block select-none pointer-events-none opacity-40">
+          <div className="w-24 h-48" style={{ backgroundImage: 'radial-gradient(#C084FC 2px, transparent 2px)', backgroundSize: '12px 12px' }} />
+        </div>
+        <div className="absolute bottom-10 right-5 text-purple-200/50 hidden md:block select-none pointer-events-none opacity-40">
+          <div className="w-24 h-48" style={{ backgroundImage: 'radial-gradient(#C084FC 2px, transparent 2px)', backgroundSize: '12px 12px' }} />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-xl mx-auto mb-14">
-            <h2 className="font-serif text-3xl font-bold text-stone-900">Loved by Skin Enthusiasts</h2>
-            <p className="text-stone-500 mt-2 text-sm">Read verified reviews from customers with dry, oily, and sensitive skin.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">Don&apos;t just take our word, take theirs.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg bg-white border border-stone-200/80 shadow-xs space-y-4">
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
-              </div>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed italic">
-                &quot;The Centella Hydrating Cleanser has completely healed my redness. I used to feel tight after washing my face, but now it feels plump and calm.&quot;
-              </p>
-              <div className="border-t border-stone-100 pt-3 flex justify-between items-center text-xs">
-                <span className="font-bold text-stone-900">Sarah M.</span>
-                <span className="text-stone-400">Verified Buyer</span>
-              </div>
-            </div>
+          {/* Horizontal scroll container */}
+          <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide px-2 snap-x">
+            {[
+              {
+                name: "Arun Singh",
+                location: "Chandigarh",
+                comment: "I think NextSkin is really bringing a new kind of innovation to India. My parents have never used telemedicine before but they absolutely love the Video Consult option! The experience is super easy, ultra smooth, and extremely useful for their skincare.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
+              },
+              {
+                name: "Basil Matthew",
+                location: "Kerala",
+                comment: "My entire family has been super into skincare products since a long time, but never have we ever seen such fast results with ZERO side effects. I feel like my family is safer now, I think I&apos;m going to replace my skincare routine with NextSkin&apos;s Rx-grade products.",
+                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150"
+              },
+              {
+                name: "Priya Sharma",
+                location: "Delhi",
+                comment: "Finding the right skincare in India is so hard with the climate, but NextSkin has been a game-changer. The personalized recommendation and pure ingredients cleared my persistent acne in just 3 weeks!",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+              }
+            ].map((review, idx) => (
+              <div key={idx} className="flex flex-row items-start gap-5 p-6 rounded-[20px] bg-white border-2 border-[#4C1D95]/85 shadow-sm max-w-md sm:max-w-lg shrink-0 snap-center">
+                {/* Profile Image with dotted decorative shadow */}
+                <div className="relative shrink-0 mt-1">
+                  <div className="absolute -bottom-2 -left-2 w-16 h-16 opacity-35" style={{ backgroundImage: 'radial-gradient(#4C1D95 2px, transparent 2px)', backgroundSize: '5px 5px' }} />
+                  <img src={review.image} className="relative z-10 w-16 h-16 rounded-xl object-cover border border-stone-100 shadow-sm" alt={review.name} />
+                </div>
 
-            <div className="p-6 rounded-lg bg-white border border-stone-200/80 shadow-xs space-y-4">
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
-              </div>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed italic">
-                &quot;My dark spots are completely fading after a month of the 15% Vitamin C serum. It absorbs instantly without being sticky. Pure magic!&quot;
-              </p>
-              <div className="border-t border-stone-100 pt-3 flex justify-between items-center text-xs">
-                <span className="font-bold text-stone-900">David K.</span>
-                <span className="text-stone-400">Verified Buyer</span>
-              </div>
-            </div>
+                <div className="space-y-3">
+                  {/* Rating Stars */}
+                  <div className="flex text-amber-500">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                  </div>
 
-            <div className="p-6 rounded-lg bg-white border border-stone-200/80 shadow-xs space-y-4">
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                  {/* Comment */}
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-light">
+                    {review.comment}
+                  </p>
+
+                  {/* Profile info */}
+                  <div className="pt-1">
+                    <h4 className="font-bold text-stone-900 text-sm">{review.name}</h4>
+                    <span className="text-xs text-purple-400 font-medium block mt-0.5">{review.location}</span>
+                  </div>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed italic">
-                &quot;The 5% Niacinamide Gel Cream keeps my oily T-zone in check while repairing my skin barrier. Super light, perfect under makeup.&quot;
-              </p>
-              <div className="border-t border-stone-100 pt-3 flex justify-between items-center text-xs">
-                <span className="font-bold text-stone-900">Elena R.</span>
-                <span className="text-stone-400">Verified Buyer</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

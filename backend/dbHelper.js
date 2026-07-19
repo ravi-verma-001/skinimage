@@ -104,12 +104,33 @@ const ReviewSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+const AnalysisReportSchema = new mongoose.Schema({
+  userId: { type: String, default: null },
+  guestEmail: { type: String, default: null },
+  skinScore: { type: Number, required: true },
+  skinType: { type: String, required: true },
+  hydration: { type: String },
+  oiliness: { type: String },
+  acne: { type: String },
+  pigmentation: { type: String },
+  darkCircles: { type: String },
+  redness: { type: String },
+  pores: { type: String },
+  texture: { type: String },
+  wrinkles: { type: String },
+  summary: { type: String },
+  rawResponse: { type: Object },
+  recommendations: [{ type: String }],
+  createdAt: { type: Date, default: Date.now }
+});
+
 // Register models
 const User = mongoose.model('User', UserSchema);
 const Product = mongoose.model('Product', ProductSchema);
 const Order = mongoose.model('Order', OrderSchema);
 const Coupon = mongoose.model('Coupon', CouponSchema);
 const Review = mongoose.model('Review', ReviewSchema);
+const AnalysisReport = mongoose.model('AnalysisReport', AnalysisReportSchema);
 
 // Initial 9 Products dummy data
 const DUMMY_PRODUCTS = [
@@ -421,10 +442,12 @@ const readLocalDB = () => {
   }
   try {
     const content = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(content);
+    const parsed = JSON.parse(content);
+    if (!parsed.analysisReports) parsed.analysisReports = [];
+    return parsed;
   } catch (error) {
     console.error("Error reading local db file, resetting...", error);
-    return { users: [], products: DUMMY_PRODUCTS, orders: [], coupons: [], reviews: [] };
+    return { users: [], products: DUMMY_PRODUCTS, orders: [], coupons: [], reviews: [], analysisReports: [] };
   }
 };
 
@@ -937,6 +960,33 @@ const dbHelper = {
     }
   },
 
+  saveAnalysisReport: async (reportData) => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      const newReport = {
+        id: 'rep_' + Math.random().toString(36).substr(2, 9),
+        _id: 'rep_' + Math.random().toString(36).substr(2, 9),
+        createdAt: new Date().toISOString(),
+        ...reportData
+      };
+      if (!data.analysisReports) data.analysisReports = [];
+      data.analysisReports.push(newReport);
+      writeLocalDB(data);
+      return newReport;
+    } else {
+      return await AnalysisReport.create(reportData);
+    }
+  },
+
+  findAnalysisReportsByUserId: async (userId) => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      return (data.analysisReports || []).filter(r => r.userId === userId).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else {
+      return await AnalysisReport.find({ userId }).sort({ createdAt: -1 });
+    }
+  },
+
   seedMongoDB
 };
 
@@ -946,3 +996,4 @@ module.exports.Product = Product;
 module.exports.Order = Order;
 module.exports.Coupon = Coupon;
 module.exports.Review = Review;
+module.exports.AnalysisReport = AnalysisReport;

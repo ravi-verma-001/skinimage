@@ -242,7 +242,7 @@ function DashboardContent() {
                         </div>
                         <div>
                           <p className="text-stone-400 uppercase tracking-wide font-bold text-[9px]">Total Cost</p>
-                          <span className="text-stone-950 font-bold">${ord.totals?.grandTotal?.toFixed(2)}</span>
+                          <span className="text-stone-950 font-bold">₹{ord.totals?.grandTotal?.toFixed(2)}</span>
                         </div>
                         <div>
                           <p className="text-stone-400 uppercase tracking-wide font-bold text-[9px]">Status</p>
@@ -265,7 +265,7 @@ function DashboardContent() {
                                 <p className="text-[10px] text-stone-400">Quantity: {item.quantity}</p>
                               </div>
                             </div>
-                            <span className="font-bold text-stone-950">${(item.price * item.quantity).toFixed(2)}</span>
+                            <span className="font-bold text-stone-950">₹{(item.price * item.quantity).toFixed(2)}</span>
                           </div>
                         ))}
                       </div>

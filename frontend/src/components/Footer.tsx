@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <Link href="/" className="transition hover:opacity-85 flex items-center">
               <img
-                src="/skin_image_logo.svg"
+                src="/skinimagelogo.jpg"
                 alt="Skin Image Logo"
                 className="h-10 w-auto object-contain brightness-95"
               />
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="mt-12 border-t border-stone-200 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
-          <p>&copy; {new Date().getFullYear()} NextSkin Inc. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Skinimage Inc. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <a href="#" className="hover:underline">Privacy Policy</a>
             <a href="#" className="hover:underline">Terms of Service</a>

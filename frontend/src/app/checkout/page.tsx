@@ -298,7 +298,7 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                     <span className="text-sm font-bold text-stone-900">
-                      {totals.subtotal > 50 ? 'FREE' : '$5.00'}
+                      {totals.subtotal > 50 ? 'FREE' : '₹5.00'}
                     </span>
                   </label>
 
@@ -316,7 +316,7 @@ export default function CheckoutPage() {
                         <span className="block text-xs text-stone-400">Guaranteed next-day delivery</span>
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-emerald-750">+$10.00</span>
+                    <span className="text-sm font-bold text-emerald-750">+₹10.00</span>
                   </label>
                 </div>
               </div>
@@ -452,7 +452,7 @@ export default function CheckoutPage() {
                       <p className="text-[10px] text-stone-400">Qty: {item.quantity}</p>
                     </div>
                     <span className="text-xs font-bold text-stone-950 flex-shrink-0">
-                      ${((item.discountPrice || item.price) * item.quantity).toFixed(2)}
+                      ₹{((item.discountPrice || item.price) * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -462,28 +462,28 @@ export default function CheckoutPage() {
               <div className="border-t border-stone-100 pt-4 text-xs space-y-1.5 text-stone-600">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${totals.subtotal.toFixed(2)}</span>
+                  <span>₹{totals.subtotal.toFixed(2)}</span>
                 </div>
                 {totals.discount > 0 && (
                   <div className="flex justify-between text-emerald-800 font-semibold">
                     <span>Discount</span>
-                    <span>-${totals.discount.toFixed(2)}</span>
+                    <span>-₹{totals.discount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span>Shipping</span>
                   <span>
-                    {deliveryMethod === 'Express' ? '$10.00' : totals.shipping === 0 ? 'FREE' : `$${totals.shipping.toFixed(2)}`}
+                    {deliveryMethod === 'Express' ? '₹10.00' : totals.shipping === 0 ? 'FREE' : `₹${totals.shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Tax (8%)</span>
-                  <span>${totals.tax.toFixed(2)}</span>
+                  <span>GST / Est. Tax (18%)</span>
+                  <span>₹{totals.tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm font-bold text-stone-950 border-t border-stone-100 pt-2">
                   <span>Estimated Total</span>
                   <span>
-                    ${(totals.grandTotal + (deliveryMethod === 'Express' ? 10 : 0)).toFixed(2)}
+                    ₹{(totals.grandTotal + (deliveryMethod === 'Express' ? 10 : 0)).toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -520,7 +520,7 @@ export default function CheckoutPage() {
               </div>
               <div className="pt-2.5 flex justify-between">
                 <span className="text-stone-400 font-semibold uppercase tracking-wider text-[10px]">Paid Amount</span>
-                <span className="font-bold text-stone-950">${confirmedOrder.totals?.grandTotal?.toFixed(2)}</span>
+                <span className="font-bold text-stone-950">₹{confirmedOrder.totals?.grandTotal?.toFixed(2)}</span>
               </div>
             </div>
           )}

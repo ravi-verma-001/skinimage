@@ -68,7 +68,7 @@ export default function CartPage() {
                         {item.name}
                       </Link>
                     </h3>
-                    <p className="text-xs text-stone-400 mt-0.5">Unit Price: ${activePrice}</p>
+                     <p className="text-xs text-stone-400 mt-0.5">Unit Price: ₹{activePrice}</p>
                     
                     {/* Quantity Selector */}
                     <div className="flex items-center space-x-2 mt-3">
@@ -95,7 +95,7 @@ export default function CartPage() {
                   {/* Pricing and delete */}
                   <div className="flex flex-col items-end space-y-2 flex-shrink-0">
                     <span className="text-sm sm:text-base font-bold text-stone-950">
-                      ${(activePrice * item.quantity).toFixed(2)}
+                      ₹{(activePrice * item.quantity).toFixed(2)}
                     </span>
                     <button
                       onClick={() => {
@@ -163,25 +163,25 @@ export default function CartPage() {
             <div className="space-y-2 text-sm border-t border-stone-100 pt-4">
               <div className="flex justify-between text-stone-600">
                 <span>Bag Subtotal</span>
-                <span>${totals.subtotal.toFixed(2)}</span>
+                <span>₹{totals.subtotal.toFixed(2)}</span>
               </div>
               {totals.discount > 0 && (
                 <div className="flex justify-between text-emerald-700 font-medium">
                   <span>Coupon Discount</span>
-                  <span>-${totals.discount.toFixed(2)}</span>
+                  <span>-₹{totals.discount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-stone-600">
                 <span>Shipping Charges</span>
-                <span>{totals.shipping === 0 ? 'FREE' : `$${totals.shipping.toFixed(2)}`}</span>
+                <span>{totals.shipping === 0 ? 'FREE' : `₹${totals.shipping.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between text-stone-600">
-                <span>GST / Est. Tax (8%)</span>
-                <span>${totals.tax.toFixed(2)}</span>
+                <span>GST / Est. Tax (18%)</span>
+                <span>₹{totals.tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold text-stone-950 text-base border-t border-stone-100 pt-3">
                 <span>Grand Total</span>
-                <span>${totals.grandTotal.toFixed(2)}</span>
+                <span>₹{totals.grandTotal.toFixed(2)}</span>
               </div>
             </div>
 

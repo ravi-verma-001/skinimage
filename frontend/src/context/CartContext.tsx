@@ -129,7 +129,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const shipping = subtotal > 0 && (subtotal - discount) < 50 ? 5.00 : 0.00;
-  const tax = parseFloat(((subtotal - discount) * 0.08).toFixed(2));
+  const tax = parseFloat(((subtotal - discount) * 0.18).toFixed(2));
   const grandTotal = parseFloat((subtotal - discount + shipping + tax).toFixed(2));
 
   const totals = {

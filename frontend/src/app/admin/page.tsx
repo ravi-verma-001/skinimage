@@ -254,7 +254,7 @@ export default function AdminPanel() {
         <ShieldAlert className="h-8 w-8 text-amber-700" />
         <div>
           <h1 className="font-serif text-3xl font-extrabold text-stone-900 tracking-tight">Admin Console</h1>
-          <p className="text-stone-500 text-xs mt-0.5">Control NextSkin products, inventory, coupon codes, and monitor sales analytics.</p>
+          <p className="text-stone-500 text-xs mt-0.5">Control Skinimage products, inventory, coupon codes, and monitor sales analytics.</p>
         </div>
       </div>
 
@@ -298,7 +298,7 @@ export default function AdminPanel() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-stone-50 p-4 rounded border border-stone-200">
                   <span className="block text-[10px] uppercase font-bold tracking-wider text-stone-400">Total Sales</span>
-                  <span className="text-xl sm:text-2xl font-bold text-stone-950">${analytics.totalSales?.toFixed(2)}</span>
+                  <span className="text-xl sm:text-2xl font-bold text-stone-950">₹{analytics.totalSales?.toFixed(2)}</span>
                 </div>
                 <div className="bg-stone-50 p-4 rounded border border-stone-200">
                   <span className="block text-[10px] uppercase font-bold tracking-wider text-stone-400">Total Orders</span>
@@ -395,7 +395,7 @@ export default function AdminPanel() {
                       </div>
                       <div className="grid grid-cols-3 gap-3">
                         <div>
-                          <label className="block text-stone-500 font-semibold uppercase mb-1">Price ($)</label>
+                          <label className="block text-stone-500 font-semibold uppercase mb-1">Price (₹)</label>
                           <input
                             type="number"
                             required
@@ -405,7 +405,7 @@ export default function AdminPanel() {
                           />
                         </div>
                         <div>
-                          <label className="block text-stone-500 font-semibold uppercase mb-1">Discount Price ($)</label>
+                          <label className="block text-stone-500 font-semibold uppercase mb-1">Discount Price (₹)</label>
                           <input
                             type="number"
                             value={productForm.discountPrice}
@@ -480,7 +480,7 @@ export default function AdminPanel() {
                       <tr key={prod._id || prod.id} className="hover:bg-stone-50/50">
                         <td className="py-3 px-4 font-mono text-stone-500">{prod.sku}</td>
                         <td className="py-3 px-4 text-stone-950 font-semibold">{prod.name}</td>
-                        <td className="py-3 px-4">${prod.discountPrice || prod.price}</td>
+                        <td className="py-3 px-4">₹{prod.discountPrice || prod.price}</td>
                         <td className="py-3 px-4">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                             prod.stock < 10 ? 'bg-red-50 text-red-700' : 'bg-emerald-50 text-emerald-800'
@@ -528,7 +528,7 @@ export default function AdminPanel() {
                           <span className="text-[10px] text-stone-400">Placed on: {new Date(ord.createdAt).toLocaleString()}</span>
                         </div>
                         <div>
-                          <span className="block text-right font-bold text-stone-950">${ord.totals?.grandTotal?.toFixed(2)}</span>
+                          <span className="block text-right font-bold text-stone-950">₹{ord.totals?.grandTotal?.toFixed(2)}</span>
                           <span className="text-[10px] text-emerald-800 font-bold block text-right">{ord.paymentMethod} Payment</span>
                         </div>
                       </div>
@@ -590,7 +590,7 @@ export default function AdminPanel() {
                         className="w-full rounded border border-stone-300 bg-white px-3 py-1.5 text-sm text-stone-800"
                       >
                         <option value="percentage">Percentage (%)</option>
-                        <option value="fixed">Fixed ($)</option>
+                        <option value="fixed">Fixed (₹)</option>
                       </select>
                     </div>
                     <div>
@@ -634,7 +634,7 @@ export default function AdminPanel() {
                           <div>
                             <span className="font-bold text-stone-900 block font-mono">{c.code}</span>
                             <span className="text-[10px] text-stone-400">
-                              Value: {c.discountType === 'percentage' ? `${c.discountValue}% Off` : `$${c.discountValue} Off`} | Exp: {new Date(c.expiryDate).toLocaleDateString()}
+                              Value: {c.discountType === 'percentage' ? `${c.discountValue}% Off` : `₹${c.discountValue} Off`} | Exp: {new Date(c.expiryDate).toLocaleDateString()}
                             </span>
                           </div>
                           <button
