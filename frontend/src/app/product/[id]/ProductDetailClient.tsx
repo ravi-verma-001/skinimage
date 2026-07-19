@@ -719,12 +719,10 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
 
             {/* Price */}
             <div className="flex items-center gap-2 mb-5 flex-wrap">
-              {product.discountPrice && (
-                <span className="text-stone-400 line-through text-sm">₹{product.price.toFixed(0)}</span>
-              )}
               <span className="text-xl sm:text-2xl font-bold text-green-600">
                 ₹{(product.discountPrice || product.price).toFixed(0)}
               </span>
+
               <span className="text-[10px] text-stone-400 font-light mt-1">(incl. of all taxes.)</span>
               {product.discountPrice && (
                 <span className="bg-[#8B5CF6] text-white text-[9px] font-bold tracking-wide uppercase px-1.5 py-0.5 rounded shadow-sm">
