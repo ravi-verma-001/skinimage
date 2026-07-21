@@ -17,14 +17,14 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-stone-200 bg-stone-100 text-stone-800">
+    <footer className="border-t border-emerald-250 bg-emerald-100 text-stone-800">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand & Story */}
           <div className="space-y-4">
             <Link href="/" className="transition hover:opacity-85 flex items-center">
               <img
-                src="/skinimagelogo.jpg"
+                src="/skinimagelogo.png"
                 alt="Skin Image Logo"
                 className="h-10 w-auto object-contain brightness-95"
               />
@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-stone-200 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
+        <div className="mt-12 border-t border-emerald-250 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
           <p>&copy; {new Date().getFullYear()} Skinimage Inc. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <a href="#" className="hover:underline">Privacy Policy</a>

@@ -7,6 +7,7 @@ const { connectDB, getDBMode } = require('./db');
 const dbHelper = require('./dbHelper');
 const { protect, adminOnly } = require('./authMiddleware');
 
+// Reload trigger: updated Centella to Gluta Facewash
 const app = express();
 
 // Middlewares

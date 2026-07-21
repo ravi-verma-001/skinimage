@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
             <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
               <Link href="/" className="transition hover:opacity-85 flex items-center">
                 <img
-                  src="/skinimagelogo.jpg"
+                  src="/skinimagelogo.png"
                   alt="Skin Image Logo"
                   className="h-10 w-auto object-contain"
                 />

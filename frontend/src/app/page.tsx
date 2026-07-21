@@ -11,13 +11,13 @@ import { API_URL } from '@/config';
 const FALLBACK_PRODUCTS: ProductType[] = [
   {
     _id: "p1",
-    name: "Oil Cleanser with Squalane & Jojoba Oil | Removes Makeup & Sunscreen, Non-Greasy",
+    name: "Nourishing Cleansing Oil",
     category: "Cleanser",
     price: 1599.00,
     discountPrice: 1329.00,
     stock: 85,
     images: ["/cleanser.png", "/CleanserVideo.mp4"],
-    description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
+    description: "Skinimage Nourishing Cleansing Oil (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: true,
@@ -25,13 +25,13 @@ const FALLBACK_PRODUCTS: ProductType[] = [
   },
   {
     _id: "p2",
-    name: "AHA & BHA FACE SERUM",
+    name: "AHA & BHA Face Serum",
     category: "Serum",
     price: 1199.00,
     discountPrice: 899.00,
     stock: 50,
     images: ["/aha_bha_face_serum.jpg"],
-    description: "Give your skin a fresh new glow with this powerful AHA BHA Face Serum. Specially formulated for those struggling with dull, rough, and uneven skin texture.",
+    description: "AHA & BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more youthful complexion with regular use.",
     rating: 4.7,
     reviewsCount: 98,
     isFeatured: true,
@@ -45,7 +45,7 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     discountPrice: 798.00,
     stock: 120,
     images: ["/uv_aurora_sunscreen.png"],
-    description: "Protect your skin the smart way with UV-Aurora Sunscreen — a lightweight formula that shields against harmful sun rays while doubling up as a hydrating skincare step.",
+    description: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is an ultra-lightweight, fast-absorbing sunscreen formulated to provide broad-spectrum protection against UVA and UVB rays while delivering deep hydration and a non-greasy, water-light feel suitable for daily use. This advanced aqua sunscreen gel is powered by key ingredients such as Hyaluronic Acid to deeply hydrate and maintain skin moisture, Homosalate and Octyl Methoxy Cinnamate to provide effective UVB protection, Tinosorb M for broad-spectrum UVA and UVB defense, Zinc PCA to help balance oil and support skin clarity, Vitamin E for antioxidant protection, Kakadu Plum Extract to support skin radiance and environmental defense, Silk Protein Extract for a smooth and soft skin finish, Aristoflex AVC for lightweight gel texture, Allantoin to soothe and calm the skin, and Melanin to enhance photoprotection. Designed for all skin types, this sunscreen spreads effortlessly, absorbs quickly without white cast, and helps protect skin from sun damage, premature ageing, and dehydration when applied regularly as directed.",
     rating: 4.9,
     reviewsCount: 215,
     isFeatured: true,
@@ -73,6 +73,16 @@ export default function Home() {
   const [activeBeforeAfter, setActiveBeforeAfter] = useState<'acne' | 'pigment'>('acne');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const bannerMessages = [
+    "Your Skin Deserves the Best. We're Building It",
+    "Dermatologist Tested",
+    "100% Vegan & Cruelty-Free",
+    "For All Skin Types",
+    "Clean Formulations"
+  ];
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -88,6 +98,17 @@ export default function Home() {
       }
     }
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBannerVisible(false);
+      setTimeout(() => {
+        setCurrentTextIndex((prev) => (prev + 1) % bannerMessages.length);
+        setIsBannerVisible(true);
+      }, 500); // matches the duration of the transition
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   const toggleFaq = (index: number) => {
@@ -128,10 +149,14 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Promotional Ribbon */}
-      <div className="bg-emerald-800 text-stone-100 py-2.5 px-4 text-center text-xs tracking-widest font-semibold uppercase flex items-center justify-center gap-1.5 overflow-hidden">
-        <span className="animate-banner-text flex items-center gap-2">
+      <div className="bg-emerald-800 text-stone-100 py-2.5 px-4 text-center text-xs tracking-widest font-semibold uppercase flex items-center justify-center gap-1.5 overflow-hidden h-10">
+        <span 
+          className={`flex items-center justify-center gap-2 transition-all duration-500 ease-in-out transform ${
+            isBannerVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'
+          }`}
+        >
           <Sparkles className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '8s' }} />
-          Your Skin Deserves the Best. We&apos;re Building It
+          {bannerMessages[currentTextIndex]}
           <Sparkles className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '8s' }} />
         </span>
       </div>
@@ -145,32 +170,8 @@ export default function Home() {
             loop 
             muted 
             playsInline
-            className="w-full h-auto md:h-[85vh] md:max-h-[800px] object-cover object-center block"
+            className="w-full h-auto max-h-[550px] md:max-h-none object-cover block"
           />
-        </div>
-      </section>
-
-      {/* Trust Badges */}
-      <section className="bg-white py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-emerald-700" />
-              <span className="text-xs font-semibold tracking-wider uppercase text-stone-800">Dermatologist Tested</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Award className="h-6 w-6 text-emerald-700" />
-              <span className="text-xs font-semibold tracking-wider uppercase text-stone-800">100% Vegan & Cruelty-Free</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Heart className="h-6 w-6 text-emerald-700" />
-              <span className="text-xs font-semibold tracking-wider uppercase text-stone-800">For All Skin Types</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <CheckCircle2 className="h-6 w-6 text-emerald-700" />
-              <span className="text-xs font-semibold tracking-wider uppercase text-stone-800">Clean Formulations</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -228,7 +229,7 @@ export default function Home() {
             {/* Cleansers Category */}
             <Link href="/shop?category=Cleanser" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
               <img
-                src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"
+                src="/category_cleanser.png"
                 alt="Cleanser Category"
                 className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
               />
@@ -241,7 +242,7 @@ export default function Home() {
             {/* Serums Category */}
             <Link href="/shop?category=Serum" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
               <img
-                src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
+                src="/category_serum.png"
                 alt="Serum Category"
                 className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
               />
@@ -254,7 +255,7 @@ export default function Home() {
             {/* Moisturizers Category */}
             <Link href="/shop?category=Moisturizer" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
               <img
-                src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=600"
+                src="/category_moisturizer.png"
                 alt="Moisturizer Category"
                 className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
               />

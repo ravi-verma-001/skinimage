@@ -176,7 +176,7 @@ export default function CartPage() {
                 <span>{totals.shipping === 0 ? 'FREE' : `₹${totals.shipping.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between text-stone-600">
-                <span>GST / Est. Tax (18%)</span>
+                <span>GST (18% Included)</span>
                 <span>₹{totals.tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold text-stone-950 text-base border-t border-stone-100 pt-3">

@@ -14,7 +14,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "p1",
     sku: "SK-HYDRA-FW",
-    name: "Oil Cleanser with Squalane & Jojoba Oil | Removes Makeup & Sunscreen, Non-Greasy",
+    name: "Nourishing Cleansing Oil",
     category: "Cleanser",
     price: 1599.00,
     discountPrice: 1329.00,
@@ -24,20 +24,24 @@ const DUMMY_PRODUCTS = [
       "/CleanserVideo.mp4",
       "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
+    description: "Skinimage Nourishing Cleansing Oil (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants without damaging the skin barrier. If you are looking for an effective cleansing oil for makeup removal that breaks down waterproof products within minutes, this gentle yet deep-action formula is the ultimate essential step in your skincare routine.\n\nThis formula features an optimal blend of premium botanical oils and Ayurvedic extracts: Sweet Almond, Argan, Jojoba, Rosehip, Coconut & Sesame Oils for skin barrier repair and deep nourishment, Plant-Derived Squalane to maintain skin hydration and softness, Amla, Bhringraj & Brahmi (Bacopa Monnieri) for antioxidant protection, and Neem Seed Oil, Bisabolol & Vitamin E to soothe irritation and promote a clear complexion. Systematically designed for all skin types, this cleanser stands out as the best cleansing oil for double cleansing, instantly transforming into a lightweight, non-greasy milky emulsion upon contact with water, leaving the skin feeling velvety soft and perfectly clean.",
     ingredients: [
-      "Plant-derived Squalane 3% — deeply nourishes and mimics skin's natural oils",
-      "Jojoba Oil 2% — balances oil production, non-comedogenic",
-      "Rosehip Oil 2% — rich in antioxidants, supports skin repair",
-      "Vitamin E 1% — protects and conditions the skin"
+      "Plant-Derived Squalane – Moisture barrier restoration & deep hydration",
+      "Argan & Rosehip Seed Oils – Anti-aging, skin repair & elasticity",
+      "Sweet Almond & Jojoba Seed Oils – Dissolves excess sebum & nourishes skin",
+      "Caprylic/Capric Triglyceride – Lightweight base for fast makeup breakdown",
+      "Amla, Bhringraj & Brahmi Extracts – Antioxidant protection & skin tone revitalizing",
+      "Neem Seed Oil & Bisabolol – Anti-bacterial defense & anti-inflammatory calming",
+      "Tocopherol (Vitamin E) – Free-radical protection & skin smoothness"
     ],
     benefits: [
-      "Removes waterproof makeup & sunscreen effectively",
-      "Dissolves excess sebum and impurities",
-      "Nourishes and strengthens the skin barrier",
-      "Leaves skin soft, hydrated, and non-greasy"
+      "Effortless Makeup & Sunscreen Removal: Formulated as the ideal cleansing oil for makeup removal, it easily breaks down heavy, waterproof makeup, SPF, and stubborn impurities.",
+      "Transformative Oil-to-Milk Emulsion: Uniquely transforms into a smooth, milky lotion upon contact with water, rinsing off completely without leaving any heavy or greasy residue.",
+      "Perfect 1st Step for Double Cleansing: Widely trusted as the best cleansing oil for double cleansing, it unclogs pores and prepares your skin for a water-based wash.",
+      "Restores & Strengthens Skin Barrier: Packed with plant-derived Squalane, Ceramide-building oils, and Vitamin E to soothe reactive, dry, or sensitive skin.",
+      "Nourishes & Soothes Skin: Infused with natural Bisabolol, Neem, and Lavender to calm redness, leaving the skin feeling deeply hydrated and refreshed."
     ],
-    howToUse: "Massage onto dry face for 30-60 seconds to dissolve makeup and sunscreen, then rinse with water or follow up with your regular face wash.",
+    howToUse: "Pump/apply a sufficient quantity onto dry hands and apply directly onto a dry face.\n\nGently massage in circular motions for 1–2 minutes to melt away makeup, sunscreen, and daily grime.\n\nAdd a small amount of water to emulsify the oil into a rich, milky lotion.\n\nRinse thoroughly with water.\n\nDouble Cleanse: Follow up with a gentle water-based cleanser (like Skinimage Acne & Oil Control Face Cleanser) for a complete deep-pore clean.",
     skinType: ["Sensitive", "Dry", "Normal", "Oily", "Combination"],
     specs: { "Volume": "150ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" },
     rating: 4.8,
@@ -53,7 +57,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "p2",
     sku: "SK-VITC-GLOW",
-    name: "Clinq 10% AHA BHA Face Serum",
+    name: "AHA & BHA Face Serum",
     category: "Serum",
     price: 899.00,
     discountPrice: 849.00,
@@ -62,19 +66,28 @@ const DUMMY_PRODUCTS = [
       "/aha_bha_face_serum.jpg",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "Give your skin a fresh new glow with this powerful AHA BHA Face Serum. Specially formulated for those struggling with dull, rough, and uneven skin texture.",
+    description: "AHA & BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more youthful complexion with regular use. This resurfacing serum is powered by a potent blend of AHA and BHA actives, featuring Glycolic Acid to gently exfoliate and reduce fine lines, Betaine Salicylate to unclog pores and improve acne-prone skin, and Alpha Arbutin to help reduce pigmentation and uneven skin tone. It is further enriched with Niacinamide to strengthen the skin barrier and enhance radiance, Ascorbyl Glucoside for antioxidant protection and brightening, Sodium Hyaluronate for deep hydration, Panthenol and Allantoin to soothe and repair the skin, and fruit extracts such as Kiwi Fruit Extract, Dragon Fruit Extract, and Sea Buckthorn Extract to nourish the skin with natural antioxidants. Lightweight and fast-absorbing, this serum helps improve skin clarity, smoothness, and glow, making it suitable for those seeking radiant, youthful-looking skin when used as directed.",
     ingredients: [
-      "AHA BHA 10% — gently removes dead skin cells",
-      "Niacinamide — evens out skin tone and tightens pores",
-      "Ascorbyl Glucoside (Vitamin C derivative) — brightens skin and protects against free radicals"
+      "Glycolic Acid",
+      "Betaine Salicylate",
+      "Alpha Arbutin",
+      "Niacinamide",
+      "Ascorbyl Glucoside",
+      "Sodium Hyaluronate",
+      "Panthenol",
+      "Allantoin",
+      "Kiwi Fruit Extract",
+      "Dragon Fruit Extract",
+      "Sea Buckthorn Extract"
     ],
     benefits: [
-      "Effectively removes dead skin cells",
-      "Reduces fine lines and wrinkles",
-      "Fixes uneven skin tone, restores natural glow",
-      "Regular use leaves skin smoother and more refined"
+      "Gently exfoliates and removes dead skin cells.",
+      "Helps reduce fine lines and uneven texture.",
+      "Unclogs pores and supports clearer skin.",
+      "Brightens skin tone and improves radiance.",
+      "Hydrates and soothes the skin barrier."
     ],
-    howToUse: "Apply 3-4 drops on clean skin at night, gently massage in. Always follow with sunscreen during the day.",
+    howToUse: "After cleansing, apply a few drops to the face, gently massage until absorbed, and use as directed, preferably at night.",
     skinType: ["Normal", "Dry", "Combination", "Oily", "Acne-Prone"],
     specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
     rating: 4.7,
@@ -96,19 +109,27 @@ const DUMMY_PRODUCTS = [
       "/uv_aurora_sunscreen.png",
       "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "Protect your skin the smart way with UV-Aurora Sunscreen — a lightweight formula that shields against harmful sun rays while doubling up as a hydrating skincare step.",
+    description: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is an ultra-lightweight, fast-absorbing sunscreen formulated to provide broad-spectrum protection against UVA and UVB rays while delivering deep hydration and a non-greasy, water-light feel suitable for daily use. This advanced aqua sunscreen gel is powered by key ingredients such as Hyaluronic Acid to deeply hydrate and maintain skin moisture, Homosalate and Octyl Methoxy Cinnamate to provide effective UVB protection, Tinosorb M for broad-spectrum UVA and UVB defense, Zinc PCA to help balance oil and support skin clarity, Vitamin E for antioxidant protection, Kakadu Plum Extract to support skin radiance and environmental defense, Silk Protein Extract for a smooth and soft skin finish, Aristoflex AVC for lightweight gel texture, Allantoin to soothe and calm the skin, and Melanin to enhance photoprotection. Designed for all skin types, this sunscreen spreads effortlessly, absorbs quickly without white cast, and helps protect skin from sun damage, premature ageing, and dehydration when applied regularly as directed.",
     ingredients: [
-      "Hyaluronic Acid 1% — provides deep, lasting hydration",
-      "Kakadu Plum Extract 1% — rich in Vitamin C, brightens and protects skin",
-      "Vitamin E 2% — antioxidant protection against environmental damage"
+      "Hyaluronic Acid",
+      "Homosalate",
+      "Octyl Methoxy Cinnamate",
+      "Tinosorb M",
+      "Zinc PCA",
+      "Vitamin E",
+      "Kakadu Plum Extract",
+      "Silk Protein Extract",
+      "Allantoin",
+      "Melanin"
     ],
     benefits: [
-      "Protects from UVA & UVB rays",
-      "Deeply hydrates and nourishes the skin",
-      "Strengthens the skin barrier",
-      "Lightweight, non-sticky formula for daily use"
+      "Provides broad-spectrum UVA and UVB protection.",
+      "Hydrates skin with a lightweight aqua gel texture.",
+      "Helps prevent sun damage and premature ageing.",
+      "Non-greasy, fast-absorbing, and comfortable for daily use.",
+      "Suitable for all skin types."
     ],
-    howToUse: "Apply generously as the last step of your morning skincare routine, 15-20 minutes before sun exposure. Reapply every 3-4 hours if outdoors.",
+    howToUse: "Clean and pat dry the face, apply two finger-lengths of sunscreen to the face and neck, massage gently until absorbed, apply 20 minutes before sun exposure, and reapply every 2–3 hours for continued protection.",
     skinType: ["Combination", "Oily", "Normal", "Sensitive"],
     specs: { "Volume": "50ml", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
     rating: 4.9,
@@ -128,20 +149,20 @@ const DUMMY_PRODUCTS = [
     images: [
       "/benzotree_face_wash.png"
     ],
-    description: "The best solution for acne-prone skin — Benzotree Face Wash. Specially formulated to target breakouts, excess oil, and clogged pores.",
+    description: "Skinimage Benzotree  Face Wash is a paraben-free facial cleanser formulated for oily and acne-prone skin, designed to help maintain skin clarity and freshness with a balanced cleansing approach, combining active and supportive ingredients that contribute to a clean, refreshed skin feel without excessive dryness, enriched with key ingredients such as Benzoyl Peroxide, Vitamin C, and Tea Tree Oil which are commonly used in formulations aimed at supporting clearer-looking skin and maintaining overall skin condition, along with a blend of cleansing agents and hydrating components that help remove impurities, excess oil, and buildup from the skin surface while keeping the skin feeling smooth and comfortable after every wash.",
     ingredients: [
-      "Benzoyl Peroxide 1% — fights acne-causing bacteria",
-      "Vitamin C — helps with skin brightening and healing",
-      "Tea Tree Oil — natural antibacterial properties, controls oil",
-      "Vitamin E — soothes and nourishes the skin"
+      "Benzoyl Peroxide",
+      "Vitamin C",
+      "Tea Tree Oil"
     ],
     benefits: [
-      "Controls excess oil",
-      "Clears clogged pores",
-      "Works effectively on active breakouts",
-      "Treats mild to moderate acne"
+      "Helps support oil control for a less greasy skin feel throughout the day.",
+      "Effectively cleanses dirt, impurities, and excess sebum from the skin surface.",
+      "Maintains a refreshed and clean skin feel after every wash.",
+      "Suitable for oily and acne-prone skin types.",
+      "Leaves skin feeling balanced, smooth, and comfortable without over-drying."
     ],
-    howToUse: "Wet your face, take a small amount, gently massage for 1 minute, then rinse off. Use 1-2 times a day (to avoid over-drying)",
+    howToUse: "Wet your face and apply a small amount of Skinimage Benzotree Face Wash. Gently massage for 10–20 seconds and rinse thoroughly with water.",
     skinType: ["Oily", "Combination", "Acne-Prone"],
     specs: { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
     rating: 4.6,
@@ -162,20 +183,27 @@ const DUMMY_PRODUCTS = [
       "/c_peptide_serum.png",
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "C-Peptide Face Serum is the name in age-defying skincare. Its advanced 6-Peptide Complex formula works deep within the skin's layers, keeping your skin firm, hydrated, and youthful.",
+    description: "Skinimage C-Peptide Super Face Serum is an advanced anti-ageing and skin-repair formulation designed to lock in moisture, strengthen the skin barrier, and visibly reduce fine lines and wrinkles for smoother, firmer, and youthful-looking skin. This high-performance serum is powered by a multi-peptide complex including Acetyl Hexapeptide-8 and Copper Tripeptide-1 to help boost collagen production, improve skin elasticity, and minimize the appearance of expression lines, supported by Niacinamide to refine skin texture and strengthen the barrier, and Hyaluronic Acid to deeply hydrate and plump the skin. It is further enriched with Adenosine to help reduce wrinkles, Allantoin to soothe and calm the skin, Sodium PCA and Betaine to maintain optimal moisture balance, and Amino Acids to support skin repair and resilience. Lightweight and fast-absorbing, this serum works effectively as the first step of skincare to enhance skin smoothness, firmness, and overall radiance with consistent use.",
     ingredients: [
-      "6 Peptide Complex — Boosts collagen production",
-      "Hyaluronic Acid — Provides deep hydration, locks in moisture",
-      "Niacinamide — Strengthens the skin barrier",
-      "Allantoin — Soothes and repairs skin"
+      "Peptide Complex",
+      "Acetyl Hexapeptide-8",
+      "Copper Tripeptide-1",
+      "Niacinamide",
+      "Hyaluronic Acid",
+      "Adenosine",
+      "Allantoin",
+      "Sodium PCA",
+      "Betaine",
+      "Amino Acids"
     ],
     benefits: [
-      "Locks moisture into skin cells",
-      "Visibly reduces fine lines and wrinkles",
-      "Promotes natural collagen production",
-      "Makes skin plump, firm, and youthful"
+      "Locks moisture and deeply hydrates skin.",
+      "Helps reduce fine lines and wrinkles.",
+      "Boosts collagen and improves elasticity.",
+      "Strengthens skin barrier and texture.",
+      "Promotes smoother and youthful-looking skin."
     ],
-    howToUse: "Apply 3–4 drops of the serum to a clean face—morning or night—before your moisturizer.",
+    howToUse: "After cleansing, apply the serum evenly over the face, massage gently until absorbed, and use as the first step of your skincare routine.",
     skinType: ["Normal", "Dry", "Combination", "Sensitive", "Aging"],
     specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" },
     rating: 4.8,
@@ -229,19 +257,29 @@ const DUMMY_PRODUCTS = [
   {
     id: "p7",
     sku: "SK-CENTELLA-SOOTH",
-    name: "Centella Soothing Recovery Gel",
-    category: "Moisturizer",
-    price: 25.00,
-    discountPrice: 20.00,
+    name: "Gluta Foaming Facewash",
+    category: "Cleanser",
+    price: 599.00,
     stock: 75,
     images: [
       "/centella_soothing_gel.png",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "An instant cooling, calming gel cream designed for highly sensitive, irritated, or compromised skin. Formulated with 70% Centella Asiatica Extract and Aloe Vera, it reduces skin temperature, alleviates itching, and minimizes redness.",
-    ingredients: ["Centella Asiatica Extract (70%)", "Aloe Barbadensis Leaf Juice", "Glycerin", "Allantoin", "Madecassoside", "Chamomile Extract"],
-    benefits: ["Instantly cools and calms skin irritation", "Reduces redness and blotchiness", "Extremely lightweight & non-greasy"],
-    howToUse: "Apply a generous layer over skin as the final step in your routine. Can be refrigerated for an extra cooling sensation. Excellent for post-sun or post-peel recovery.",
+    description: "Skinimage Gluta Foaming Facewash is a gentle yet effective daily cleanser formulated to purify the skin, remove impurities, and enhance natural brightness while maintaining skin hydration and balance. This foaming facewash is enriched with key skin-beneficial ingredients such as Vitamin C to help brighten the complexion and support an even skin tone, Vitamin E to provide antioxidant protection and nourish the skin, Glutathione to support skin clarity and radiance, and Aloe Vera Extract to soothe, hydrate, and calm the skin during cleansing. Its mild foaming action helps lift dirt, excess oil, and pollutants without stripping moisture, making it suitable for regular use to achieve refreshed, clean, and visibly brighter skin. With consistent use, Skinimage Gluta Foaming Facewash helps promote clearer-looking skin, improved glow, and a smooth, healthy appearance.",
+    ingredients: [
+      "Vitamin C",
+      "Vitamin E",
+      "Glutathione",
+      "Aloe Vera Extract"
+    ],
+    benefits: [
+      "Gently cleanses and removes impurities.",
+      "Helps brighten and clarify skin tone.",
+      "Provides antioxidant and skin-nourishing support.",
+      "Soothes and hydrates during cleansing.",
+      "Suitable for daily facial cleansing."
+    ],
+    howToUse: "Wet face and hands, apply the facewash, massage gently in circular motions for about a minute, rinse with lukewarm water, and pat dry.",
     skinType: ["Sensitive", "Oily", "Acne-Prone", "Combination"],
     specs: { "Volume": "80ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" },
     rating: 4.7,
@@ -263,20 +301,26 @@ const DUMMY_PRODUCTS = [
       "/aha_bha_face_wash.jpg",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
+    description: "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.",
     ingredients: [
-      "Niacinamide 5% — brightens and evens out skin tone",
-      "Centella Asiatica 2% — soothes and calms irritated skin",
-      "Panthenol (Vitamin B5) 2% — hydrates and repairs the skin barrier",
-      "Salicylic Acid 2% — unclogs pores and fights acne-causing bacteria"
+      "Salicylic Acid (2%) – Deep pore cleansing, exfoliation & acne control",
+      "Niacinamide (5%) – Sebum balance, spot reduction & skin brightening",
+      "Zinc PCA (1%) – Oil control & anti-bacterial defense",
+      "Panthenol / Pro-Vitamin B5 (2%) – Skin barrier restoration & hydration",
+      "Betaine (2%) – Moisture retention & smoothing",
+      "Centella Asiatica Extract (2%) – Redness reduction & skin calming",
+      "Green Tea Extract (1%) – Antioxidant protection & oil regulation",
+      "Sodium Hyaluronate (0.2%) – Deep & lightweight hydration",
+      "Allantoin (0.5%) – Anti-irritation & soothing"
     ],
     benefits: [
-      "Brightens and evens out skin tone",
-      "Helps reduce acne and blackheads",
-      "Controls excess oil",
-      "Soothes and calms the skin"
+      "Deep Pore Cleansing: Actively works as a powerful salicylic acid face wash for acne, clearing dead skin cells, unclogging pores, and preventing pimples.",
+      "Oil & Sebum Control: Formulated to be the best face wash for oily skin, regulating shine and excess sebum production throughout the day.",
+      "Blemish & Spot Reduction: Fades dark spots, improves uneven skin tone, and restores natural radiance.",
+      "Soothes Irritated Skin: Centella Asiatica and Green Tea extracts calm active acne redness, irritation, and inflammation.",
+      "Maintains pH 5.5 Balance: Gentle on the skin barrier, keeping skin hydrated, soft, and non-stripping after every wash."
     ],
-    howToUse: "Wet your face, apply a small amount, gently massage for 30-60 seconds, then rinse off. Use twice daily (morning and night).",
+    howToUse: "Wet your face and neck with lukewarm water.\n\nApply a sufficient quantity onto damp palms and gently work into a soft lather.\n\nMassage gently onto the face in circular motions for 30–60 seconds, paying extra attention to oil-prone areas (T-zone).\n\nRinse thoroughly with water and gently pat dry.\n\nUse twice daily (morning and evening) for optimal results or as directed by a dermatologist.",
     skinType: ["Normal", "Dry", "Combination", "Oily", "Sensitive"],
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
     rating: 4.8,
@@ -289,21 +333,36 @@ const DUMMY_PRODUCTS = [
   {
     id: "p9",
     sku: "SK-SQUALANE-OIL",
-    name: "100% Sugarcane Squalane Facial Oil",
-    category: "Oil",
-    price: 32.00,
-    discountPrice: 27.50,
+    name: "Milk Barrier Repair Hydrating Toner",
+    category: "Toner",
+    price: 1099.00,
+    discountPrice: 939.00,
     stock: 60,
     images: [
       "/sugarcane_squalane_oil.jpg",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "A pure, sustainably-sourced squalane oil that mimics skin's natural lipids to lock in intense moisture. This lightweight, dry facial oil absorbs instantly, helping to soften skin, improve texture, and bring back a healthy, natural radiance.",
-    ingredients: ["100% Plant-Derived Squalane (Sugarcane)"],
-    benefits: ["Locks in deep, long-lasting moisture", "Softens skin texture and reduces dry patches", "Multi-use for face, hair, and body"],
-    howToUse: "Press a few drops onto face and neck after moisturizer to seal in hydration. Can also be mixed into your moisturizer or applied to dry hair tips.",
+    description: "Skinimage Milk Barrier Repair Hydrating Toner (Ceramide NP + Hyaluronic Acid + Snow Mushroom + Squalane + Meadowfoam Seed Oil) is an ultra-nourishing, milky-hydrating toner. It instantly replenishes skin moisture loss after cleansing, reduces transepidermal water loss (TEWL), and rebuilds the skin's natural protective barrier. If you are looking for an effective ceramide toner for skin barrier repair to treat a damaged barrier, irritation, or dehydration, this advanced milky formula is the ultimate hydrating base for your skincare routine.\n\nThis toner features a scientific blend of rich emollient oils, peptides, and hydrating active ingredients: Ceramide NP for skin barrier strengthening, Hyaluronic Acid & Tremella Fuciformis (Snow Mushroom) Extract for multi-layer deep hydration, Squalane & Meadowfoam Seed Oil to restore the skin's lipid barrier, Acetyl Tetrapeptide-11 to smooth fine lines and improve elasticity, and Green Tea & Camellia Japonica Flower Extracts for powerful antioxidant protection. Being completely fragrance-free and alcohol-free, it stands out as the best hydrating toner for dry skin, sensitive skin, and post-dermatological procedure care.",
+    ingredients: [
+      "Ceramide NP – Essential lipid that repairs and fortifies the protective skin barrier",
+      "Hyaluronic Acid – Attracts and holds moisture for surface plumpness",
+      "Tremella Fuciformis (Snow Mushroom) Extract – Deep-penetrating natural hydrating agent",
+      "Squalane & Meadowfoam Seed Oil – Lightweight emollient oils that lock in moisture",
+      "Acetyl Tetrapeptide-11 – Anti-aging peptide that improves elasticity and firmness",
+      "Green Tea & Camellia Japonica Extracts – Powerful antioxidants that calm redness and protect skin",
+      "Vitamin E (Tocopherol) – Protects against environmental damage and oxidative stress"
+    ],
+    benefits: [
+      "Restores & Strengthens Skin Barrier: Formulated as an advanced ceramide toner for skin barrier repair, it reinforces the lipid layer to prevent moisture loss and skin sensitivity.",
+      "Intense Multi-Layer Hydration: Recognized as the best hydrating toner for dry skin, Snow Mushroom and Hyaluronic Acid deeply quench dehydrated skin, leaving it plump and glowing.",
+      "Milky & Nourishing Texture: Enriched with Squalane and Meadowfoam Seed Oil to deliver rich emollient comfort without feeling heavy or greasy.",
+      "Smoothes Fine Lines & Boosts Elasticity: Acetyl Tetrapeptide-11 helps plump dehydration lines and improve overall skin texture.",
+      "Preps Skin for Maximum Absorption: Prepares your skin barrier to absorb subsequent serums and moisturizers more effectively.",
+      "Safe for Sensitive & Post-Procedure Skin: Completely fragrance-free, alcohol-free, essential oil-free, and non-comedogenic."
+    ],
+    howToUse: "Cleanse your face with a gentle face wash and pat dry.\n\nDispense an adequate amount of toner onto a cotton pad or directly into the palms of clean hands.\n\nGently sweep or pat over your face and neck until fully absorbed (do not rinse).\n\nFollow with your favorite serum (like Skinimage PDRN Regenerating Serum) and moisturizer.\n\nUse twice daily (morning and evening).",
     skinType: ["Dry", "Sensitive", "Normal", "Combination"],
-    specs: { "Volume": "30ml", "Ingredient Source": "100% Sugarcane", "Cruelty-Free": "Yes", "Vegan": "Yes" },
+    specs: { "Volume": "150ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" },
     rating: 4.9,
     reviewsCount: 118,
     isFeatured: false,
@@ -316,86 +375,236 @@ const DUMMY_PRODUCTS = [
 const PRODUCT_FAQS: Record<string, { question: string; answer: string }[]> = {
   p2: [
     {
-      question: "What is Clinq 10% AHA BHA Face Serum?",
-      answer: "Clinq 10% AHA BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more even skin tone."
+      question: "What is AHA & BHA Face Serum?",
+      answer: "AHA & BHA Face Serum is an exfoliating face serum designed to improve skin texture, reduce dead skin buildup, and promote radiant, youthful-looking skin."
     },
     {
-      question: "What are the key ingredients in Clinq 10% AHA BHA Face Serum?",
-      answer: "The key active ingredients are Glycolic Acid (AHA), Salicylic Acid (BHA), Niacinamide, and Ascorbyl Glucoside (Vitamin C derivative), which work synergistically to exfoliate, brighten, and soothe the skin."
+      question: "What are the key ingredients in AHA & BHA Face Serum?",
+      answer: "The serum contains Glycolic Acid, Betaine Salicylate, Alpha Arbutin, Niacinamide, Ascorbyl Glucoside, Sodium Hyaluronate, Panthenol, Allantoin, and antioxidant-rich fruit extracts."
     },
     {
-      question: "How does Clinq 10% AHA BHA Face Serum work?",
-      answer: "The AHAs gently dissolve the bonds holding dead skin cells on the surface, while BHAs penetrate deep into the pores to clear out sebum and prevent breakouts. Niacinamide and Vitamin C work together to target dark spots and smooth skin texture."
+      question: "How does AHA & BHA Face Serum work?",
+      answer: "It works by exfoliating the skin surface and pores, brightening uneven tone, hydrating the skin, and supporting smoother, clearer skin over time."
     },
     {
-      question: "How should Clinq 10% AHA BHA Face Serum be used?",
-      answer: "Apply 3-4 drops to clean, dry skin in your evening routine, gently patting it in. Avoid the eye area. Always follow up with a moisturizer and apply a broad-spectrum sunscreen during the day while using this product."
+      question: "How should AHA & BHA Face Serum be used?",
+      answer: "Apply a few drops to clean skin, gently massage until absorbed, and use as recommended, preferably in the evening routine."
     },
     {
-      question: "Is Clinq 10% AHA BHA Face Serum suitable for regular use?",
-      answer: "Yes, it is suitable for regular use, but if you are new to chemical exfoliants, start by using it 2-3 times a week and gradually increase to daily evening use as your skin builds tolerance."
+      question: "Is AHA & BHA Face Serum suitable for regular use?",
+      answer: "Yes, it can be used regularly as directed, with proper sun protection during the day."
     },
     {
-      question: "What benefits can I expect from Clinq 10% AHA BHA Face Serum?",
-      answer: "You can expect smoother skin texture, reduced appearance of pores, improved radiance, fewer breakouts, and a visible reduction in fine lines and uneven skin tone over 4-6 weeks of consistent use."
+      question: "What benefits can I expect from AHA & BHA Face Serum?",
+      answer: "You may notice smoother texture, brighter skin tone, reduced fine lines, clearer pores, and improved overall skin radiance."
     }
   ],
   p1: [
     {
-      question: "What is the Oil Cleanser with Squalane & Jojoba Oil?",
-      answer: "This is a premium first-step oil cleanser designed to melt away stubborn makeup, water-resistant sunscreen, and excess sebum while nourishing the skin barrier."
+      question: "Will using a cleansing oil make my skin more oily or clog my pores?",
+      answer: "No! This formula uses non-comedogenic botanical oils and emulsifiers. According to the principle of \"like dissolves like,\" the cleansing oil attracts and dissolves oil-based impurities (sebum, makeup, sunscreen) without clogging pores or leaving an oily residue once rinsed."
     },
     {
-      question: "Can it be used on oily or acne-prone skin?",
-      answer: "Yes! Jojoba oil balances sebum production and is non-comedogenic, making this cleanser excellent for balancing all skin types, including oily and acne-prone skin."
+      question: "Why should I apply the cleansing oil on DRY skin with DRY hands?",
+      answer: "Applying cleansing oil on dry skin allows the botanical oils to directly bind to water-resistant makeup, sunscreen, and excess sebum. Adding water too early causes it to emulsify before it can effectively break down dirt."
     },
     {
-      question: "Does it leave a greasy residue?",
-      answer: "No, it emulsifies into a light milk when mixed with water, rinsing off cleanly without leaving any greasy residue behind."
+      question: "Is this product suitable for oily and acne-prone skin types?",
+      answer: "Yes, it is suitable for all skin types, including oily and acne-prone skin. It contains Neem Oil, Jojoba Oil, and Bisabolol, which help balance natural oil production and soothe skin inflammation while removing clogged pore debris."
+    },
+    {
+      question: "Do I need to use another face wash after using this cleansing oil?",
+      answer: "Yes, if you practice Double Cleansing! The cleansing oil acts as Step 1 to remove oil-soluble impurities (makeup, SPF, pollution), while a water-based face wash (Step 2) clears remaining water-soluble debris (sweat, dirt)."
+    },
+    {
+      question: "Can this cleansing oil remove heavy waterproof mascara and eye makeup?",
+      answer: "Absolutely. The blend of plant oils breaks down tough, waterproof eye and lip makeup effortlessly. Just massage gently over the eye area and rinse with lukewarm water. Avoid direct contact inside the eyes."
     }
   ],
   p3: [
     {
-      question: "What makes UV-Aurora Sunscreen special?",
-      answer: "It provides broad-spectrum SPF 50 / PA++++ protection against UVA and UVB rays, featuring a lightweight, hydrating formula that leaves zero white cast and doubles as a moisturizer."
+      question: "What is Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++?",
+      answer: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is a lightweight sunscreen gel designed to protect the skin from UVA and UVB rays while providing deep hydration."
     },
     {
-      question: "How often should I reapply the sunscreen?",
-      answer: "For maximum protection, reapply every 3 to 4 hours, especially if you are outdoors, sweating, or swimming."
+      question: "What are the key ingredients in Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++?",
+      answer: "The sunscreen contains Hyaluronic Acid, Homosalate, Octyl Methoxy Cinnamate, Tinosorb M, Zinc PCA, Vitamin E, Kakadu Plum Extract, Silk Protein Extract, Allantoin, and Melanin."
     },
     {
-      question: "Is it suitable for acne-prone skin?",
-      answer: "Yes, UV-Aurora Sunscreen is non-comedogenic, meaning it won't clog your pores, and contains soothing ingredients suitable for sensitive, acne-prone skin."
+      question: "How does Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ work?",
+      answer: "It works by forming a protective shield against harmful UVA and UVB rays while hydrating, soothing, and protecting the skin from sun-induced damage."
+    },
+    {
+      question: "How should Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ be used?",
+      answer: "Apply two finger-lengths to the face and neck 20 minutes before sun exposure and reapply every 2–3 hours for optimal protection."
+    },
+    {
+      question: "Is Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ suitable for daily use?",
+      answer: "Yes, it is suitable for daily use and can be comfortably worn under makeup."
+    },
+    {
+      question: "What benefits can I expect from Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++?",
+      answer: "You can expect effective sun protection, lightweight hydration, reduced sun damage, and a smooth, non-greasy skin finish."
     }
   ],
   p4: [
     {
-      question: "How does Benzotree Face Wash help with acne?",
-      answer: "It combines Benzoyl Peroxide (which targets acne-causing bacteria) and Tea Tree Oil (a natural anti-inflammatory agent) to deep-clean pores and control breakouts."
+      question: "What is Skinimage Benzotree Face Wash?",
+      answer: "Skinimage Benzotree Face Wash is a paraben-free facial cleanser designed for oily and acne-prone skin to help maintain clean and fresh skin."
     },
     {
-      question: "Should I use it daily?",
-      answer: "Yes, but if your skin experiences mild dryness, start by using it once a day or every other day, gradually increasing to twice daily as tolerated."
+      question: "What are the key ingredients in Skinimage Benzotree Face Wash?",
+      answer: "Skinimage Benzotree Face Wash contains key ingredients such as Benzoyl Peroxide, Vitamin C, and Tea Tree Oil."
+    },
+    {
+      question: "Is Skinimage Benzotree Face Wash suitable for oily skin?",
+      answer: "Yes, Skinimage Benzotree Face Wash is formulated for oily and acne-prone skin."
+    },
+    {
+      question: "Does Skinimage Benzotree Face Wash contain Benzoyl Peroxide?",
+      answer: "Yes, Skinimage Benzotree Face Wash contains Benzoyl Peroxide as mentioned in the product details."
+    },
+    {
+      question: "Is Skinimage Benzotree Face Wash paraben-free?",
+      answer: "Yes, Skinimage Benzotree Face Wash is paraben-free."
+    },
+    {
+      question: "How often can Skinimage Benzotree Face Wash be used?",
+      answer: "Skinimage Benzotree Face Wash can be used as part of your regular skincare routine as directed."
+    },
+    {
+      question: "Does Skinimage Benzotree Face Wash help with acne-prone skin?",
+      answer: "Skinimage Benzotree Face Wash is formulated for acne-prone skin and helps maintain a clean and balanced skin surface."
+    },
+    {
+      question: "How do I use Skinimage Benzotree Face Wash?",
+      answer: "Wet your face, apply a small amount of Skinimage Benzotree Face Wash, massage gently for 10–20 seconds, and rinse thoroughly."
+    },
+    {
+      question: "Does Skinimage Benzotree Face Wash help control oil?",
+      answer: "Yes, Skinimage Benzotree Face Wash is designed to support oil control and remove excess sebum."
+    },
+    {
+      question: "What makes Skinimage Benzotree Face Wash different?",
+      answer: "Skinimage Benzotree Face Wash combines Benzoyl Peroxide with ingredients like Vitamin C and Tea Tree Oil in a paraben-free formulation for targeted skin care."
     }
   ],
   p5: [
     {
-      question: "What is the primary benefit of C-Peptide Face Serum?",
-      answer: "It boosts collagen production, locks in deep moisture, and strengthens the skin barrier to make skin look firm, plump, and youthful."
+      question: "What is Skinimage C-Peptide Super Face Serum?",
+      answer: "Skinimage C-Peptide Face Serum is an advanced anti-ageing serum formulated to hydrate, strengthen skin, and reduce fine lines and wrinkles."
     },
     {
-      question: "At what age should I start using peptide serums?",
-      answer: "Peptide serums can be introduced into your routine starting in your early-to-mid 20s as a preventative measure to retain skin elasticity and firmness."
+      question: "What are the key ingredients in Skinimage C-Peptide Face Serum?",
+      answer: "The serum contains a peptide complex including Acetyl Hexapeptide-8 and Copper Tripeptide-1, along with Niacinamide, Hyaluronic Acid, Adenosine, and Allantoin."
+    },
+    {
+      question: "How does Skinimage C-Peptide Face Serum work?",
+      answer: "It works by boosting collagen, locking in moisture, improving elasticity, and smoothing wrinkles for firmer and youthful-looking skin."
+    },
+    {
+      question: "How should Skinimage C-Peptide Face Serum be used?",
+      answer: "Apply after cleansing as the first step of skincare, spread evenly on the face, and massage gently until absorbed."
+    },
+    {
+      question: "Is Skinimage C-Peptide Face Serum suitable for daily use?",
+      answer: "Yes, it is suitable for daily use when used as directed."
+    },
+    {
+      question: "What benefits can I expect from Skinimage C-Peptide Face Serum?",
+      answer: "Regular use may help improve hydration, reduce wrinkles, enhance firmness, and promote smoother, radiant skin."
     }
   ],
   p6: [
     {
-      question: "What is PDRN Regenerating Serum?",
-      answer: "PDRN is DNA repair technology that actively supports skin regeneration, cell renewal, and long-term recovery, particularly after aesthetic procedures or skin irritation."
+      question: "What is PDRN and how does it benefit my skin?",
+      answer: "PDRN (Polydeoxyribonucleotide) is a cutting-edge DNA repair technology that works at a cellular level to stimulate tissue repair, boost collagen production, and heal damaged skin. It is widely used in anti-aging treatments and post-procedure recovery."
     },
     {
-      question: "How do I pair PDRN with other actives?",
-      answer: "PDRN pairs beautifully with Niacinamide, Hyaluronic Acid, and Centella. If using strong exfoliants or retinoids, apply PDRN afterward to soothe and speed up skin barrier recovery."
+      question: "Can I use this serum after derma-rolling, chemical peels, or laser treatments?",
+      answer: "Yes! This serum is specially formulated with soothing ingredients like Centella Asiatica, Ceramides, and Ectoin, making it ideal to calm redness and accelerate recovery after dermatological or aesthetic procedures."
+    },
+    {
+      question: "Is this serum suitable for young skin or only aging skin?",
+      answer: "While it is a powerful anti-aging treatment for fine lines and wrinkles, it is also beneficial for younger individuals (in their 20s & 30s) dealing with damaged skin barriers, acne scars, dehydration, or dullness."
+    },
+    {
+      question: "How long does it take to see results?",
+      answer: "With regular twice-daily application, you will notice improved hydration, smoother texture, and reduced redness within 1 to 2 weeks. Significant improvements in skin firmness, elasticity, and fine lines generally appear after 4 to 6 weeks."
+    },
+    {
+      question: "Can I layer this serum with other active ingredients like Vitamin C or Retinol?",
+      answer: "Yes, PDRN and Peptides pair exceptionally well with most skincare actives. However, if using strong exfoliating acids or Retinol, apply the PDRN serum afterwards to soothe the skin barrier and prevent irritation."
+    }
+  ],
+  p7: [
+    {
+      question: "What is Skinimage Gluta Foaming Facewash?",
+      answer: "Skinimage Gluta Foaming Facewash is a daily facial cleanser designed to gently cleanse the skin while promoting brightness, clarity, and hydration."
+    },
+    {
+      question: "What are the key ingredients in Skinimage Gluta Foaming Facewash?",
+      answer: "The facewash contains key ingredients such as Vitamin C, Vitamin E, Glutathione, and Aloe Vera Extract."
+    },
+    {
+      question: "How does Skinimage Gluta Foaming Facewash work?",
+      answer: "It works by removing dirt, oil, and impurities while nourishing the skin with antioxidants and soothing extracts to maintain a fresh and clear complexion."
+    },
+    {
+      question: "How should Skinimage Gluta Foaming Facewash be used?",
+      answer: "Apply on wet face, massage gently in circular motions for about a minute, rinse thoroughly, and pat dry."
+    },
+    {
+      question: "Is Skinimage Gluta Foaming Facewash suitable for daily use?",
+      answer: "Yes, it is suitable for daily use as part of a regular skincare routine."
+    },
+    {
+      question: "What benefits can I expect from Skinimage Gluta Foaming Facewash?",
+      answer: "Regular use may help improve skin cleanliness, brightness, clarity, and overall skin freshness."
+    }
+  ],
+  p8: [
+    {
+      question: "Is this face cleanser suitable for sensitive skin?",
+      answer: "Yes! Although it contains 2% Salicylic Acid and 5% Niacinamide, the formula is balanced with a skin-friendly pH 5.5 and enriched with soothing ingredients like Centella Asiatica (Cica), Aloe Vera, and Allantoin. This prevents dryness and irritation, making it safe for oily, acne-prone, and sensitive skin types."
+    },
+    {
+      question: "How often should I use this face cleanser?",
+      answer: "For best results, use it twice daily—once in the morning and once at night as part of your daily skincare routine. Massage gently onto damp skin for 30–60 seconds before rinsing with water."
+    },
+    {
+      question: "Will this cleanser dry out my skin?",
+      answer: "No. Unlike harsh acne cleansers, it uses gentle, sulfate-free cleansers combined with deeply hydrating ingredients like Sodium Hyaluronate, Panthenol (Pro-Vitamin B5), and Betaine to keep your skin hydrated and soft after every wash."
+    },
+    {
+      question: "Can I use this cleanser if I have active acne and blackheads?",
+      answer: "Absolutely! 2% Salicylic Acid (BHA) penetrates deep into the pores to dissolve excess oil, clear blackheads, and prevent active breakouts. 1% Zinc PCA helps reduce acne-causing bacteria and regulates sebum production."
+    },
+    {
+      question: "Is a mild tingling sensation normal after using this cleanser?",
+      answer: "Yes, a very mild tingling sensation can occur initially due to active Salicylic Acid working on the skin. However, if severe irritation or redness persists, discontinue use and consult a dermatologist."
+    }
+  ],
+  p9: [
+    {
+      question: "What makes a \"Barrier Repair Toner\" different from regular alcohol-based toners?",
+      answer: "Traditional toners often contain alcohol and harsh astringents that strip the skin's natural oils. Skinimage Barrier Repair Toner is completely alcohol-free and fragrance-free, formulated with Ceramides, Squalane, and Hyaluronic Acid to nourish, hydrate, and strengthen the skin barrier instead of stripping it."
+    },
+    {
+      question: "Can I use this toner if I have oily or acne-prone skin?",
+      answer: "Yes! This toner is non-comedogenic (won't clog pores). Oily skin often produces excess oil due to a damaged or dehydrated barrier; using a Ceramide and Squalane-rich toner helps balance oil-water levels without causing breakouts."
+    },
+    {
+      question: "How should I apply this toner—with hands or a cotton pad?",
+      answer: "Both methods work well! For maximum hydration and less product waste, pouring 3–4 drops directly into your clean palms and gently patting it onto your face is highly recommended. If you prefer mild surface refinement, use a soft cotton pad."
+    },
+    {
+      question: "Is this toner suitable after chemical peels, laser treatments, or micro-needling?",
+      answer: "Yes, absolutely. It is specially designed for post-procedure skin. Free from fragrances, essential oils, and drying alcohols, it calms redness and speeds up barrier recovery following dermatological treatments."
+    },
+    {
+      question: "Can I layer this toner multiple times (7-skin method)?",
+      answer: "Yes! Its lightweight, milky-gel texture makes it perfect for layering. If your skin feels extra dehydrated or tight, you can layer 2 to 3 applications of this toner before applying your serum for intense moisture."
     }
   ]
 };
@@ -470,8 +679,21 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
 
   const getProductFaqs = () => {
     const productId = product?._id || product?.id;
-    if (productId && PRODUCT_FAQS[productId]) {
-      return PRODUCT_FAQS[productId];
+    const sku = product?.sku;
+    
+    let key = productId;
+    if (sku === "SK-HYDRA-FW") key = "p1";
+    else if (sku === "SK-VITC-GLOW") key = "p2";
+    else if (sku === "SK-NIACIN-MOIST") key = "p3";
+    else if (sku === "SK-BENZOTREE-FW") key = "p4";
+    else if (sku === "SK-CPEPTIDE-SRM") key = "p5";
+    else if (sku === "SK-PDRN-SRM") key = "p6";
+    else if (sku === "SK-CENTELLA-GEL") key = "p7";
+    else if (sku === "SK-AHABHA-FW" || sku === "SK-SPF50-SUN") key = "p8";
+    else if (sku === "SK-SQUALANE-OIL") key = "p9";
+
+    if (key && PRODUCT_FAQS[key]) {
+      return PRODUCT_FAQS[key];
     }
     const category = product?.category;
     if (category && CATEGORY_FAQS[category]) {
@@ -493,7 +715,20 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
       p9: ["Intense Moisture", "Texture Smoothing", "Eco-Friendly"]
     };
     const productId = product?._id || product?.id;
-    return tagsMap[productId] || ["100% Organic", "Dermatologically Tested", "Cruelty-Free"];
+    const sku = product?.sku;
+    
+    let key = productId;
+    if (sku === "SK-HYDRA-FW") key = "p1";
+    else if (sku === "SK-VITC-GLOW") key = "p2";
+    else if (sku === "SK-NIACIN-MOIST") key = "p3";
+    else if (sku === "SK-BENZOTREE-FW") key = "p4";
+    else if (sku === "SK-CPEPTIDE-SRM") key = "p5";
+    else if (sku === "SK-PDRN-SRM") key = "p6";
+    else if (sku === "SK-CENTELLA-GEL") key = "p7";
+    else if (sku === "SK-AHABHA-FW" || sku === "SK-SPF50-SUN") key = "p8";
+    else if (sku === "SK-SQUALANE-OIL") key = "p9";
+
+    return tagsMap[key] || ["100% Organic", "Dermatologically Tested", "Cruelty-Free"];
   };
 
   // Review Form state
