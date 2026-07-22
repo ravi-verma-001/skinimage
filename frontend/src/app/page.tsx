@@ -175,6 +175,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Banner Section */}
+      <section className="w-full bg-white">
+        <div className="w-full">
+          <img
+            src="/banner.png"
+            alt="Skinimage Banner"
+            className="w-full h-auto object-cover block"
+          />
+        </div>
+      </section>
+
       {/* Featured / Best Seller Products Grid */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
