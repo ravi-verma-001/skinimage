@@ -486,15 +486,29 @@ const DUMMY_PRODUCTS = [
 // File system DB helpers (Mock DB)
 const readLocalDB = () => {
   if (!fs.existsSync(DB_FILE)) {
+    const salt = bcrypt.genSaltSync(12);
+    const hashedPassword = bcrypt.hashSync('9818660316@puru', salt);
     const defaultData = {
-      users: [],
+      users: [
+        {
+          id: "u_admin_9999",
+          _id: "u_admin_9999",
+          name: "System Admin",
+          email: "admin@skinimage.com",
+          password: hashedPassword,
+          role: "admin",
+          addresses: [],
+          wishlist: []
+        }
+      ],
       products: DUMMY_PRODUCTS,
       orders: [],
       coupons: [
         { code: "WELCOME10", discountType: "percentage", discountValue: 10, expiryDate: new Date("2030-12-31"), usageLimit: 1000, usageCount: 0 },
         { code: "SKINCARE20", discountType: "percentage", discountValue: 20, expiryDate: new Date("2030-12-31"), usageLimit: 500, usageCount: 0 }
       ],
-      reviews: []
+      reviews: [],
+      analysisReports: []
     };
     fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
     return defaultData;
@@ -503,6 +517,28 @@ const readLocalDB = () => {
     const content = fs.readFileSync(DB_FILE, 'utf-8');
     const parsed = JSON.parse(content);
     if (!parsed.analysisReports) parsed.analysisReports = [];
+    
+    // Ensure admin exists in mock users array
+    const adminIndex = parsed.users.findIndex(u => u.email === 'admin@skinimage.com');
+    const salt = bcrypt.genSaltSync(12);
+    const hashedPassword = bcrypt.hashSync('9818660316@puru', salt);
+    if (adminIndex === -1) {
+      parsed.users.push({
+        id: "u_admin_9999",
+        _id: "u_admin_9999",
+        name: "System Admin",
+        email: "admin@skinimage.com",
+        password: hashedPassword,
+        role: "admin",
+        addresses: [],
+        wishlist: []
+      });
+      fs.writeFileSync(DB_FILE, JSON.stringify(parsed, null, 2), 'utf-8');
+    } else {
+      parsed.users[adminIndex].password = hashedPassword;
+      parsed.users[adminIndex].role = "admin";
+      fs.writeFileSync(DB_FILE, JSON.stringify(parsed, null, 2), 'utf-8');
+    }
     return parsed;
   } catch (error) {
     console.error("Error reading local db file, resetting...", error);
