@@ -588,6 +588,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PDRN Serum Banner */}
+      <section className="bg-white border-t border-stone-200">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl shadow-sm border border-stone-100">
+            <img
+              src="/pdrn_banner.png"
+              alt="PDRN Regenerating Serum Banner"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-white border-t border-stone-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
