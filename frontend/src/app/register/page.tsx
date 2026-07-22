@@ -14,7 +14,7 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user'); // user or admin (useful for sandbox preview)
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,10 +25,14 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !password) return;
+    if (!name || !email || !password || !confirmPassword) return;
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
     setLoading(true);
     try {
-      await register(name, email, password, role);
+      await register(name, email, password);
       toast.success('Registration successful! Welcome to Skinimage.');
     } catch (err: any) {
       toast.error(err.message || 'Registration failed. Try a different email address.');
@@ -84,15 +88,15 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold uppercase text-stone-500 mb-1">Sandbox Role (Simulated Setup)</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full rounded border border-stone-300 bg-white px-3 py-2 text-sm text-stone-850 focus:border-emerald-600 focus:outline-none"
-            >
-              <option value="user">Standard User (Dashboard View)</option>
-              <option value="admin">Administrator (Admin Console View)</option>
-            </select>
+            <label className="block text-xs font-semibold uppercase text-stone-500 mb-1">Confirm Password</label>
+            <input
+              type="password"
+              required
+              placeholder="••••••••"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full rounded border border-stone-300 px-3 py-2 text-sm text-stone-900 focus:border-emerald-600 focus:outline-none"
+            />
           </div>
           <button
             type="submit"

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const { getDBMode } = require('./db');
 
 const DB_FILE = path.join(__dirname, 'db.json');
@@ -516,6 +517,24 @@ const writeLocalDB = (data) => {
 // Seeding function for MongoDB
 const seedMongoDB = async () => {
   try {
+    // Seed default admin if not exists, or update password
+    const adminExists = await User.findOne({ email: 'admin@skinimage.com' });
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash('9818660316@puru', salt);
+    if (!adminExists) {
+      await User.create({
+        name: 'System Admin',
+        email: 'admin@skinimage.com',
+        password: hashedPassword,
+        role: 'admin'
+      });
+      console.log('Seeded default Admin: admin@skinimage.com');
+    } else {
+      adminExists.password = hashedPassword;
+      await adminExists.save();
+      console.log('Updated default Admin password.');
+    }
+
     const count = await Product.countDocuments();
     if (count === 0) {
       await Product.insertMany(DUMMY_PRODUCTS.map(p => {

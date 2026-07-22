@@ -3,22 +3,43 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const { connectDB, getDBMode } = require('./db');
 const dbHelper = require('./dbHelper');
 const { protect, adminOnly } = require('./authMiddleware');
 
-// Reload trigger: updated Centella to Gluta Facewash
 const app = express();
 
-// Middlewares
-app.use(cors());
+// Security Middlewares
+app.use(helmet());
+app.use(cors({
+  origin: process.env.CLIENT_URL || '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
-// JWT Sign Helper
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET || 'supersecret_skincare_jwt_token_key_123!', {
-    expiresIn: '30d',
-  });
+// Rate Limiting for auth routes
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { message: 'Too many requests from this IP, please try again after 15 minutes' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// JWT Sign Helper storing only essential info: User ID, Email, Role
+const generateToken = (user) => {
+  return jwt.sign(
+    { 
+      id: user._id || user.id, 
+      email: user.email, 
+      role: user.role 
+    }, 
+    process.env.JWT_SECRET || 'supersecret_skincare_jwt_token_key_123!', 
+    { expiresIn: '24h' }
+  );
 };
 
 // Connect to Database and Seed
@@ -31,20 +52,19 @@ connectDB().then(() => {
 // --- API ROUTES ---
 
 // 1. AUTHENTICATION ENDPOINTS
-app.post('/api/auth/register', async (req, res) => {
-  const { name, email, password, role } = req.body;
+app.post('/api/auth/register', authLimiter, async (req, res) => {
+  const { name, email, password } = req.body;
   try {
     const userExists = await dbHelper.findUserByEmail(email);
     if (userExists) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Make first registered user an admin automatically for easier testing
-    // Or check if role is requested as admin (useful for user onboarding)
-    const finalRole = role === 'admin' ? 'admin' : 'user';
+    // Enforce role as 'user' for public signup
+    const finalRole = 'user';
 
     const user = await dbHelper.createUser({
       name,
@@ -58,14 +78,14 @@ app.post('/api/auth/register', async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user._id || user.id),
+      token: generateToken(user),
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', authLimiter, async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await dbHelper.findUserByEmail(email);
@@ -77,7 +97,7 @@ app.post('/api/auth/login', async (req, res) => {
         role: user.role,
         addresses: user.addresses || [],
         wishlist: user.wishlist || [],
-        token: generateToken(user._id || user.id),
+        token: generateToken(user),
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
@@ -109,7 +129,7 @@ app.put('/api/auth/profile', protect, async (req, res) => {
     if (user) {
       user.name = req.body.name || user.name;
       if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(12);
         user.password = await bcrypt.hash(req.body.password, salt);
       }
       if (req.body.addresses) {

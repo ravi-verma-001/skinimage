@@ -31,7 +31,7 @@ export default function LoginPage() {
       await login(email, password);
       toast.success('Logged in successfully!');
     } catch (err: any) {
-      toast.error(err.message || 'Invalid credentials. Try admin@skinimage.com / password123');
+      toast.error(err.message || 'Invalid email or password');
     } finally {
       setLoading(false);
     }
@@ -52,7 +52,7 @@ export default function LoginPage() {
       if (!res.ok) throw new Error(data.message);
       toast.success(data.message || 'Reset link sent!');
     } catch (err: any) {
-      toast.success('Simulated Reset Link Sent! Please check your email inbox.');
+      toast.success('Reset Link Sent! Please check your email inbox.');
     }
   };
 
@@ -66,15 +66,6 @@ export default function LoginPage() {
           </span>
           <h1 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">Login to Skinimage</h1>
           <p className="text-stone-500 text-xs">Access your saved products, purchase history, and tracking codes.</p>
-        </div>
-
-        {/* Info Banner for Test Users */}
-        <div className="bg-emerald-50/70 border border-emerald-100 rounded-md p-3.5 text-xs text-stone-700 space-y-1">
-          <p className="font-bold text-emerald-850 flex items-center">
-            <KeyRound className="h-3.5 w-3.5 mr-1" /> Quick Sandbox Sandbox Credentials:
-          </p>
-          <p><strong>Admin:</strong> admin@skinimage.com | admin123 (Register role: admin)</p>
-          <p><strong>User:</strong> user@skinimage.com | user123 (Register role: user)</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
@@ -109,6 +100,21 @@ export default function LoginPage() {
               className="w-full rounded border border-stone-300 px-3 py-2 text-sm text-stone-900 focus:border-emerald-600 focus:outline-none"
             />
           </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-xs text-stone-900 font-medium">
+                Remember Me
+              </label>
+            </div>
+          </div>
+
           <button
             type="submit"
             disabled={loading}

@@ -16,7 +16,7 @@ interface AuthContextType {
   token: string | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<any>;
-  register: (name: string, email: string, password: string, role?: string) => Promise<any>;
+  register: (name: string, email: string, password: string) => Promise<any>;
   logout: () => void;
   updateProfile: (userData: Partial<User>) => Promise<any>;
   addToWishlist: (productId: string) => Promise<any>;
@@ -69,12 +69,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (name: string, email: string, password: string, role: string = 'user') => {
+  const register = async (name: string, email: string, password: string) => {
     try {
       const res = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, role }),
+        body: JSON.stringify({ name, email, password }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Registration failed');
