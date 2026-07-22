@@ -185,54 +185,78 @@ export default function Home() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Facewash */}
-            <Link href="/shop?category=Facewash" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+            <Link 
+              href="/shop?category=Facewash" 
+              prefetch={false} 
+              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+            >
               <img
                 src="/aha_bha_face_wash.jpg"
                 alt="Facewash"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
               />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Facewash</h3>
-                <p className="text-[11px] text-stone-300 mt-1">Deep cleansing & foam treatments</p>
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Facewash</h3>
+                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                  Deep cleansing & foam treatments
+                </p>
               </div>
             </Link>
 
             {/* Sunscreen */}
-            <Link href="/shop?category=Sunscreen" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+            <Link 
+              href="/shop?category=Sunscreen" 
+              prefetch={false} 
+              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+            >
               <img
                 src="/uv_aurora_sunscreen.png"
                 alt="Sunscreen"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
               />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Sunscreen</h3>
-                <p className="text-[11px] text-stone-300 mt-1">Broad spectrum UV protection</p>
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Sunscreen</h3>
+                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                  Broad spectrum UV protection
+                </p>
               </div>
             </Link>
 
             {/* Cleanser */}
-            <Link href="/shop?category=Cleanser" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+            <Link 
+              href="/shop?category=Cleanser" 
+              prefetch={false} 
+              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+            >
               <img
                 src="/category_cleanser.png"
                 alt="Cleanser"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
               />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Cleanser</h3>
-                <p className="text-[11px] text-stone-300 mt-1">Gentle oil & milk formulas</p>
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Cleanser</h3>
+                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                  Gentle oil & milk formulas
+                </p>
               </div>
             </Link>
 
             {/* Toner */}
-            <Link href="/shop?category=Toner" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+            <Link 
+              href="/shop?category=Toner" 
+              prefetch={false} 
+              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+            >
               <img
                 src="/category_moisturizer.png"
                 alt="Toner"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
               />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Toner</h3>
-                <p className="text-[11px] text-stone-300 mt-1">Hydrating & balancing prep</p>
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Toner</h3>
+                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                  Hydrating & balancing prep
+                </p>
               </div>
             </Link>
           </div>
