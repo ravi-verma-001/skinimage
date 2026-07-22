@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
 
             {/* Logo */}
             <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
-              <Link href="/" className="transition hover:opacity-85 flex items-center">
+              <Link href="/" prefetch={false} className="transition hover:opacity-85 flex items-center">
                 <img
                   src="/skinimagelogo.png"
                   alt="Skin Image Logo"
@@ -69,6 +69,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
+                  prefetch={false}
                   className={`text-sm font-medium tracking-wide transition duration-200 hover:text-emerald-700 ${
                     pathname === link.href ? 'text-emerald-700 font-semibold' : 'text-stone-600'
                   }`}
@@ -92,6 +93,7 @@ export const Header: React.FC = () => {
               {/* Wishlist Link */}
               <Link
                 href={user ? "/dashboard?tab=wishlist" : "/login"}
+                prefetch={false}
                 className="text-stone-700 hover:text-emerald-700 transition relative p-1"
                 aria-label="Wishlist"
               >
@@ -106,6 +108,7 @@ export const Header: React.FC = () => {
               {/* Cart Link */}
               <Link
                 href="/cart"
+                prefetch={false}
                 className="text-stone-700 hover:text-emerald-700 transition relative p-1"
                 aria-label="Cart"
               >
@@ -123,6 +126,7 @@ export const Header: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <Link
                       href={user.role === 'admin' ? '/admin' : '/dashboard'}
+                      prefetch={false}
                       className="flex items-center space-x-1 text-stone-700 hover:text-emerald-700 transition p-1"
                       aria-label="Dashboard"
                     >
@@ -140,6 +144,7 @@ export const Header: React.FC = () => {
                 ) : (
                   <Link
                     href="/login"
+                    prefetch={false}
                     className="text-stone-700 hover:text-emerald-700 transition p-1"
                     aria-label="Login page"
                   >
@@ -231,6 +236,7 @@ export const Header: React.FC = () => {
               <Link
                 key={link.name}
                 href={link.href}
+                prefetch={false}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-lg sm:text-xl font-serif font-black tracking-widest uppercase text-stone-100 hover:text-[#ffd500] transition duration-300"
               >
@@ -241,6 +247,7 @@ export const Header: React.FC = () => {
               <>
                 <Link
                   href={user.role === 'admin' ? '/admin' : '/dashboard'}
+                  prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-lg sm:text-xl font-serif font-black tracking-widest uppercase text-stone-100 hover:text-[#ffd500] transition duration-300"
                 >
@@ -249,6 +256,7 @@ export const Header: React.FC = () => {
                 {user.role === 'admin' && (
                   <Link
                     href="/admin"
+                    prefetch={false}
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-lg sm:text-xl font-serif font-black tracking-widest uppercase text-amber-300 hover:text-[#ffd500] transition duration-300"
                   >
@@ -268,6 +276,7 @@ export const Header: React.FC = () => {
             ) : (
               <Link
                 href="/login"
+                prefetch={false}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-lg sm:text-xl font-serif font-black tracking-widest uppercase text-stone-100 hover:text-[#ffd500] transition duration-300"
               >

@@ -126,7 +126,7 @@ export default function LoginPage() {
 
         <div className="text-center pt-2 border-t border-stone-100 text-xs text-stone-500">
           New to Skinimage?{' '}
-          <Link href="/register" className="font-bold text-emerald-700 hover:underline">
+          <Link href="/register" prefetch={false} className="font-bold text-emerald-700 hover:underline">
             Create an Account
           </Link>
         </div>

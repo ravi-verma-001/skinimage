@@ -109,7 +109,7 @@ export default function RegisterPage() {
 
         <div className="text-center pt-2 border-t border-stone-100 text-xs text-stone-500">
           Already have an account?{' '}
-          <Link href="/login" className="font-bold text-emerald-700 hover:underline">
+          <Link href="/login" prefetch={false} className="font-bold text-emerald-700 hover:underline">
             Log In
           </Link>
         </div>
