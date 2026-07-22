@@ -276,62 +276,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-20 bg-stone-50 border-t border-b border-stone-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-              <h2 className="font-serif text-3xl font-bold text-stone-900">Shop by Skin Goal</h2>
-              <p className="text-stone-500 mt-2 text-sm">Target specific routines with precision formulations.</p>
-            </div>
-            <Link href="/shop" className="mt-4 md:mt-0 inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
-              View shop filter <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {/* Cleansers Category */}
-            <Link href="/shop?category=Cleanser" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
-              <img
-                src="/category_cleanser.png"
-                alt="Cleanser Category"
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-stone-950/80 to-transparent">
-                <h3 className="font-serif text-xl font-bold text-white mb-1">Purify & Cleanse</h3>
-                <p className="text-xs text-stone-300">Gentle pH-balanced formulations</p>
-              </div>
-            </Link>
-
-            {/* Serums Category */}
-            <Link href="/shop?category=Serum" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
-              <img
-                src="/category_serum.png"
-                alt="Serum Category"
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-stone-950/80 to-transparent">
-                <h3 className="font-serif text-xl font-bold text-white mb-1">Targeted Serums</h3>
-                <p className="text-xs text-stone-300">Clinical actives for specific skin concerns</p>
-              </div>
-            </Link>
-
-            {/* Moisturizers Category */}
-            <Link href="/shop?category=Moisturizer" className="relative group overflow-hidden rounded-lg aspect-[4/3] bg-stone-900">
-              <img
-                src="/category_moisturizer.png"
-                alt="Moisturizer Category"
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-stone-950/80 to-transparent">
-                <h3 className="font-serif text-xl font-bold text-white mb-1">Hydrate & Protect</h3>
-                <p className="text-xs text-stone-300">Moisturizers and barrier creams</p>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Brand Story Philosophy / Why Choose Us */}
       <section id="brand-story" className="py-24 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
