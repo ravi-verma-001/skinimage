@@ -175,14 +175,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Banner Section */}
-      <section className="w-full bg-white">
-        <div className="w-full">
-          <img
-            src="/banner.png"
-            alt="Skinimage Banner"
-            className="w-full h-auto object-cover block"
-          />
+      {/* Shop by Category Section */}
+      <section className="py-16 bg-stone-50 border-b border-stone-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-12">
+            <h2 className="font-serif text-3xl font-bold text-stone-900">Shop by Category</h2>
+            <p className="text-stone-500 mt-2 text-sm">Find the perfect formulation for your daily skin ritual.</p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Facewash */}
+            <Link href="/shop?category=Facewash" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+              <img
+                src="/aha_bha_face_wash.jpg"
+                alt="Facewash"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Facewash</h3>
+                <p className="text-[11px] text-stone-300 mt-1">Deep cleansing & foam treatments</p>
+              </div>
+            </Link>
+
+            {/* Sunscreen */}
+            <Link href="/shop?category=Sunscreen" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+              <img
+                src="/uv_aurora_sunscreen.png"
+                alt="Sunscreen"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Sunscreen</h3>
+                <p className="text-[11px] text-stone-300 mt-1">Broad spectrum UV protection</p>
+              </div>
+            </Link>
+
+            {/* Cleanser */}
+            <Link href="/shop?category=Cleanser" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+              <img
+                src="/category_cleanser.png"
+                alt="Cleanser"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Cleanser</h3>
+                <p className="text-[11px] text-stone-300 mt-1">Gentle oil & milk formulas</p>
+              </div>
+            </Link>
+
+            {/* Toner */}
+            <Link href="/shop?category=Toner" prefetch={false} className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900">
+              <img
+                src="/category_moisturizer.png"
+                alt="Toner"
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-55 transition-all duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Toner</h3>
+                <p className="text-[11px] text-stone-300 mt-1">Hydrating & balancing prep</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
