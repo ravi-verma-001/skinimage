@@ -140,8 +140,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-HYDRA-FW",
     name: "Nourishing Cleansing Oil",
     category: "Cleanser",
-    price: 1599.00,
-    discountPrice: 1329.00,
+    price: 1329.00,
     stock: 85,
     images: [
       "/cleanser.png",
@@ -179,8 +178,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-VITC-GLOW",
     name: "AHA & BHA Face Serum",
     category: "Serum",
-    price: 1199.00,
-    discountPrice: 899.00,
+    price: 899.00,
     stock: 50,
     images: [
       "/aha_bha_face_serum.jpg",
@@ -221,8 +219,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-NIACIN-MOIST",
     name: "UV-Aurora Sunscreen",
     category: "Sunscreen",
-    price: 999.00,
-    discountPrice: 798.00,
+    price: 798.00,
     stock: 120,
     images: [
       "/uv_aurora_sunscreen.png",
@@ -407,8 +404,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-SPF50-SUN",
     name: "AHA BHA Face Wash",
     category: "Cleanser",
-    price: 999.00,
-    discountPrice: 799.00,
+    price: 799.00,
     stock: 150,
     images: [
       "/aha_bha_face_wash.jpg",
@@ -516,8 +512,36 @@ const readLocalDB = () => {
   try {
     const content = fs.readFileSync(DB_FILE, 'utf-8');
     const parsed = JSON.parse(content);
-    if (!parsed.analysisReports) parsed.analysisReports = [];
-    
+    // Ensure the specific products have their discountPrice removed
+    let updated = false;
+    if (parsed.products) {
+      parsed.products.forEach(p => {
+        if (p.sku === "SK-HYDRA-FW" && (p.price !== 1329.00 || p.discountPrice !== undefined)) {
+          p.price = 1329.00;
+          delete p.discountPrice;
+          updated = true;
+        }
+        if (p.sku === "SK-VITC-GLOW" && (p.price !== 899.00 || p.discountPrice !== undefined)) {
+          p.price = 899.00;
+          delete p.discountPrice;
+          updated = true;
+        }
+        if (p.sku === "SK-NIACIN-MOIST" && (p.price !== 798.00 || p.discountPrice !== undefined)) {
+          p.price = 798.00;
+          delete p.discountPrice;
+          updated = true;
+        }
+        if (p.sku === "SK-SPF50-SUN" && (p.price !== 799.00 || p.discountPrice !== undefined)) {
+          p.price = 799.00;
+          delete p.discountPrice;
+          updated = true;
+        }
+      });
+    }
+    if (updated) {
+      fs.writeFileSync(DB_FILE, JSON.stringify(parsed, null, 2), 'utf-8');
+    }
+
     // Ensure admin exists in mock users array
     const adminIndex = parsed.users.findIndex(u => u.email === 'admin@skinimage.com');
     const salt = bcrypt.genSaltSync(12);
@@ -613,6 +637,8 @@ const seedMongoDB = async () => {
           "/CleanserVideo.mp4",
           "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
         ];
+        product.price = 1329.00;
+        product.discountPrice = undefined;
         await product.save();
         console.log('Successfully updated Squalane Cleanser to Nourishing Cleansing Oil in MongoDB.');
       }
@@ -750,6 +776,8 @@ const seedMongoDB = async () => {
           "Suitable for all skin types."
         ];
         sunScreen.howToUse = "Clean and pat dry the face, apply two finger-lengths of sunscreen to the face and neck, massage gently until absorbed, apply 20 minutes before sun exposure, and reapply every 2–3 hours for continued protection.";
+        sunScreen.price = 798.00;
+        sunScreen.discountPrice = undefined;
         await sunScreen.save();
         console.log('Successfully updated/verified UV-Aurora Sunscreen in MongoDB.');
       }
@@ -850,6 +878,8 @@ const seedMongoDB = async () => {
           "/aha_bha_face_serum.jpg",
           "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
         ];
+        faceSerum.price = 899.00;
+        faceSerum.discountPrice = undefined;
         await faceSerum.save();
         console.log('Successfully updated/verified AHA & BHA Face Serum in MongoDB.');
       }
@@ -881,6 +911,8 @@ const seedMongoDB = async () => {
           "Maintains pH 5.5 Balance: Gentle on the skin barrier, keeping skin hydrated, soft, and non-stripping after every wash."
         ];
         faceWash.howToUse = "Wet your face and neck with lukewarm water.\n\nApply a sufficient quantity onto damp palms and gently work into a soft lather.\n\nMassage gently onto the face in circular motions for 30–60 seconds, paying extra attention to oil-prone areas (T-zone).\n\nRinse thoroughly with water and gently pat dry.\n\nUse twice daily (morning and evening) for optimal results or as directed by a dermatologist.";
+        faceWash.price = 799.00;
+        faceWash.discountPrice = undefined;
         await faceWash.save();
         console.log('Successfully updated/verified AHA BHA Face Wash in MongoDB with the correct image and details.');
       }

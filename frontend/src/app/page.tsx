@@ -13,8 +13,7 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     _id: "p1",
     name: "Nourishing Cleansing Oil",
     category: "Cleanser",
-    price: 1599.00,
-    discountPrice: 1329.00,
+    price: 1329.00,
     stock: 85,
     images: ["/cleanser.png", "/CleanserVideo.mp4"],
     description: "Skinimage Nourishing Cleansing Oil (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
@@ -27,8 +26,7 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     _id: "p2",
     name: "AHA & BHA Face Serum",
     category: "Serum",
-    price: 1199.00,
-    discountPrice: 899.00,
+    price: 899.00,
     stock: 50,
     images: ["/aha_bha_face_serum.jpg"],
     description: "AHA & BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more youthful complexion with regular use.",
@@ -41,8 +39,7 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     _id: "p3",
     name: "UV-Aurora Sunscreen",
     category: "Sunscreen",
-    price: 999.00,
-    discountPrice: 798.00,
+    price: 798.00,
     stock: 120,
     images: ["/uv_aurora_sunscreen.png"],
     description: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is an ultra-lightweight, fast-absorbing sunscreen formulated to provide broad-spectrum protection against UVA and UVB rays while delivering deep hydration and a non-greasy, water-light feel suitable for daily use. This advanced aqua sunscreen gel is powered by key ingredients such as Hyaluronic Acid to deeply hydrate and maintain skin moisture, Homosalate and Octyl Methoxy Cinnamate to provide effective UVB protection, Tinosorb M for broad-spectrum UVA and UVB defense, Zinc PCA to help balance oil and support skin clarity, Vitamin E for antioxidant protection, Kakadu Plum Extract to support skin radiance and environmental defense, Silk Protein Extract for a smooth and soft skin finish, Aristoflex AVC for lightweight gel texture, Allantoin to soothe and calm the skin, and Melanin to enhance photoprotection. Designed for all skin types, this sunscreen spreads effortlessly, absorbs quickly without white cast, and helps protect skin from sun damage, premature ageing, and dehydration when applied regularly as directed.",
@@ -55,8 +52,7 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     _id: "p8",
     name: "AHA BHA Face Wash",
     category: "Cleanser",
-    price: 999.00,
-    discountPrice: 799.00,
+    price: 799.00,
     stock: 150,
     images: ["/aha_bha_face_wash.jpg"],
     description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
@@ -176,30 +172,59 @@ export default function Home() {
       </section>
 
       {/* Shop by Category Section */}
-      <section className="py-16 bg-stone-50 border-b border-stone-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <h2 className="font-serif text-3xl font-bold text-stone-900">Shop by Category</h2>
-            <p className="text-stone-500 mt-2 text-sm">Find the perfect formulation for your daily skin ritual.</p>
+      <section className="py-20 bg-stone-50/50 border-b border-stone-200/80 relative overflow-hidden">
+        {/* Subtle Decorative Glows */}
+        <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-emerald-50/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-stone-200/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-[10px] font-bold text-emerald-800 tracking-[0.2em] uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-100/80">
+              Curated Formulations
+            </span>
+            <h2 className="font-serif text-3.5xl md:text-4xl font-bold text-stone-900 mt-4 tracking-tight">
+              Shop by Category
+            </h2>
+            <p className="text-stone-500 mt-3 text-sm md:text-base max-w-md mx-auto leading-relaxed">
+              Discover clean, advanced skincare designed to target your specific concerns.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 justify-items-center">
             {/* Facewash */}
             <Link 
               href="/shop?category=Facewash" 
               prefetch={false} 
-              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+              className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
-              <img
-                src="/aha_bha_face_wash.jpg"
-                alt="Facewash"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Facewash</h3>
-                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
-                  Deep cleansing & foam treatments
+              {/* Image Background */}
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src="/aha_bha_face_wash.jpg"
+                  alt="Facewash"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
+              </div>
+
+              {/* Glowing Ambient Ring on Hover */}
+              <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
+              {/* Glassmorphic Label Info */}
+              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
+                  Step 1 / Pure Cleanse
+                </span>
+                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                  Facewash
+                </h3>
+                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                  Deep cleansing & clarifying foam treatments.
                 </p>
+                <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
+                  <span>Explore Collection</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
               </div>
             </Link>
 
@@ -207,18 +232,36 @@ export default function Home() {
             <Link 
               href="/shop?category=Sunscreen" 
               prefetch={false} 
-              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+              className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
-              <img
-                src="/uv_aurora_sunscreen.png"
-                alt="Sunscreen"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Sunscreen</h3>
-                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
-                  Broad spectrum UV protection
+              {/* Image Background */}
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src="/uv_aurora_sunscreen.png"
+                  alt="Sunscreen"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
+              </div>
+
+              {/* Glowing Ambient Ring on Hover */}
+              <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
+              {/* Glassmorphic Label Info */}
+              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
+                  Daily Shield / UV Care
+                </span>
+                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                  Sunscreen
+                </h3>
+                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                  Broad spectrum hybrid & physical protection.
                 </p>
+                <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
+                  <span>Explore Collection</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
               </div>
             </Link>
 
@@ -226,18 +269,36 @@ export default function Home() {
             <Link 
               href="/shop?category=Cleanser" 
               prefetch={false} 
-              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+              className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
-              <img
-                src="/category_cleanser.png"
-                alt="Cleanser"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Cleanser</h3>
-                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
-                  Gentle oil & milk formulas
+              {/* Image Background */}
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src="/category_cleanser.png"
+                  alt="Cleanser"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
+              </div>
+
+              {/* Glowing Ambient Ring on Hover */}
+              <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
+              {/* Glassmorphic Label Info */}
+              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
+                  Double Cleanse / Barrier
+                </span>
+                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                  Cleanser
+                </h3>
+                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                  Gentle melt-away oils and hydrating milks.
                 </p>
+                <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
+                  <span>Explore Collection</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
               </div>
             </Link>
 
@@ -245,18 +306,36 @@ export default function Home() {
             <Link 
               href="/shop?category=Toner" 
               prefetch={false} 
-              className="relative group overflow-hidden rounded-xl aspect-[3/4] bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 border border-stone-200/10"
+              className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
-              <img
-                src="/category_moisturizer.png"
-                alt="Toner"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-stone-950/90 via-stone-950/45 to-transparent group-hover:from-stone-950/95 transition-all duration-300">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-white transform group-hover:-translate-y-0.5 transition-transform duration-300">Toner</h3>
-                <p className="text-[11px] text-stone-300 mt-1 opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
-                  Hydrating & balancing prep
+              {/* Image Background */}
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src="/category_moisturizer.png"
+                  alt="Toner"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
+              </div>
+
+              {/* Glowing Ambient Ring on Hover */}
+              <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
+              {/* Glassmorphic Label Info */}
+              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
+                  Infuse / Balance Prep
+                </span>
+                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                  Toner
+                </h3>
+                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                  Hydrating waters, essences, and toners.
                 </p>
+                <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
+                  <span>Explore Collection</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
               </div>
             </Link>
           </div>
@@ -264,37 +343,50 @@ export default function Home() {
       </section>
 
       {/* Featured / Best Seller Products Grid */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-14">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">The Best Sellers</h2>
-            <p className="text-stone-500 mt-3 text-sm sm:text-base leading-relaxed">
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Soft Ambient glow behind the grid */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[60%] bg-stone-50/70 rounded-[100px] blur-3xl pointer-events-none -z-10" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-[10px] font-bold text-emerald-850 tracking-[0.2em] uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-100/50 mb-4 inline-block">
+              Most-Loved Formulas
+            </span>
+            <h2 className="font-serif text-3.5xl sm:text-4xl font-bold text-stone-900 tracking-tight">
+              The Best Sellers
+            </h2>
+            <p className="text-stone-500 mt-3 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
               Explore our highest rated, dermatologist-recommended essentials loved by thousands globally.
             </p>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="animate-pulse flex flex-col space-y-4">
-                  <div className="bg-stone-200 aspect-square w-full rounded-lg"></div>
-                  <div className="h-4 bg-stone-200 rounded w-1/3"></div>
-                  <div className="h-5 bg-stone-200 rounded w-3/4"></div>
-                  <div className="h-4 bg-stone-200 rounded w-1/4"></div>
+                <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-5 bg-stone-50/50 space-y-4">
+                  <div className="bg-stone-200/80 aspect-[4/5] w-full rounded-xl"></div>
+                  <div className="h-3 bg-stone-200/80 rounded w-1/4 mt-2"></div>
+                  <div className="h-5 bg-stone-200/80 rounded w-3/4"></div>
+                  <div className="h-4 bg-stone-200/80 rounded w-1/3"></div>
+                  <div className="h-8 bg-stone-200/80 rounded-full w-full mt-4"></div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {products.map((product) => (
                 <ProductCard key={product._id || product.id} product={product} />
               ))}
             </div>
           )}
 
-          <div className="text-center mt-12">
-            <Link href="/shop" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
-              Explore All 9 Formulations <ArrowRight className="ml-1 h-4 w-4" />
+          <div className="text-center mt-16">
+            <Link 
+              href="/shop" 
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-stone-200 text-sm font-semibold text-stone-850 hover:bg-stone-50 hover:border-stone-300 transition-all duration-300"
+            >
+              <span>Explore All 9 Formulations</span> 
+              <ArrowRight className="h-4 w-4 text-emerald-800 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

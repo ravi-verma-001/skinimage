@@ -16,8 +16,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-HYDRA-FW",
     name: "Nourishing Cleansing Oil",
     category: "Cleanser",
-    price: 1599.00,
-    discountPrice: 1329.00,
+    price: 1329.00,
     stock: 85,
     images: [
       "/cleanser.png",
@@ -60,7 +59,6 @@ const DUMMY_PRODUCTS = [
     name: "AHA & BHA Face Serum",
     category: "Serum",
     price: 899.00,
-    discountPrice: 849.00,
     stock: 50,
     images: [
       "/aha_bha_face_serum.jpg",
@@ -102,8 +100,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-NIACIN-MOIST",
     name: "UV-Aurora Sunscreen",
     category: "Sunscreen",
-    price: 899.00,
-    discountPrice: 798.00,
+    price: 798.00,
     stock: 120,
     images: [
       "/uv_aurora_sunscreen.png",
@@ -294,8 +291,7 @@ const DUMMY_PRODUCTS = [
     sku: "SK-SPF50-SUN",
     name: "AHA BHA Face Wash",
     category: "Cleanser",
-    price: 899.00,
-    discountPrice: 799.00,
+    price: 799.00,
     stock: 150,
     images: [
       "/aha_bha_face_wash.jpg",
