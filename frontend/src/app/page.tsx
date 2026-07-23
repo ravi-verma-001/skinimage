@@ -342,6 +342,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PDRN Banner Section */}
+      <section className="w-full bg-stone-50 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Link 
+            href="/shop?search=PDRN" 
+            prefetch={false}
+            className="relative block overflow-hidden rounded-2xl md:rounded-3xl bg-stone-900 shadow-xl md:shadow-2xl group aspect-[3/1] w-full"
+          >
+            {/* Background Image */}
+            <img 
+              src="/PDRNIMAGE.png" 
+              alt="PDRN Regenerating Banner" 
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+            {/* Subtle glow border */}
+            <div className="absolute inset-0 ring-1 ring-white/10 group-hover:ring-emerald-400/30 transition-all duration-500 pointer-events-none rounded-3xl" />
+          </Link>
+        </div>
+      </section>
+
       {/* Featured / Best Seller Products Grid */}
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Soft Ambient glow behind the grid */}
@@ -393,15 +413,19 @@ export default function Home() {
       </section>
 
       {/* Brand Story Philosophy / Why Choose Us */}
-      <section id="brand-story" className="py-24 bg-white overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <section id="brand-story" className="pt-8 pb-24 bg-gradient-to-b from-white to-stone-50/40 overflow-hidden relative">
+        {/* Soft Ambient Glows */}
+        <div className="absolute top-1/3 right-0 w-96 h-96 bg-emerald-50/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-stone-200/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             {/* Left: Premium Product Image with floating effect */}
             <div className="lg:col-span-6 relative flex justify-center">
-              {/* Soft Lavender Background Glow Accent */}
-              <div className="absolute -inset-4 rounded-[24px] bg-[#F6F1FB] opacity-70 blur-xl"></div>
+              {/* Outer decorative border decoration */}
+              <div className="absolute -inset-4 rounded-3xl border border-stone-250/20 pointer-events-none scale-98" />
               
-              <div className="relative aspect-square w-full max-w-[500px] overflow-hidden rounded-[18px] bg-[#F8F8F8] border border-stone-100 shadow-md transition-all duration-700 hover:shadow-xl hover:-translate-y-2 group">
+              <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
                 <img
                   src="/skinimage-skincare-active-ingredients.jpg"
                   alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
@@ -413,78 +437,82 @@ export default function Home() {
             {/* Right: Content details */}
             <div className="lg:col-span-6 space-y-8 flex flex-col justify-center">
               <div className="space-y-4">
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#6F4A8E] block">
-                  SCIENCE • CARE • RESULTS
-                </span>
-                <h2 className="font-serif text-4xl sm:text-5xl lg:text-[54px] font-semibold text-[#6F4A8E] tracking-tight leading-[110%]">
-                  Healthy Skin Starts with Science.
+                <div className="inline-flex items-center gap-2">
+                  <span className="h-[1px] w-6 bg-emerald-700"></span>
+                  <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-emerald-800">
+                    Science • Care • Results
+                  </span>
+                </div>
+                <h2 className="font-serif text-4.5xl sm:text-5.5xl font-normal text-stone-900 tracking-tight leading-[115%]">
+                  Healthy Skin Starts <br />
+                  with <span className="italic font-light text-emerald-800">Science.</span>
                 </h2>
-                <h3 className="text-lg font-medium text-[#6F4A8E]/80 leading-relaxed max-w-xl">
-                  Premium skincare powered by clinically inspired active ingredients for visible, long-lasting results.
-                </h3>
+                <p className="text-stone-500 text-sm sm:text-base leading-relaxed max-w-xl">
+                  At <strong className="text-stone-900 font-semibold">Skinimage Skincare</strong>, we believe effective skincare combines science, quality, and simplicity. Our formulas are enriched with proven active ingredients such as Niacinamide, Vitamin C, Hyaluronic Acid, AHA, and BHA to help brighten, hydrate, repair, and protect your skin.
+                </p>
               </div>
 
-              <p className="text-[#5F6368] leading-[170%] text-base sm:text-[18px] max-w-xl">
-                At <strong>Skinimage Skincare</strong>, we believe effective skincare combines science, quality, and simplicity. Our formulas are enriched with proven active ingredients such as Niacinamide, Vitamin C, Hyaluronic Acid, AHA, and BHA to help brighten, hydrate, repair, and protect your skin. Every product is carefully crafted to deliver real results while remaining gentle enough for daily use, giving your skin the care it deserves.
-              </p>
-
-              {/* Feature Highlights with icons matching the screenshot */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl">
-                <div className="flex items-center space-x-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              {/* Feature Highlights with refined premium cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+                {/* Feature 1 */}
+                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Clinically Inspired</h4>
-                    <p className="text-xs text-stone-500">Formulas</p>
+                    <h4 className="text-sm font-semibold text-stone-900">Clinically Inspired</h4>
+                    <p className="text-xs text-stone-500 mt-0.5">Advanced formulations</p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Premium Active</h4>
-                    <p className="text-xs text-stone-500">Ingredients</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Suitable for</h4>
-                    <p className="text-xs text-stone-500">All Skin Types</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F6F1FB] text-[#6F4A8E]">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                {/* Feature 2 */}
+                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900 leading-none mb-1">Visible, Long-</h4>
-                    <p className="text-xs text-stone-500">Lasting Results</p>
+                    <h4 className="text-sm font-semibold text-stone-900">Active Ingredients</h4>
+                    <p className="text-xs text-stone-500 mt-0.5">Proven premium actives</p>
+                  </div>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900">Universal Care</h4>
+                    <p className="text-xs text-stone-500 mt-0.5">Suitable for all skin types</p>
+                  </div>
+                </div>
+
+                {/* Feature 4 */}
+                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-stone-900">Proven Results</h4>
+                    <p className="text-xs text-stone-500 mt-0.5">Visible, long-lasting effects</p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <Link 
                   href="/shop" 
-                  className="inline-flex items-center justify-center rounded-[14px] bg-[#6F4A8E] text-white font-semibold px-8 py-3.5 text-sm tracking-wide shadow-md transition-all duration-300 hover:bg-[#5C3C7A] hover:shadow-lg hover:scale-[1.03] group"
+                  className="inline-flex items-center justify-center rounded-full bg-stone-900 text-white font-semibold px-8 py-3.5 text-xs uppercase tracking-wider transition-all duration-300 hover:bg-emerald-800 hover:shadow-lg hover:scale-[1.03] active:scale-95 group"
                 >
-                  Shop Now <span className="ml-2 transition-transform duration-350 group-hover:translate-x-1">→</span>
+                  Shop the Collection <span className="ml-2 transition-transform duration-350 group-hover:translate-x-1">→</span>
                 </Link>
               </div>
             </div>
