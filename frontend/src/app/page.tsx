@@ -211,7 +211,7 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Step 1 / Pure Cleanse
                 </span>
@@ -248,7 +248,7 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Daily Shield / UV Care
                 </span>
@@ -285,7 +285,7 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Double Cleanse / Barrier
                 </span>
@@ -322,7 +322,7 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Infuse / Balance Prep
                 </span>
@@ -507,10 +507,23 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
+                {/* Dermatologist Recommended Logo & Text */}
+                <div className="flex items-center gap-3 bg-stone-100/50 p-2.5 pr-4 rounded-xl border border-stone-200/40">
+                  <img 
+                    src="/doctorlogo.jpeg" 
+                    alt="Dr Recommended Formulation" 
+                    className="h-12 w-auto object-contain rounded"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest leading-none">Formulation</span>
+                    <span className="font-serif text-sm font-semibold text-stone-900 mt-1">Dermatologist Recommended</span>
+                  </div>
+                </div>
+
                 <Link 
                   href="/shop" 
-                  className="inline-flex items-center justify-center rounded-full bg-stone-900 text-white font-semibold px-8 py-3.5 text-xs uppercase tracking-wider transition-all duration-300 hover:bg-emerald-800 hover:shadow-lg hover:scale-[1.03] active:scale-95 group"
+                  className="inline-flex items-center justify-center rounded-full bg-stone-900 text-white font-semibold px-6 py-3 text-xs uppercase tracking-wider transition-all duration-300 hover:bg-emerald-800 hover:shadow-lg hover:scale-[1.03] active:scale-95 group self-start sm:self-auto"
                 >
                   Shop the Collection <span className="ml-2 transition-transform duration-350 group-hover:translate-x-1">→</span>
                 </Link>
