@@ -14,7 +14,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "p1",
     sku: "SK-HYDRA-FW",
-    name: "Nourishing Cleansing Oil",
+    name: "Oil Cleanser",
     category: "Cleanser",
     price: 1329.00,
     stock: 85,
@@ -23,7 +23,7 @@ const DUMMY_PRODUCTS = [
       "/CleanserVideo.mp4",
       "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
     ],
-    description: "Skinimage Nourishing Cleansing Oil (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants without damaging the skin barrier. If you are looking for an effective cleansing oil for makeup removal that breaks down waterproof products within minutes, this gentle yet deep-action formula is the ultimate essential step in your skincare routine.\n\nThis formula features an optimal blend of premium botanical oils and Ayurvedic extracts: Sweet Almond, Argan, Jojoba, Rosehip, Coconut & Sesame Oils for skin barrier repair and deep nourishment, Plant-Derived Squalane to maintain skin hydration and softness, Amla, Bhringraj & Brahmi (Bacopa Monnieri) for antioxidant protection, and Neem Seed Oil, Bisabolol & Vitamin E to soothe irritation and promote a clear complexion. Systematically designed for all skin types, this cleanser stands out as the best cleansing oil for double cleansing, instantly transforming into a lightweight, non-greasy milky emulsion upon contact with water, leaving the skin feeling velvety soft and perfectly clean.",
+    description: "Skinimage Oil Cleanser (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants without damaging the skin barrier. If you are looking for an effective cleansing oil for makeup removal that breaks down waterproof products within minutes, this gentle yet deep-action formula is the ultimate essential step in your skincare routine.\n\nThis formula features an optimal blend of premium botanical oils and Ayurvedic extracts: Sweet Almond, Argan, Jojoba, Rosehip, Coconut & Sesame Oils for skin barrier repair and deep nourishment, Plant-Derived Squalane to maintain skin hydration and softness, Amla, Bhringraj & Brahmi (Bacopa Monnieri) for antioxidant protection, and Neem Seed Oil, Bisabolol & Vitamin E to soothe irritation and promote a clear complexion. Systematically designed for all skin types, this cleanser stands out as the best cleansing oil for double cleansing, instantly transforming into a lightweight, non-greasy milky emulsion upon contact with water, leaving the skin feeling velvety soft and perfectly clean.",
     ingredients: [
       "Plant-Derived Squalane – Moisture barrier restoration & deep hydration",
       "Argan & Rosehip Seed Oils – Anti-aging, skin repair & elasticity",
@@ -42,7 +42,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Pump/apply a sufficient quantity onto dry hands and apply directly onto a dry face.\n\nGently massage in circular motions for 1–2 minutes to melt away makeup, sunscreen, and daily grime.\n\nAdd a small amount of water to emulsify the oil into a rich, milky lotion.\n\nRinse thoroughly with water.\n\nDouble Cleanse: Follow up with a gentle water-based cleanser (like Skinimage Acne & Oil Control Face Cleanser) for a complete deep-pore clean.",
     skinType: ["Sensitive", "Dry", "Normal", "Oily", "Combination"],
-    specs: { "Volume": "150ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" },
+    specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" },
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: true,

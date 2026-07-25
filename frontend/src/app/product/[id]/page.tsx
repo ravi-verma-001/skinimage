@@ -26,8 +26,8 @@ const DUMMY_PRODUCTS = [
 
 const PRODUCT_INFO_MAP: Record<string, { title: string; desc: string }> = {
   p1: {
-    title: "Nourishing Cleansing Oil | Deep Makeup Melt & Barrier Care | Skinimage",
-    desc: "Cleanse your face with Skinimage Nourishing Cleansing Oil. Enriched with 10+ botanical oils & plant-derived squalane. Melt away makeup & sunscreen instantly."
+    title: "Oil Cleanser | Deep Makeup Melt & Barrier Care | Skinimage",
+    desc: "Cleanse your face with Skinimage Oil Cleanser. Enriched with 10+ botanical oils & plant-derived squalane. Melt away makeup & sunscreen instantly."
   },
   p2: {
     title: "AHA & BHA Face Exfoliating Serum | Refines Texture & Glow | Skinimage",

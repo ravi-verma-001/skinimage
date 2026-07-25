@@ -11,12 +11,12 @@ import { API_URL } from '@/config';
 const FALLBACK_PRODUCTS: ProductType[] = [
   {
     _id: "p1",
-    name: "Nourishing Cleansing Oil",
+    name: "Oil Cleanser",
     category: "Cleanser",
     price: 1329.00,
     stock: 85,
     images: ["/cleanser.png", "/CleanserVideo.mp4"],
-    description: "Skinimage Nourishing Cleansing Oil (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
+    description: "Skinimage Oil Cleanser (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: true,
@@ -111,7 +111,7 @@ export default function HomeClient() {
         if (allRes.ok) {
           const allData = await allRes.json();
           const trending = allData.filter((p: any) => 
-            p.name.toLowerCase().includes("nourishing cleansing oil") || 
+            p.name.toLowerCase().includes("oil cleanser") || 
             p.name.toLowerCase().includes("pdrn regenerating serum")
           );
           if (trending.length > 0) {
@@ -152,7 +152,7 @@ export default function HomeClient() {
       after: "/acne_after.jpeg",
       title: "Targeting Breakouts & Skin Texture",
       desc: "Result after 4 weeks of using Gentle Centella Hydrating Cleanser and 2% BHA Salicylic Acid Exfoliating Toner daily.",
-      routine: "AM: Gentle Cleanser + SPF 50. PM: Gentle Cleanser + 2% BHA + Niacinamide Gel Cream."
+      routine: "AM: Gentle Cleanser + SPF 50. PM: Gentle Cleanser + 2% BHA."
     },
     pigment: {
       before: "/Pigmentation_before.jpeg",
@@ -211,7 +211,7 @@ export default function HomeClient() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-[10px] font-bold text-emerald-800 tracking-[0.2em] uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-100/80 inline-block mb-4">
-              Dermatologist Choice
+              Dermatologist recommended brand
             </span>
             <h2 className="font-serif text-3.5xl md:text-4xl font-bold text-stone-900 tracking-tight">
               Our Trending Products
