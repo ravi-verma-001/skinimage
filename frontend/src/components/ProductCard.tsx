@@ -78,7 +78,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-200/50 bg-white transition-all duration-500 hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)] hover:-translate-y-1 hover:border-stone-300/60">
       {/* Product Image & Badges */}
-      <Link href={`/product/${id}`} className="relative block aspect-[4/5] w-full overflow-hidden bg-stone-50">
+      <Link href={`/product/${id}`} prefetch={false} className="relative block aspect-[4/5] w-full overflow-hidden bg-stone-50">
         <img
           src={product.images[0] || 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600'}
           alt={product.name}
@@ -126,7 +126,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <span className="text-[10px] tracking-[0.15em] uppercase text-stone-400 font-bold mb-1.5 block">
           {product.category}
         </span>
-        <Link href={`/product/${id}`} className="block">
+        <Link href={`/product/${id}`} prefetch={false} className="block">
           <h3 className="font-serif text-base font-bold text-stone-900 line-clamp-2 leading-snug group-hover:text-emerald-800 transition-colors duration-300 min-h-[2.75rem]">
             {product.name}
           </h3>

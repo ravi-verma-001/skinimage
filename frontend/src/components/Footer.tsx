@@ -50,22 +50,22 @@ export const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold tracking-wider text-stone-900 uppercase mb-4">Explore</h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/shop" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Shop All Products
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Cleanser" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop?category=Cleanser" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Cleansers
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Serum" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop?category=Serum" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Treatment Serums
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Moisturizer" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop?category=Moisturizer" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Moisturizers
                 </Link>
               </li>
@@ -77,12 +77,12 @@ export const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold tracking-wider text-stone-900 uppercase mb-4">Customer Care</h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/#faq" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/#faq" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   FAQ & Support
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/dashboard" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Track Your Order
                 </Link>
               </li>
