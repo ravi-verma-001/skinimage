@@ -63,8 +63,27 @@ const FALLBACK_PRODUCTS: ProductType[] = [
   }
 ];
 
+const getFallbackTrending = (): ProductType[] => [
+  FALLBACK_PRODUCTS[0],
+  {
+    _id: "p6",
+    name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
+    category: "Serum",
+    price: 1440.00,
+    stock: 110,
+    images: ["/pdrn_regenerating_serum.jpg"],
+    description: "Give your skin the tools to repair and renew itself with PDRN Regenerating Serum — an advanced formula built on DNA repair technology and clinically studied peptides. Designed for anyone looking to restore firmness, improve elasticity, and support long-term skin recovery.",
+    rating: 4.9,
+    reviewsCount: 189,
+    isFeatured: false,
+    isBestSeller: false,
+    isNewArrival: false
+  }
+];
+
 export default function Home() {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [trendingProducts, setTrendingProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeBeforeAfter, setActiveBeforeAfter] = useState<'acne' | 'pigment'>('acne');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -86,9 +105,25 @@ export default function Home() {
         if (!res.ok) throw new Error('API Error');
         const data = await res.json();
         setProducts(data.length > 0 ? data : FALLBACK_PRODUCTS);
+
+        // Fetch trending
+        const allRes = await fetch(`${API_URL}/products`);
+        if (allRes.ok) {
+          const allData = await allRes.json();
+          const trending = allData.filter((p: any) => 
+            p.name.toLowerCase().includes("nourishing cleansing oil") || 
+            p.name.toLowerCase().includes("pdrn regenerating serum")
+          );
+          if (trending.length > 0) {
+            setTrendingProducts(trending);
+            return;
+          }
+        }
+        setTrendingProducts(getFallbackTrending());
       } catch (err) {
         console.warn('Backend API connection failed, loading premium fallback products.', err);
         setProducts(FALLBACK_PRODUCTS);
+        setTrendingProducts(getFallbackTrending());
       } finally {
         setLoading(false);
       }
@@ -113,15 +148,15 @@ export default function Home() {
 
   const beforeAfterData = {
     acne: {
-      before: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=400",
-      after: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=400",
+      before: "/acne_before.jpeg",
+      after: "/acne_after.jpeg",
       title: "Targeting Breakouts & Skin Texture",
       desc: "Result after 4 weeks of using Gentle Centella Hydrating Cleanser and 2% BHA Salicylic Acid Exfoliating Toner daily.",
       routine: "AM: Gentle Cleanser + SPF 50. PM: Gentle Cleanser + 2% BHA + Niacinamide Gel Cream."
     },
     pigment: {
-      before: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&q=80&w=400",
-      after: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
+      before: "/Pigmentation_before.jpeg",
+      after: "/Pigmentation_after.jpeg",
       title: "Brightening Dark Spots & Sun Damage",
       desc: "Result after 6 weeks of using 15% Vitamin C Glow Brightening Serum and Triple Hyaluronic Acid + B5 Plumping Serum.",
       routine: "AM: Vitamin C Serum + Hyaluronic Acid + SPF 50. PM: Gentle Cleanser + Hyaluronic Acid + Retinol."
@@ -171,6 +206,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trending Products Section */}
+      <section className="py-20 bg-white border-b border-stone-200/80 relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-[10px] font-bold text-emerald-800 tracking-[0.2em] uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-100/80 inline-block mb-4">
+              Dermatologist Choice
+            </span>
+            <h2 className="font-serif text-3.5xl md:text-4xl font-bold text-stone-900 tracking-tight">
+              Our Trending Products
+            </h2>
+            <p className="text-stone-500 mt-3 text-sm md:text-base max-w-md mx-auto leading-relaxed">
+              Highly active, results-driven luxury skin treatments that are currently leading skin routines.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-md mx-auto justify-items-center">
+            {loading ? (
+              [...Array(2)].map((_, i) => (
+                <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-4 bg-stone-50/50 space-y-4 w-full max-w-[220px]">
+                  <div className="bg-stone-200/80 aspect-[4/5] w-full rounded-xl"></div>
+                  <div className="h-3 bg-stone-200/80 rounded w-1/4 mt-2"></div>
+                  <div className="h-5 bg-stone-200/80 rounded w-3/4"></div>
+                  <div className="h-4 bg-stone-200/80 rounded w-1/3"></div>
+                  <div className="h-8 bg-stone-200/80 rounded-full w-full mt-4"></div>
+                </div>
+              ))
+            ) : (
+              trendingProducts.map((product) => (
+                <div key={product._id || product.id} className="w-full max-w-[220px]">
+                  <ProductCard product={product} />
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Shop by Category Section */}
       <section className="py-20 bg-stone-50/50 border-b border-stone-200/80 relative overflow-hidden">
         {/* Subtle Decorative Glows */}
@@ -190,7 +262,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 justify-items-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 justify-items-center">
             {/* Facewash */}
             <Link 
               href="/shop?category=Facewash" 
@@ -211,14 +283,14 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Step 1 / Pure Cleanse
                 </span>
-                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Facewash
                 </h3>
-                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                <p className="hidden sm:block text-[11px] text-stone-500 mt-1 leading-normal">
                   Deep cleansing & clarifying foam treatments.
                 </p>
                 <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
@@ -248,14 +320,14 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Daily Shield / UV Care
                 </span>
-                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Sunscreen
                 </h3>
-                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                <p className="hidden sm:block text-[11px] text-stone-500 mt-1 leading-normal">
                   Broad spectrum hybrid & physical protection.
                 </p>
                 <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
@@ -285,14 +357,14 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Double Cleanse / Barrier
                 </span>
-                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Cleanser
                 </h3>
-                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                <p className="hidden sm:block text-[11px] text-stone-500 mt-1 leading-normal">
                   Gentle melt-away oils and hydrating milks.
                 </p>
                 <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
@@ -322,14 +394,14 @@ export default function Home() {
               <div className="absolute inset-0 ring-1 ring-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
               {/* Glassmorphic Label Info */}
-              <div className="relative z-10 m-4 p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
+              <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
                 <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
                   Infuse / Balance Prep
                 </span>
-                <h3 className="font-serif text-lg font-bold text-stone-900 mt-1">
+                <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Toner
                 </h3>
-                <p className="text-[11px] text-stone-500 mt-1 leading-normal">
+                <p className="hidden sm:block text-[11px] text-stone-500 mt-1 leading-normal">
                   Hydrating waters, essences, and toners.
                 </p>
                 <div className="mt-3.5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors">
@@ -348,7 +420,7 @@ export default function Home() {
           <Link 
             href="/shop?search=PDRN" 
             prefetch={false}
-            className="relative block overflow-hidden rounded-2xl md:rounded-3xl bg-stone-900 shadow-xl md:shadow-2xl group aspect-[3/1] w-full"
+            className="relative block overflow-hidden rounded-2xl md:rounded-3xl bg-stone-900 shadow-xl md:shadow-2xl group aspect-[1.8/1] sm:aspect-[3/1] w-full"
           >
             {/* Background Image */}
             <img 
@@ -381,9 +453,9 @@ export default function Home() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-5 bg-stone-50/50 space-y-4">
+                <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-4 bg-stone-50/50 space-y-4">
                   <div className="bg-stone-200/80 aspect-[4/5] w-full rounded-xl"></div>
                   <div className="h-3 bg-stone-200/80 rounded w-1/4 mt-2"></div>
                   <div className="h-5 bg-stone-200/80 rounded w-3/4"></div>
@@ -393,7 +465,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {products.map((product) => (
                 <ProductCard key={product._id || product.id} product={product} />
               ))}
@@ -423,7 +495,7 @@ export default function Home() {
             {/* Left: Premium Product Image with floating effect */}
             <div className="lg:col-span-6 relative flex justify-center">
               {/* Outer decorative border decoration */}
-              <div className="absolute -inset-4 rounded-3xl border border-stone-250/20 pointer-events-none scale-98" />
+              <div className="absolute -inset-2 sm:-inset-4 rounded-3xl border border-stone-250/20 pointer-events-none scale-98" />
               
               <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
                 <img
@@ -453,56 +525,56 @@ export default function Home() {
               </div>
 
               {/* Feature Highlights with refined premium cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-xl">
                 {/* Feature 1 */}
-                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900">Clinically Inspired</h4>
-                    <p className="text-xs text-stone-500 mt-0.5">Advanced formulations</p>
+                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Clinically Inspired</h4>
+                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Advanced formulations</p>
                   </div>
                 </div>
 
                 {/* Feature 2 */}
-                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900">Active Ingredients</h4>
-                    <p className="text-xs text-stone-500 mt-0.5">Proven premium actives</p>
+                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Active Ingredients</h4>
+                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Proven premium actives</p>
                   </div>
                 </div>
 
                 {/* Feature 3 */}
-                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900">Universal Care</h4>
-                    <p className="text-xs text-stone-500 mt-0.5">Suitable for all skin types</p>
+                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Universal Care</h4>
+                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Suitable for all skin types</p>
                   </div>
                 </div>
 
                 {/* Feature 4 */}
-                <div className="flex items-start space-x-4 p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-stone-900">Proven Results</h4>
-                    <p className="text-xs text-stone-500 mt-0.5">Visible, long-lasting effects</p>
+                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Proven Results</h4>
+                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Visible, long-lasting effects</p>
                   </div>
                 </div>
               </div>
@@ -599,9 +671,9 @@ export default function Home() {
             <p className="text-stone-500 mt-2 text-sm">Transparency in active dosage. Nothing hidden.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {keyIngredients.map((ing, i) => (
-              <div key={i} className="p-6 rounded-lg border border-stone-200 bg-stone-50 hover:border-emerald-700/40 hover:shadow-xs transition duration-300">
+              <div key={i} className="p-4 sm:p-6 rounded-lg border border-stone-200 bg-stone-50 hover:border-emerald-700/40 hover:shadow-xs transition duration-300">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 font-bold text-sm mb-4">
                   0{i + 1}
                 </div>
@@ -723,7 +795,7 @@ export default function Home() {
                 image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
               }
             ].map((review, idx) => (
-              <div key={idx} className="flex flex-row items-start gap-5 p-6 rounded-[20px] bg-white border-2 border-[#4C1D95]/85 shadow-sm max-w-md sm:max-w-lg shrink-0 snap-center">
+              <div key={idx} className="flex flex-row items-start gap-5 p-6 rounded-[20px] bg-white border-2 border-[#4C1D95]/85 shadow-sm w-[85vw] sm:w-[450px] shrink-0 snap-center">
                 {/* Profile Image with dotted decorative shadow */}
                 <div className="relative shrink-0 mt-1">
                   <div className="absolute -bottom-2 -left-2 w-16 h-16 opacity-35" style={{ backgroundImage: 'radial-gradient(#4C1D95 2px, transparent 2px)', backgroundSize: '5px 5px' }} />
@@ -753,18 +825,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PDRN Serum Banner */}
-      <section className="bg-white border-t border-stone-200">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-2xl shadow-sm border border-stone-100">
-            <img
-              src="/pdrn_banner.png"
-              alt="PDRN Regenerating Serum Banner"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-white border-t border-stone-200">

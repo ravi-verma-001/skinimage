@@ -152,6 +152,7 @@ function ShopContent() {
   
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Read filter values from URL search parameters
   const activeCategory = searchParams.get('category') || '';
@@ -252,24 +253,35 @@ function ShopContent() {
             Dermatologist tested. Clinical concentrations. Zero added fragrance.
           </p>
         </div>
-        <div className="flex items-center space-x-3 self-start md:self-auto">
-          <span className="text-xs text-stone-400 font-medium">Sorting</span>
-          <select
-            value={activeSort}
-            onChange={(e) => updateFilters('sort', e.target.value)}
-            className="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs text-stone-800 focus:border-emerald-600 focus:outline-none"
+        <div className="flex items-center space-x-3 self-start md:self-auto w-full md:w-auto justify-between md:justify-end">
+          {/* Mobile Filters Toggle Button */}
+          <button
+            onClick={() => setMobileFiltersOpen(true)}
+            className="lg:hidden flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 bg-stone-50 hover:bg-stone-100 text-xs font-semibold text-stone-850 transition"
           >
-            <option value="">Featured</option>
-            <option value="asc">Price: Low to High</option>
-            <option value="desc">Price: High to Low</option>
-            <option value="rating">Top Rated</option>
-          </select>
+            <SlidersHorizontal className="h-3.5 w-3.5" />
+            <span>Filters</span>
+          </button>
+
+          <div className="flex items-center space-x-3">
+            <span className="text-xs text-stone-400 font-medium">Sorting</span>
+            <select
+              value={activeSort}
+              onChange={(e) => updateFilters('sort', e.target.value)}
+              className="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs text-stone-800 focus:border-emerald-600 focus:outline-none"
+            >
+              <option value="">Featured</option>
+              <option value="asc">Price: Low to High</option>
+              <option value="desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div className="mt-8 lg:grid lg:grid-cols-4 lg:gap-x-8">
         {/* Filters Sidebar */}
-        <aside className="space-y-6 lg:block lg:col-span-1 border-r border-stone-200/80 pr-6">
+        <aside className="hidden lg:block lg:col-span-1 border-r border-stone-200/80 pr-6 space-y-6">
           <div className="flex items-center justify-between pb-4 border-b border-stone-200">
             <span className="text-sm font-semibold tracking-wider uppercase text-stone-800 flex items-center">
               <SlidersHorizontal className="h-4 w-4 mr-2" /> Filters
@@ -359,13 +371,14 @@ function ShopContent() {
         {/* Products Grid */}
         <main className="mt-8 lg:mt-0 lg:col-span-3">
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="animate-pulse flex flex-col space-y-4">
-                  <div className="bg-stone-200 aspect-square w-full rounded-lg"></div>
-                  <div className="h-4 bg-stone-200 rounded w-1/3"></div>
-                  <div className="h-5 bg-stone-200 rounded w-3/4"></div>
-                  <div className="h-4 bg-stone-200 rounded w-1/4"></div>
+                <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-4 bg-stone-50/50 space-y-4">
+                  <div className="bg-stone-200/80 aspect-[4/5] w-full rounded-xl"></div>
+                  <div className="h-3 bg-stone-200/80 rounded w-1/4 mt-2"></div>
+                  <div className="h-5 bg-stone-200/80 rounded w-3/4"></div>
+                  <div className="h-4 bg-stone-200/80 rounded w-1/3"></div>
+                  <div className="h-8 bg-stone-200/80 rounded-full w-full mt-4"></div>
                 </div>
               ))}
             </div>
@@ -382,7 +395,7 @@ function ShopContent() {
           ) : (
             <>
               <p className="text-xs text-stone-400 font-medium mb-4">Showing {products.length} formulations</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {products.map((product) => (
                   <ProductCard key={product._id || product.id} product={product} />
                 ))}
@@ -391,6 +404,117 @@ function ShopContent() {
           )}
         </main>
       </div>
+
+      {/* Mobile Drawer Slide-over */}
+      {mobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex justify-end lg:hidden">
+          <div className="w-[85vw] max-w-sm h-full bg-white shadow-2xl p-6 flex flex-col overflow-y-auto animate-slide-in">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+              <span className="text-sm font-bold tracking-wider uppercase text-stone-900 flex items-center">
+                <SlidersHorizontal className="h-4 w-4 mr-2 text-emerald-800" /> Filters
+              </span>
+              <button
+                onClick={() => setMobileFiltersOpen(false)}
+                className="text-stone-400 hover:text-stone-900 p-1"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Filter Content */}
+            <div className="space-y-6 py-6 flex-1">
+              {/* Search */}
+              <div className="space-y-2">
+                <h3 className="text-xs font-bold text-stone-800 uppercase tracking-wider">Search</h3>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Find serum, toner..."
+                    value={searchQuery}
+                    onChange={(e) => updateFilters('search', e.target.value)}
+                    className="w-full rounded-md border border-stone-300 bg-white py-2 pl-9 pr-3 text-xs text-stone-900 focus:border-emerald-600 focus:outline-none"
+                  />
+                  <Search className="absolute left-3 top-3 h-3.5 w-3.5 text-stone-400" />
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="space-y-2.5 pt-4 border-t border-stone-200">
+                <h3 className="text-xs font-bold text-stone-800 uppercase tracking-wider">Category</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => { updateFilters('category', ''); }}
+                    className={`text-left text-xs py-2 px-3 rounded text-center transition ${
+                      !activeCategory ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-250' : 'bg-stone-50 text-stone-600 border border-stone-200/40 hover:bg-stone-100'
+                    }`}
+                  >
+                    All Categories
+                  </button>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => { updateFilters('category', cat); }}
+                      className={`text-left text-xs py-2 px-3 rounded text-center transition ${
+                        activeCategory.toLowerCase() === cat.toLowerCase()
+                          ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-250'
+                          : 'bg-stone-50 text-stone-600 border border-stone-200/40 hover:bg-stone-100'
+                      }`}
+                    >
+                      {cat}s
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Skin type */}
+              <div className="space-y-2.5 pt-4 border-t border-stone-200">
+                <h3 className="text-xs font-bold text-stone-800 uppercase tracking-wider">Skin Concern / Type</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => { updateFilters('skinType', ''); }}
+                    className={`text-left text-xs py-2 px-3 rounded text-center transition ${
+                      !activeSkinType ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-250' : 'bg-stone-50 text-stone-600 border border-stone-200/40 hover:bg-stone-100'
+                    }`}
+                  >
+                    All Skin Types
+                  </button>
+                  {skinTypes.map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => { updateFilters('skinType', type); }}
+                      className={`text-left text-xs py-2 px-3 rounded text-center transition ${
+                        activeSkinType.toLowerCase() === type.toLowerCase()
+                          ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-250'
+                          : 'bg-stone-50 text-stone-600 border border-stone-200/40 hover:bg-stone-100'
+                      }`}
+                    >
+                      {type} Skin
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Sticky Actions in Drawer */}
+            <div className="border-t border-stone-200 pt-4 flex gap-3">
+              {(activeCategory || activeSkinType || searchQuery) && (
+                <button
+                  onClick={() => { clearAllFilters(); setMobileFiltersOpen(false); }}
+                  className="flex-1 rounded-md border border-stone-300 py-2.5 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition text-center"
+                >
+                  Clear All
+                </button>
+              )}
+              <button
+                onClick={() => setMobileFiltersOpen(false)}
+                className="flex-1 rounded-md bg-stone-900 hover:bg-stone-800 py-2.5 text-xs font-semibold text-white transition text-center"
+              >
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingAnalyzer } from "@/components/FloatingAnalyzer";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
@@ -54,6 +55,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />
+            <FloatingAnalyzer />
             <Toaster position="bottom-right" toastOptions={{
               duration: 3500,
               style: {
