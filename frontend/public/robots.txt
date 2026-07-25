@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /dashboard/
+Disallow: /cart/
+
+Sitemap: https://skinimage.in/sitemap.xml

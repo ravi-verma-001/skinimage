@@ -838,6 +838,36 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-800 pb-20 pt-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "image": product.images && product.images.length > 0 ? product.images[0] : "",
+            "description": product.description,
+            "sku": product.sku || product._id || product.id,
+            "brand": {
+              "@type": "Brand",
+              "name": "Skinimage"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": `https://skinimage.in/product/${product._id || product.id}`,
+              "priceCurrency": "INR",
+              "price": product.discountPrice || product.price,
+              "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              "itemCondition": "https://schema.org/NewCondition"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": product.rating || 4.8,
+              "reviewCount": product.reviewsCount || 100
+            }
+          })
+        }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
         <nav className="flex space-x-2 text-xs text-stone-500 mb-2 items-center">

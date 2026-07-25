@@ -50,6 +50,35 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white font-sans text-stone-850">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Skinimage",
+                "url": "https://skinimage.in",
+                "logo": "https://skinimage.in/skinimagelogo.png",
+                "sameAs": [
+                  "https://www.instagram.com/skinimage",
+                  "https://www.facebook.com/skinimage"
+                ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Skinimage",
+                "url": "https://skinimage.in",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://skinimage.in/shop?search={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              }
+            ])
+          }}
+        />
         <AuthProvider>
           <CartProvider>
             <Header />
