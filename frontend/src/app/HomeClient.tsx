@@ -201,7 +201,7 @@ export default function HomeClient() {
             loop 
             muted 
             playsInline
-            className="w-full h-auto max-h-[550px] md:max-h-none object-cover block"
+            className="w-full h-auto max-h-[380px] md:max-h-[480px] object-cover block"
           />
         </div>
       </section>
@@ -346,7 +346,7 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/category_cleanser.png"
+                  src="/cleanser.png"
                   alt="Cleanser"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -383,7 +383,7 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/category_moisturizer.png"
+                  src="/sugarcane_squalane_oil.jpg"
                   alt="Toner"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
