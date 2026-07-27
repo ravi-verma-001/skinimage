@@ -97,8 +97,9 @@ connectDB().then(() => {
 // 1. AUTHENTICATION ENDPOINTS
 app.post('/api/auth/register', authLimiter, async (req, res) => {
   const { name, email, password } = req.body;
+  const normalizedEmail = email ? email.toLowerCase().trim() : '';
   try {
-    const userExists = await dbHelper.findUserByEmail(email);
+    const userExists = await dbHelper.findUserByEmail(normalizedEmail);
     if (userExists) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
@@ -111,7 +112,7 @@ app.post('/api/auth/register', authLimiter, async (req, res) => {
 
     const user = await dbHelper.createUser({
       name,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
       role: finalRole,
     });
@@ -130,8 +131,9 @@ app.post('/api/auth/register', authLimiter, async (req, res) => {
 
 app.post('/api/auth/login', authLimiter, async (req, res) => {
   const { email, password } = req.body;
+  const normalizedEmail = email ? email.toLowerCase().trim() : '';
   try {
-    const user = await dbHelper.findUserByEmail(email);
+    const user = await dbHelper.findUserByEmail(normalizedEmail);
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user._id || user.id,

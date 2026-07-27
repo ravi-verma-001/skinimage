@@ -1028,11 +1028,12 @@ const dbHelper = {
 
   // Users
   findUserByEmail: async (email) => {
+    const normalizedEmail = email ? email.toLowerCase().trim() : '';
     if (getDBMode()) {
       const data = readLocalDB();
-      return data.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+      return data.users.find(u => u.email.toLowerCase() === normalizedEmail);
     } else {
-      return await User.findOne({ email });
+      return await User.findOne({ email: normalizedEmail });
     }
   },
 
