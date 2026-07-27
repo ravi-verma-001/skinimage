@@ -117,7 +117,7 @@ export default function CheckoutPage() {
             // Real Cashfree integration
             if (typeof window !== 'undefined' && (window as any).Cashfree) {
               const cashfree = (window as any).Cashfree({
-                mode: process.env.NEXT_PUBLIC_CASHFREE_ENV === 'production' ? 'production' : 'sandbox'
+                mode: data.paymentDetails?.environment === 'production' ? 'production' : 'sandbox'
               });
               cashfree.checkout({
                 paymentSessionId: session,

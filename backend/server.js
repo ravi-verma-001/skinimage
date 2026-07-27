@@ -414,7 +414,8 @@ app.post('/api/orders', async (req, res) => {
             paymentDetails: {
               paymentSessionId: paymentSessionId,
               cfOrderId: String(cfOrderId),
-              status: 'Created'
+              status: 'Created',
+              environment: CASHFREE_ENV
             }
           });
 
@@ -422,7 +423,8 @@ app.post('/api/orders', async (req, res) => {
           order.paymentDetails = {
             paymentSessionId: paymentSessionId,
             cfOrderId: String(cfOrderId),
-            status: 'Created'
+            status: 'Created',
+            environment: CASHFREE_ENV
           };
         } else {
           console.warn('CASHFREE KEYS NOT CONFIGURED IN .env. RUNNING IN MOCK MODE.');
@@ -433,14 +435,16 @@ app.post('/api/orders', async (req, res) => {
             paymentDetails: {
               paymentSessionId: paymentSessionId,
               cfOrderId: String(cfOrderId),
-              status: 'MockCreated'
+              status: 'MockCreated',
+              environment: 'sandbox'
             }
           });
 
           order.paymentDetails = {
             paymentSessionId: paymentSessionId,
             cfOrderId: String(cfOrderId),
-            status: 'MockCreated'
+            status: 'MockCreated',
+            environment: 'sandbox'
           };
         }
       } catch (err) {
