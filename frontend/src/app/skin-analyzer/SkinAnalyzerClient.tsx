@@ -28,7 +28,7 @@ import toast from 'react-hot-toast';
 import { API_URL } from '@/config';
 
 export default function SkinAnalyzerClient() {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const { addToCart } = useCart();
   
   // UI States
@@ -468,6 +468,11 @@ export default function SkinAnalyzerClient() {
                       
                       <button
                         onClick={() => {
+                          if (!user) {
+                            toast.error('Please log in to add items to your cart');
+                            window.location.href = '/login';
+                            return;
+                          }
                           addToCart({
                             productId: prod.id || prod._id,
                             name: prod.name,

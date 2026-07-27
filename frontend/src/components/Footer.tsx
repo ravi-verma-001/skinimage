@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
               Formulated for maximum results, minimum irritation. We design luxury skincare backed by clinical science and powered by bio-active botanicals.
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Instagram">
+              <a href="https://www.instagram.com/skin_image_/" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
               <a href="#" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Twitter">
@@ -87,14 +87,14 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <span className="text-sm text-stone-600 hover:text-emerald-700 transition cursor-pointer" onClick={() => toast.success("Free shipping on orders over $50. Deliveries take 3-5 business days.")}>
+                <Link href="/shipping-policy" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Shipping Policy
-                </span>
+                </Link>
               </li>
               <li>
-                <span className="text-sm text-stone-600 hover:text-emerald-700 transition cursor-pointer" onClick={() => toast.success("We offer a 30-day money-back guarantee if you are not satisfied.")}>
+                <Link href="/refund-policy" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Refund Policy
-                </span>
+                </Link>
               </li>
             </ul>
           </div>

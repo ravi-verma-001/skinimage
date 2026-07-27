@@ -58,6 +58,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast.error('Please log in to add items to your cart');
+      window.location.href = '/login';
+      return;
+    }
     if (product.stock <= 0) {
       toast.error('Product is out of stock');
       return;

@@ -32,6 +32,16 @@ export const metadata: Metadata = {
   title: "Skinimage | Premium Science-Backed Luxury Skincare",
   description: "Formulated for maximum results, minimum irritation. We design luxury skincare backed by clinical science and powered by bio-active botanicals.",
   keywords: ["skincare", "serum", "cleanser", "moisturizer", "luxury skincare", "clean beauty"],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ]
+  },
   openGraph: {
     title: "Skinimage | Science-Backed Luxury Skincare",
     description: "Experience the ultimate collection of premium, dermatologist-formulated skincare solutions.",

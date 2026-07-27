@@ -792,6 +792,11 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
   };
 
   const handleAddToCart = () => {
+    if (!user) {
+      toast.error('Please log in to add items to your cart');
+      window.location.href = '/login';
+      return;
+    }
     addToCart({
       productId: product._id || product.id,
       name: product.name,

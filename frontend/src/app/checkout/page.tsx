@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
@@ -13,7 +14,14 @@ import { API_URL } from '@/config';
 export default function CheckoutPage() {
   const router = useRouter();
   const { cart, totals, coupon, clearCart } = useCart();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      toast.error('Please log in to proceed to checkout.');
+      router.push('/login');
+    }
+  }, [user, authLoading, router]);
 
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -96,6 +104,35 @@ export default function CheckoutPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to place order');
 
+      if (paymentMethod === 'Online') {
+        const session = data.paymentDetails?.paymentSessionId;
+        if (session) {
+          if (session.startsWith('mock_session_')) {
+            toast.success('Initiating simulated Cashfree checkout...');
+            setTimeout(() => {
+              router.push(`/checkout/verify?order_id=${data._id}`);
+            }, 1200);
+            return;
+          } else {
+            // Real Cashfree integration
+            if (typeof window !== 'undefined' && (window as any).Cashfree) {
+              const cashfree = (window as any).Cashfree({
+                mode: process.env.NEXT_PUBLIC_CASHFREE_ENV === 'production' ? 'production' : 'sandbox'
+              });
+              cashfree.checkout({
+                paymentSessionId: session,
+                redirectTarget: '_self'
+              });
+              return;
+            } else {
+              throw new Error('Cashfree SDK failed to load. Please refresh and try again.');
+            }
+          }
+        } else {
+          throw new Error('Could not initialize payment session. Please try again.');
+        }
+      }
+
       setConfirmedOrder(data);
       clearCart();
       setStep(6); // Go to success confirmation screen
@@ -146,6 +183,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 bg-stone-50">
+      <Script src="https://sdk.cashfree.com/js/v3/cashfree.js" strategy="lazyOnload" />
       
       {/* Checkout Steps bar */}
       {step < 6 && (

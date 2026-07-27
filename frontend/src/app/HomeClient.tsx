@@ -209,7 +209,23 @@ export default function HomeClient() {
       {/* Trending Products Section */}
       <section className="py-20 bg-white border-b border-stone-200/80 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12 flex flex-col items-center">
+            {/* Animated Circular Doctor Logo */}
+            <div className="relative mb-5 flex justify-center items-center">
+              {/* Outer pulsing ring */}
+              <div className="absolute inset-0 rounded-full bg-emerald-600/20 blur-md animate-pulse"></div>
+              {/* Spinning gradient ring */}
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-emerald-700 via-stone-200 to-emerald-500 animate-[spin_6s_linear_infinite] opacity-75"></div>
+              {/* Image container */}
+              <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white">
+                <img 
+                  src="/doctorlogo.jpeg" 
+                  alt="Dermatologist Recommended" 
+                  className="w-full h-full object-cover hover:scale-115 transition-transform duration-500"
+                />
+              </div>
+            </div>
+
             <span className="text-[10px] font-bold text-emerald-800 tracking-[0.2em] uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-100/80 inline-block mb-4">
               Dermatologist recommended brand
             </span>

@@ -277,8 +277,8 @@ app.post('/api/orders', async (req, res) => {
     // Generate simulated tracking number
     const trackingNumber = 'NX-' + Math.floor(100000 + Math.random() * 900000);
     
-    // Set payment status (Online is simulated completed, COD is pending)
-    const paymentStatus = paymentMethod === 'Online' ? 'Completed' : 'Pending';
+    // Set payment status (Online is pending till verified, COD is pending)
+    const paymentStatus = 'Pending';
 
     const order = await dbHelper.createOrder({
       userId,
@@ -293,9 +293,213 @@ app.post('/api/orders', async (req, res) => {
       trackingNumber,
     });
 
+    let paymentSessionId = null;
+    let cfOrderId = null;
+
+    if (paymentMethod === 'Online') {
+      try {
+        const CASHFREE_CLIENT_ID = process.env.CASHFREE_CLIENT_ID;
+        const CASHFREE_CLIENT_SECRET = process.env.CASHFREE_CLIENT_SECRET;
+        const CASHFREE_ENV = process.env.CASHFREE_ENV || 'sandbox';
+
+        let customerEmail = 'guest@example.com';
+        let customerPhone = '9999999999';
+        let customerName = 'Guest User';
+
+        if (userId) {
+          const user = await dbHelper.findUserById(userId);
+          if (user) {
+            customerEmail = user.email || customerEmail;
+            customerPhone = user.phone || customerPhone;
+            customerName = user.name || customerName;
+          }
+        } else if (guestInfo) {
+          customerEmail = guestInfo.email || customerEmail;
+          customerPhone = guestInfo.phone || customerPhone;
+          customerName = guestInfo.name || customerName;
+        }
+
+        // Clean phone number: Cashfree requires numeric and at least 10 digits
+        let cleanPhone = customerPhone.replace(/\D/g, '');
+        if (cleanPhone.length < 10) {
+          cleanPhone = '9999999999';
+        } else if (cleanPhone.length > 10) {
+          cleanPhone = cleanPhone.slice(-10);
+        }
+
+        if (CASHFREE_CLIENT_ID && CASHFREE_CLIENT_SECRET) {
+          const cashfreeUrl = CASHFREE_ENV === 'production' 
+            ? 'https://api.cashfree.com/pg/orders' 
+            : 'https://sandbox.cashfree.com/pg/orders';
+
+          const cfPayload = {
+            order_amount: parseFloat(order.totals.grandTotal.toFixed(2)),
+            order_currency: 'INR',
+            order_id: order._id.toString(),
+            customer_details: {
+              customer_id: userId ? userId.toString() : 'guest_' + Date.now(),
+              customer_name: customerName,
+              customer_email: customerEmail,
+              customer_phone: cleanPhone
+            },
+            order_meta: {
+              return_url: `${req.headers.origin || 'http://localhost:3000'}/checkout/verify?order_id={order_id}`
+            }
+          };
+
+          const response = await fetch(cashfreeUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-version': '2023-08-01',
+              'x-client-id': CASHFREE_CLIENT_ID,
+              'x-client-secret': CASHFREE_CLIENT_SECRET
+            },
+            body: JSON.stringify(cfPayload)
+          });
+
+          if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Cashfree PG API Error: ${response.status} - ${errText}`);
+          }
+
+          const cfData = await response.json();
+          paymentSessionId = cfData.payment_session_id;
+          cfOrderId = cfData.cf_order_id;
+
+          // Update MongoDB order with payment session details
+          await dbHelper.updateOrder(order._id.toString(), {
+            paymentDetails: {
+              paymentSessionId: paymentSessionId,
+              cfOrderId: String(cfOrderId),
+              status: 'Created'
+            }
+          });
+
+          // Inject details to return in HTTP response
+          order.paymentDetails = {
+            paymentSessionId: paymentSessionId,
+            cfOrderId: String(cfOrderId),
+            status: 'Created'
+          };
+        } else {
+          console.warn('CASHFREE KEYS NOT CONFIGURED IN .env. RUNNING IN MOCK MODE.');
+          paymentSessionId = 'mock_session_' + Math.random().toString(36).substring(2, 15);
+          cfOrderId = 'mock_cf_' + Math.floor(100000 + Math.random() * 900000);
+
+          await dbHelper.updateOrder(order._id.toString(), {
+            paymentDetails: {
+              paymentSessionId: paymentSessionId,
+              cfOrderId: String(cfOrderId),
+              status: 'MockCreated'
+            }
+          });
+
+          order.paymentDetails = {
+            paymentSessionId: paymentSessionId,
+            cfOrderId: String(cfOrderId),
+            status: 'MockCreated'
+          };
+        }
+      } catch (err) {
+        console.error('Error creating Cashfree order:', err);
+        // Fallback to error payload or response
+      }
+    }
+
     res.status(201).json(order);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+// VERIFY CASHFREE PAYMENT STATUS
+app.post('/api/orders/verify-payment', async (req, res) => {
+  const { orderId } = req.body;
+  if (!orderId) {
+    return res.status(400).json({ message: 'Order ID is required' });
+  }
+
+  try {
+    const order = await dbHelper.findOrderById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    if (order.paymentMethod !== 'Online') {
+      return res.json({ success: true, status: 'COD' });
+    }
+
+    // Check if the order is already marked Completed
+    if (order.paymentStatus === 'Completed') {
+      return res.json({ success: true, status: 'Completed' });
+    }
+
+    const CASHFREE_CLIENT_ID = process.env.CASHFREE_CLIENT_ID;
+    const CASHFREE_CLIENT_SECRET = process.env.CASHFREE_CLIENT_SECRET;
+    const CASHFREE_ENV = process.env.CASHFREE_ENV || 'sandbox';
+
+    if (CASHFREE_CLIENT_ID && CASHFREE_CLIENT_SECRET) {
+      const cashfreeUrl = CASHFREE_ENV === 'production'
+        ? `https://api.cashfree.com/pg/orders/${orderId}`
+        : `https://sandbox.cashfree.com/pg/orders/${orderId}`;
+
+      const response = await fetch(cashfreeUrl, {
+        method: 'GET',
+        headers: {
+          'x-api-version': '2023-08-01',
+          'x-client-id': CASHFREE_CLIENT_ID,
+          'x-client-secret': CASHFREE_CLIENT_SECRET
+        }
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Cashfree Order Status API Error: ${response.status} - ${errText}`);
+      }
+
+      const cfData = await response.json();
+
+      if (cfData.order_status === 'PAID') {
+        await dbHelper.updateOrder(orderId, {
+          paymentStatus: 'Completed',
+          status: 'Placed',
+          paymentDetails: {
+            ...Object.fromEntries(order.paymentDetails || new Map()),
+            status: 'Paid',
+            cfPaymentId: String(cfData.cf_payment_id || ''),
+            paymentMessage: 'Paid successfully via Cashfree'
+          }
+        });
+        return res.json({ success: true, status: 'Completed' });
+      } else {
+        await dbHelper.updateOrder(orderId, {
+          paymentStatus: 'Failed',
+          paymentDetails: {
+            ...Object.fromEntries(order.paymentDetails || new Map()),
+            status: cfData.order_status,
+            paymentMessage: 'Payment was not success. Cashfree status: ' + cfData.order_status
+          }
+        });
+        return res.json({ success: false, status: cfData.order_status });
+      }
+    } else {
+      // Mock flow: If keys are missing, simulate success for testing
+      console.warn('CASHFREE KEYS NOT CONFIGURED. MOCK VERIFYING PAYMENT SUCCESS.');
+      await dbHelper.updateOrder(orderId, {
+        paymentStatus: 'Completed',
+        status: 'Placed',
+        paymentDetails: {
+          ...Object.fromEntries(order.paymentDetails || new Map()),
+          status: 'Paid',
+          paymentMessage: 'Mock verified'
+        }
+      });
+      return res.json({ success: true, status: 'Completed', mock: true });
+    }
+  } catch (error) {
+    console.error('Error verifying payment:', error);
+    res.status(500).json({ message: error.message });
   }
 });
 
