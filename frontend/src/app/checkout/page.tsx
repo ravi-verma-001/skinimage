@@ -138,24 +138,8 @@ export default function CheckoutPage() {
       setStep(6); // Go to success confirmation screen
       toast.success('Order placed successfully!');
     } catch (error: any) {
-      // Mock submit in case database fails
-      console.warn('API error, simulating order placement locally.', error);
-      const mockOrder = {
-        _id: 'o_mock_' + Math.floor(100000 + Math.random() * 900000),
-        trackingNumber: 'NX-' + Math.floor(100000 + Math.random() * 900000),
-        status: 'Placed',
-        createdAt: new Date().toISOString(),
-        items: cart,
-        totals: {
-          ...totals,
-          shipping: deliveryMethod === 'Express' ? totals.shipping + 10 : totals.shipping,
-          grandTotal: deliveryMethod === 'Express' ? totals.grandTotal + 10 : totals.grandTotal
-        }
-      };
-      setConfirmedOrder(mockOrder);
-      clearCart();
-      setStep(6);
-      toast.success('Order placed (Simulated local order)!');
+      console.error('API error:', error);
+      toast.error(error.message || 'Failed to place order. Please try again.');
     } finally {
       setLoading(false);
     }

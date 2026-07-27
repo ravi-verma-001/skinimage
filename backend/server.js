@@ -8,6 +8,49 @@ const rateLimit = require('express-rate-limit');
 const { connectDB, getDBMode } = require('./db');
 const dbHelper = require('./dbHelper');
 const { protect, adminOnly } = require('./authMiddleware');
+const https = require('https');
+
+function httpsRequest(url, options, data = null) {
+  return new Promise((resolve, reject) => {
+    const parsedUrl = new URL(url);
+    const requestOptions = {
+      hostname: parsedUrl.hostname,
+      path: parsedUrl.pathname + parsedUrl.search,
+      method: options.method || 'GET',
+      headers: options.headers || {},
+    };
+
+    const req = https.request(requestOptions, (res) => {
+      let body = '';
+      res.on('data', (chunk) => {
+        body += chunk;
+      });
+      res.on('end', () => {
+        resolve({
+          ok: res.statusCode >= 200 && res.statusCode < 300,
+          status: res.statusCode,
+          text: async () => body,
+          json: async () => {
+            try {
+              return JSON.parse(body);
+            } catch (e) {
+              return { error: 'Failed to parse JSON', raw: body };
+            }
+          }
+        });
+      });
+    });
+
+    req.on('error', (err) => {
+      reject(err);
+    });
+
+    if (data) {
+      req.write(JSON.stringify(data));
+    }
+    req.end();
+  });
+}
 
 const app = express();
 
@@ -347,16 +390,15 @@ app.post('/api/orders', async (req, res) => {
             }
           };
 
-          const response = await fetch(cashfreeUrl, {
+          const response = await httpsRequest(cashfreeUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'x-api-version': '2023-08-01',
               'x-client-id': CASHFREE_CLIENT_ID,
               'x-client-secret': CASHFREE_CLIENT_SECRET
-            },
-            body: JSON.stringify(cfPayload)
-          });
+            }
+          }, cfPayload);
 
           if (!response.ok) {
             const errText = await response.text();
@@ -403,7 +445,19 @@ app.post('/api/orders', async (req, res) => {
         }
       } catch (err) {
         console.error('Error creating Cashfree order:', err);
-        // Fallback to error payload or response
+        try {
+          await dbHelper.updateOrder(order._id.toString(), {
+            status: 'Cancelled',
+            paymentStatus: 'Failed',
+            paymentDetails: {
+              status: 'Failed',
+              error: err.message
+            }
+          });
+        } catch (dbErr) {
+          console.error('Failed to cancel order in DB:', dbErr);
+        }
+        return res.status(400).json({ message: 'Payment gateway initialization failed: ' + err.message });
       }
     }
 
@@ -444,7 +498,7 @@ app.post('/api/orders/verify-payment', async (req, res) => {
         ? `https://api.cashfree.com/pg/orders/${orderId}`
         : `https://sandbox.cashfree.com/pg/orders/${orderId}`;
 
-      const response = await fetch(cashfreeUrl, {
+      const response = await httpsRequest(cashfreeUrl, {
         method: 'GET',
         headers: {
           'x-api-version': '2023-08-01',
