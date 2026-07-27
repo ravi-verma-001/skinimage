@@ -125,13 +125,12 @@ export default function LoginPage() {
           <div>
             <div className="flex justify-between items-center mb-1">
               <label className="block text-xs font-semibold uppercase text-stone-500">Password</label>
-              <button
-                type="button"
-                onClick={handleForgotPassword}
+              <Link
+                href="/forgot-password"
                 className="text-[11px] text-emerald-700 hover:underline font-semibold"
               >
                 Forgot Password?
-              </button>
+              </Link>
             </div>
             <input
               type="password"

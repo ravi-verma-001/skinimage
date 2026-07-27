@@ -15,6 +15,8 @@ const UserSchema = new mongoose.Schema({
   provider: { type: String, enum: ['local', 'google'], default: 'local' },
   googleId: { type: String },
   avatar: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
   addresses: [{
     country: String,
     state: String,
@@ -1037,6 +1039,18 @@ const dbHelper = {
       return data.users.find(u => u.email.toLowerCase() === normalizedEmail);
     } else {
       return await User.findOne({ email: normalizedEmail });
+    }
+  },
+
+  findUserByResetToken: async (token) => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      return data.users.find(u => u.resetPasswordToken === token && new Date(u.resetPasswordExpires) > new Date());
+    } else {
+      return await User.findOne({
+        resetPasswordToken: token,
+        resetPasswordExpires: { $gt: Date.now() }
+      });
     }
   },
 

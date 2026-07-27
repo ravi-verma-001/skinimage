@@ -11,6 +11,8 @@ const { protect, adminOnly } = require('./authMiddleware');
 const { OAuth2Client } = require('google-auth-library');
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID || 'dummy_client_id');
 const https = require('https');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 function httpsRequest(url, options, data = null) {
   return new Promise((resolve, reject) => {
@@ -299,14 +301,124 @@ app.put('/api/auth/profile', protect, async (req, res) => {
   }
 });
 
-// Reset password mock
+// FORGOT PASSWORD
 app.post('/api/auth/forgot-password', async (req, res) => {
   const { email } = req.body;
-  const user = await dbHelper.findUserByEmail(email);
-  if (!user) {
-    return res.status(404).json({ message: 'No user registered with this email' });
+  if (!email) {
+    return res.status(400).json({ message: 'Email address is required' });
   }
-  res.json({ message: 'Password reset link sent (Simulated). Please check your inbox.' });
+
+  try {
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await dbHelper.findUserByEmail(normalizedEmail);
+    if (!user) {
+      return res.status(404).json({ message: 'No account registered with this email' });
+    }
+
+    // Generate secure random reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetExpires = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+
+    // Save token and expiry
+    await dbHelper.updateUser(user._id || user.id, {
+      resetPasswordToken: resetToken,
+      resetPasswordExpires: resetExpires
+    });
+
+    // Determine domain origin dynamically
+    const clientOrigin = req.headers.referer 
+      ? new URL(req.headers.referer).origin 
+      : 'http://localhost:3000';
+      
+    const resetUrl = `${clientOrigin}/reset-password?token=${resetToken}`;
+
+    // SMTP configuration
+    const SMTP_HOST = process.env.SMTP_HOST;
+    const SMTP_PORT = process.env.SMTP_PORT || 587;
+    const SMTP_USER = process.env.SMTP_USER;
+    const SMTP_PASS = process.env.SMTP_PASS;
+    const SMTP_FROM = process.env.SMTP_FROM || 'NextSkin <no-reply@nextskin.in>';
+
+    if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
+      // Send real email via Nodemailer
+      const transporter = nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: Number(SMTP_PORT),
+        secure: Number(SMTP_PORT) === 465,
+        auth: {
+          user: SMTP_USER,
+          pass: SMTP_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: SMTP_FROM,
+        to: normalizedEmail,
+        subject: 'NextSkin - Password Reset Request',
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
+            <h2 style="font-family: serif; color: #047857; text-align: center;">NextSkin</h2>
+            <hr style="border-top: 1px solid #e5e7eb; margin: 20px 0;"/>
+            <p>Hello ${user.name || 'Valued Customer'},</p>
+            <p>We received a request to reset your password. Click the button below to set a new password. This link is valid for 15 minutes:</p>
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${resetUrl}" style="background-color: #047857; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Reset Password</a>
+            </div>
+            <p style="font-size: 12px; color: #6b7280; text-align: center;">
+              If you didn't request this, you can ignore this email safely.
+            </p>
+          </div>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+      res.json({ message: 'Password reset link has been sent to your email.' });
+    } else {
+      // Fallback/Mock mode if SMTP is missing
+      console.warn('----------------------------------------');
+      console.warn('SMTP NOT CONFIGURED. MOCKING PASSWORD RESET EMAIL.');
+      console.warn(`RESET LINK: ${resetUrl}`);
+      console.warn('----------------------------------------');
+      res.json({ 
+        message: 'Password reset link sent (Simulated). Please copy the link from the server console: ' + resetUrl,
+        resetUrl
+      });
+    }
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// RESET PASSWORD
+app.post('/api/auth/reset-password', async (req, res) => {
+  const { token, password } = req.body;
+  if (!token || !password) {
+    return res.status(400).json({ message: 'Token and new password are required' });
+  }
+
+  try {
+    const user = await dbHelper.findUserByResetToken(token);
+    if (!user) {
+      return res.status(400).json({ message: 'Password reset token is invalid or has expired' });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Save and clear token fields
+    await dbHelper.updateUser(user._id || user.id, {
+      password: hashedPassword,
+      resetPasswordToken: undefined,
+      resetPasswordExpires: undefined
+    });
+
+    res.json({ message: 'Your password has been successfully reset! You can now log in.' });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    res.status(500).json({ message: error.message });
+  }
 });
 
 // 2. PRODUCT ENDPOINTS
