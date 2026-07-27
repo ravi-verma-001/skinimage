@@ -16,6 +16,7 @@ interface AuthContextType {
   token: string | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<any>;
+  googleLogin: (idToken: string) => Promise<any>;
   register: (name: string, email: string, password: string) => Promise<any>;
   logout: () => void;
   updateProfile: (userData: Partial<User>) => Promise<any>;
@@ -51,6 +52,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Login failed');
+      
+      setUser(data);
+      setToken(data.token);
+      localStorage.setItem('nextskin_token', data.token);
+      localStorage.setItem('nextskin_user', JSON.stringify({
+        _id: data._id,
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        addresses: data.addresses || [],
+        wishlist: data.wishlist || []
+      }));
+      return data;
+    } catch (err: any) {
+      throw err;
+    }
+  };
+
+  const googleLogin = async (idToken: string) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/google`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Google login failed');
       
       setUser(data);
       setToken(data.token);
@@ -142,7 +170,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, updateProfile, addToWishlist, removeFromWishlist }}>
+    <AuthContext.Provider value={{ user, token, loading, login, googleLogin, register, logout, updateProfile, addToWishlist, removeFromWishlist }}>
       {children}
     </AuthContext.Provider>
   );
