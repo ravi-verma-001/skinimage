@@ -349,7 +349,9 @@ app.post('/api/auth/forgot-password', async (req, res) => {
         auth: {
           user: SMTP_USER,
           pass: SMTP_PASS
-        }
+        },
+        family: 4, // Force IPv4 to prevent ENETUNREACH errors on platforms without IPv6 support like Render
+        connectionTimeout: 10000
       });
 
       const mailOptions = {
