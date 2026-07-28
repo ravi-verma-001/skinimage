@@ -338,39 +338,47 @@ app.post('/api/auth/forgot-password', async (req, res) => {
     const RESEND_FROM = process.env.RESEND_FROM || 'onboarding@resend.dev';
 
     if (RESEND_API_KEY) {
-      // Send real email via Resend HTTP API
-      const resendRes = await httpsRequest('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${RESEND_API_KEY}`
-        }
-      }, {
-        from: RESEND_FROM,
-        to: normalizedEmail,
-        subject: 'NextSkin - Password Reset Request',
-        html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
-            <h2 style="font-family: serif; color: #047857; text-align: center;">NextSkin</h2>
-            <hr style="border-top: 1px solid #e5e7eb; margin: 20px 0;"/>
-            <p>Hello ${user.name || 'Valued Customer'},</p>
-            <p>We received a request to reset your password. Click the button below to set a new password. This link is valid for 15 minutes:</p>
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${resetUrl}" style="background-color: #047857; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Reset Password</a>
+      try {
+        // Send real email via Resend HTTP API
+        const resendRes = await httpsRequest('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${RESEND_API_KEY}`
+          }
+        }, {
+          from: RESEND_FROM,
+          to: normalizedEmail,
+          subject: 'NextSkin - Password Reset Request',
+          html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
+              <h2 style="font-family: serif; color: #047857; text-align: center;">NextSkin</h2>
+              <hr style="border-top: 1px solid #e5e7eb; margin: 20px 0;"/>
+              <p>Hello ${user.name || 'Valued Customer'},</p>
+              <p>We received a request to reset your password. Click the button below to set a new password. This link is valid for 15 minutes:</p>
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${resetUrl}" style="background-color: #047857; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Reset Password</a>
+              </div>
+              <p style="font-size: 12px; color: #6b7280; text-align: center;">
+                If you didn't request this, you can ignore this email safely.
+              </p>
             </div>
-            <p style="font-size: 12px; color: #6b7280; text-align: center;">
-              If you didn't request this, you can ignore this email safely.
-            </p>
-          </div>
-        `
-      });
+          `
+        });
 
-      const resendData = await resendRes.json();
-      if (!resendRes.ok) {
-        throw new Error(resendData.message || 'Resend API failed to dispatch email');
+        const resendData = await resendRes.json();
+        if (!resendRes.ok) {
+          throw new Error(resendData.message || 'Resend API failed to dispatch email');
+        }
+
+        res.json({ message: 'Password reset link has been sent to your email.' });
+      } catch (emailErr) {
+        console.error('Email dispatch failed, falling back to mock response:', emailErr);
+        res.json({
+          message: `Email delivery failed (${emailErr.message}). Copy this link to reset your password: ${resetUrl}`,
+          resetUrl
+        });
       }
-
-      res.json({ message: 'Password reset link has been sent to your email.' });
     } else {
       // Fallback/Mock mode if Resend is missing
       console.warn('----------------------------------------');

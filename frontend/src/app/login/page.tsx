@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { useRouter } from 'next/navigation';
@@ -17,6 +17,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const googleInitializedRef = useRef(false);
 
   useEffect(() => {
     if (user) {
@@ -39,11 +40,20 @@ export default function LoginPage() {
 
     const initializeGoogleSignIn = () => {
       const google = (window as any).google;
+      const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+      
+      if (!clientId || clientId === 'dummy_client_id') {
+        return;
+      }
+
       if (google) {
-        google.accounts.id.initialize({
-          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'dummy_client_id',
-          callback: handleCredentialResponse,
-        });
+        if (!googleInitializedRef.current) {
+          google.accounts.id.initialize({
+            client_id: clientId,
+            callback: handleCredentialResponse,
+          });
+          googleInitializedRef.current = true;
+        }
         google.accounts.id.renderButton(
           document.getElementById('googleSignInButton'),
           { theme: 'outline', size: 'large', width: 320 }

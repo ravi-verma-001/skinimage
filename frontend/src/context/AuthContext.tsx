@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 export interface User {
   _id: string;
@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
@@ -68,9 +68,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (err: any) {
       throw err;
     }
-  };
+  }, []);
 
-  const googleLogin = async (idToken: string) => {
+  const googleLogin = useCallback(async (idToken: string) => {
     try {
       const res = await fetch(`${API_URL}/auth/google`, {
         method: 'POST',
@@ -95,9 +95,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (err: any) {
       throw err;
     }
-  };
+  }, []);
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = useCallback(async (name: string, email: string, password: string) => {
     try {
       const res = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
@@ -122,16 +122,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (err: any) {
       throw err;
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(null);
     setToken(null);
     localStorage.removeItem('nextskin_token');
     localStorage.removeItem('nextskin_user');
-  };
+  }, []);
 
-  const updateProfile = async (userData: Partial<User>) => {
+  const updateProfile = useCallback(async (userData: Partial<User>) => {
     if (!token) return;
     try {
       const res = await fetch(`${API_URL}/auth/profile`, {
@@ -151,23 +151,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (err: any) {
       throw err;
     }
-  };
+  }, [token]);
 
-  const addToWishlist = async (productId: string) => {
+  const addToWishlist = useCallback(async (productId: string) => {
     if (!user) return;
     const currentWishlist = user.wishlist || [];
     if (currentWishlist.includes(productId)) return;
     
     const updatedWishlist = [...currentWishlist, productId];
     await updateProfile({ wishlist: updatedWishlist });
-  };
+  }, [user, updateProfile]);
 
-  const removeFromWishlist = async (productId: string) => {
+  const removeFromWishlist = useCallback(async (productId: string) => {
     if (!user) return;
     const currentWishlist = user.wishlist || [];
     const updatedWishlist = currentWishlist.filter(id => id !== productId);
     await updateProfile({ wishlist: updatedWishlist });
-  };
+  }, [user, updateProfile]);
 
   return (
     <AuthContext.Provider value={{ user, token, loading, login, googleLogin, register, logout, updateProfile, addToWishlist, removeFromWishlist }}>
