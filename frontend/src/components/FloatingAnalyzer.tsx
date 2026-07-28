@@ -8,6 +8,7 @@ export const FloatingAnalyzer: React.FC = () => {
   return (
     <Link
       href="/skin-analyzer"
+      prefetch={false}
       className="fixed bottom-6 right-6 z-45 flex items-center gap-2 rounded-full bg-gradient-to-r from-[#7E3B9B] via-[#6D4EB3] to-[#4C1D95] text-stone-100 px-4 py-3 shadow-[0_10px_35px_rgba(110,74,142,0.35)] border border-purple-400/35 hover:scale-105 active:scale-95 transition-all duration-300 group select-none"
     >
       {/* Pulse animation rings */}

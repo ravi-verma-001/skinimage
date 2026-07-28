@@ -744,6 +744,7 @@ export default function HomeClient() {
                 <div className="pt-4">
                   <Link
                     href="/skin-analyzer"
+                    prefetch={false}
                     className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-750 text-white font-bold py-3.5 px-7 transition duration-200 shadow-lg text-sm group"
                   >
                     <span>Launch AI Skin Analyzer</span>
