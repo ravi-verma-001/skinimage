@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ProductDetailClient from './ProductDetailClient';
+import { API_URL } from '@/config';
 
 const DUMMY_PRODUCTS = [
   { id: "[id]" },
@@ -69,10 +70,25 @@ interface PageProps {
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return DUMMY_PRODUCTS.map((product) => ({
-    id: product.id,
-  }));
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(`${API_URL}/products`);
+    if (!res.ok) throw new Error('Failed to fetch products');
+    const products = await res.json();
+    
+    // Combine fetched products with dummy products to ensure all IDs exist
+    const dbParams = products.map((p: any) => ({ id: p._id || p.id || String(p.id) }));
+    const dummyParams = DUMMY_PRODUCTS.map((p) => ({ id: p.id }));
+    
+    // Deduplicate params
+    const uniqueIds = Array.from(new Set([...dbParams, ...dummyParams].map(x => x.id)));
+    return uniqueIds.map(id => ({ id }));
+  } catch (error) {
+    console.warn('Could not fetch products from API for static paths. Using fallback dummy paths.', error);
+    return DUMMY_PRODUCTS.map((product) => ({
+      id: product.id,
+    }));
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
