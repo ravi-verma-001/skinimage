@@ -333,29 +333,20 @@ app.post('/api/auth/forgot-password', async (req, res) => {
       
     const resetUrl = `${clientOrigin}/reset-password?token=${resetToken}`;
 
-    // SMTP configuration
-    const SMTP_HOST = process.env.SMTP_HOST;
-    const SMTP_PORT = process.env.SMTP_PORT || 587;
-    const SMTP_USER = process.env.SMTP_USER;
-    const SMTP_PASS = process.env.SMTP_PASS;
-    const SMTP_FROM = process.env.SMTP_FROM || 'NextSkin <no-reply@nextskin.in>';
+    // Resend configuration
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const RESEND_FROM = process.env.RESEND_FROM || 'onboarding@resend.dev';
 
-    if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
-      // Send real email via Nodemailer
-      const transporter = nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: Number(SMTP_PORT),
-        secure: Number(SMTP_PORT) === 465,
-        auth: {
-          user: SMTP_USER,
-          pass: SMTP_PASS
-        },
-        family: 4, // Force IPv4 to prevent ENETUNREACH errors on platforms without IPv6 support like Render
-        connectionTimeout: 10000
-      });
-
-      const mailOptions = {
-        from: SMTP_FROM,
+    if (RESEND_API_KEY) {
+      // Send real email via Resend HTTP API
+      const resendRes = await httpsRequest('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${RESEND_API_KEY}`
+        }
+      }, {
+        from: RESEND_FROM,
         to: normalizedEmail,
         subject: 'NextSkin - Password Reset Request',
         html: `
@@ -372,14 +363,18 @@ app.post('/api/auth/forgot-password', async (req, res) => {
             </p>
           </div>
         `
-      };
+      });
 
-      await transporter.sendMail(mailOptions);
+      const resendData = await resendRes.json();
+      if (!resendRes.ok) {
+        throw new Error(resendData.message || 'Resend API failed to dispatch email');
+      }
+
       res.json({ message: 'Password reset link has been sent to your email.' });
     } else {
-      // Fallback/Mock mode if SMTP is missing
+      // Fallback/Mock mode if Resend is missing
       console.warn('----------------------------------------');
-      console.warn('SMTP NOT CONFIGURED. MOCKING PASSWORD RESET EMAIL.');
+      console.warn('RESEND_API_KEY NOT CONFIGURED. MOCKING PASSWORD RESET EMAIL.');
       console.warn(`RESET LINK: ${resetUrl}`);
       console.warn('----------------------------------------');
       res.json({ 
