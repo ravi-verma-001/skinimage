@@ -75,10 +75,10 @@ function DashboardContent() {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.ok ? await res.json() : [];
-        setOrders(data.length > 0 ? data : MOCK_ORDERS);
+        setOrders(data);
       } catch (err) {
-        console.warn('Could not fetch real order history. Loading local mock orders.', err);
-        setOrders(MOCK_ORDERS);
+        console.warn('Could not fetch real order history.', err);
+        setOrders([]);
       } finally {
         setLoadingOrders(false);
       }
