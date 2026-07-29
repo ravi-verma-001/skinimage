@@ -790,25 +790,24 @@ export default function HomeClient() {
             <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">Don&apos;t just take our word, take theirs.</h2>
           </div>
 
-          {/* Horizontal scroll container */}
           <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide px-2 snap-x">
             {[
               {
                 name: "Arun Singh",
                 location: "Chandigarh",
-                comment: "I think NextSkin is really bringing a new kind of innovation to India. My parents have never used telemedicine before but they absolutely love the Video Consult option! The experience is super easy, ultra smooth, and extremely useful for their skincare.",
+                comment: "I think Skinimage is really bringing a new kind of innovation to India. The formulations are scientifically backed and my parents absolutely love the barrier repair products! The experience is super premium, ultra smooth, and extremely useful for their dry skin concerns.",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
               },
               {
                 name: "Basil Matthew",
                 location: "Kerala",
-                comment: "My entire family has been super into skincare products since a long time, but never have we ever seen such fast results with ZERO side effects. I feel like my family is safer now, I think I&apos;m going to replace my skincare routine with NextSkin&apos;s Rx-grade products.",
+                comment: "My entire family has been super into skincare products since a long time, but never have we ever seen such fast results with ZERO side effects. I feel like my skin is healthier now, I think I'm going to replace my entire skincare routine with Skinimage's science-backed products.",
                 image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150"
               },
               {
                 name: "Priya Sharma",
                 location: "Delhi",
-                comment: "Finding the right skincare in India is so hard with the climate, but NextSkin has been a game-changer. The personalized recommendation and pure ingredients cleared my persistent acne in just 3 weeks!",
+                comment: "Finding the right skincare in India is so hard with the climate, but Skinimage has been a game-changer. The personalized recommendation and pure ingredients cleared my persistent acne in just 3 weeks!",
                 image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
               }
             ].map((review, idx) => (

@@ -130,8 +130,8 @@ export const Footer: React.FC = () => {
         <div className="mt-12 border-t border-emerald-250 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
           <p>&copy; {new Date().getFullYear()} Skinimage Inc. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
-            <a href="#" className="hover:underline">Privacy Policy</a>
-            <a href="#" className="hover:underline">Terms of Service</a>
+            <Link href="/privacy-policy/" className="hover:underline">Privacy Policy</Link>
+            <Link href="/terms-of-service/" className="hover:underline">Terms of Service</Link>
           </div>
         </div>
       </div>

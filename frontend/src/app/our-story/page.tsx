@@ -43,121 +43,60 @@ export default function OurStoryPage() {
         </div>
       </section>
 
-      {/* Main Philosophy Section (reused from HomeClient.tsx for consistency but polished) */}
-      <section className="pt-20 pb-24 bg-gradient-to-b from-white to-stone-50/40 overflow-hidden relative">
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-emerald-50/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-stone-200/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Brand Backstory & Mission Section */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="space-y-6">
+            <h2 className="font-serif text-3.5xl sm:text-4.5xl font-normal text-stone-900 tracking-tight leading-tight">
+              The Genesis of <span className="italic font-light text-emerald-800">Skinimage</span>
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Skinimage was founded out of a shared frustration with the clutter, misinformation, and exaggerated claims dominating the modern Indian beauty space. Skincare has become overwhelmingly complicated, with marketing campaigns pushing multi-step routines that sensitize the skin barrier rather than heal it. We saw a growing community of skincare enthusiasts who were tired of guessing and wanted straightforward, dermatologically sound formulations that deliver on their promises.
+            </p>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Our mission is simple: to restore skin health through clinical honesty. We believe that premium, high-efficacy skincare should not be built on mystery, but on verified science. By formulating with clean, clinically-proven actives at precise, functional percentages and pairing them with nourishing botanicals, we craft targeted solutions designed to protect, restore, and elevate your skin.
+            </p>
+          </div>
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            {/* Left: Image with floating effect */}
-            <div className="lg:col-span-6 relative flex justify-center">
-              <div className="absolute -inset-2 sm:-inset-4 rounded-3xl border border-stone-250/20 pointer-events-none scale-98" />
-              
-              <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
-                <img
-                  src="/skinimage-skincare-active-ingredients.jpg"
-                  alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                />
-              </div>
-            </div>
+          <div className="border-t border-stone-200/60 pt-10 space-y-6">
+            <h2 className="font-serif text-3.5xl sm:text-4.5xl font-normal text-stone-900 tracking-tight leading-tight">
+              Solving for the <span className="italic font-light text-emerald-800">Indian Climate & Skin Concerns</span>
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Skincare is not one-size-fits-all. The Indian sub-continent experiences extreme environmental stressors—ranging from intense UV indices and high humidity to severe air pollution. These factors trigger specific skin issues like stubborn hyperpigmentation, excess sebum production, post-inflammatory erythema, and a chronically compromised skin barrier.
+            </p>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Many global skincare brands design their products for cooler, less humid climates, resulting in heavy, occlusive creams that clog pores or highly aggressive active percentages that cause irritation under the hot sun. Skinimage solves this by creating water-light, fast-absorbing gel formulations (like our UV-Aurora Sunscreen Gel) that deliver powerful active ingredients without weighing the skin down. We optimize every formula to balance efficacy with maximum skin tolerance, ensuring suitability for even the most sensitive skin types in India.
+            </p>
+          </div>
 
-            {/* Right: Content details */}
-            <div className="lg:col-span-6 space-y-8 flex flex-col justify-center">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2">
-                  <span className="h-[1px] w-6 bg-emerald-700"></span>
-                  <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-emerald-800">
-                    Science • Care • Results
-                  </span>
-                </div>
-                <h2 className="font-serif text-4.5xl sm:text-5.5xl font-normal text-stone-900 tracking-tight leading-[115%]">
-                  Healthy Skin Starts <br />
-                  with <span className="italic font-light text-emerald-800">Science.</span>
-                </h2>
-                <p className="text-stone-500 text-sm sm:text-base leading-relaxed max-w-xl">
-                  At <strong className="text-stone-900 font-semibold">Skinimage Skincare</strong>, we believe effective skincare combines science, quality, and simplicity. Our formulas are enriched with proven active ingredients such as Niacinamide, Vitamin C, Hyaluronic Acid, AHA, and BHA to help brighten, hydrate, repair, and protect your skin.
-                </p>
-              </div>
+          <div className="border-t border-stone-200/60 pt-10 space-y-6">
+            <h2 className="font-serif text-3.5xl sm:text-4.5xl font-normal text-stone-900 tracking-tight leading-tight">
+              Our Formulation Philosophy: <span className="italic font-light text-emerald-800">Clinical Actives Meet Bio-Botanicals</span>
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              We operate under a dual-formulation framework that bridges the gap between pure clinical actives and soothing natural extracts. We refer to this as the Synergy of Science and Care:
+            </p>
+            <ul className="list-disc pl-6 space-y-3 text-stone-600 text-sm sm:text-base">
+              <li>
+                <strong className="text-stone-900 font-semibold">Precision Active Percentages:</strong> We do not use active ingredients for marketing claims. When we formulate with Niacinamide, Vitamin C, PDRN, or Hyaluronic Acid, we use them at their clinically-validated percentages to ensure visible, long-lasting results.
+              </li>
+              <li>
+                <strong className="text-stone-900 font-semibold">The Botanical Buffer:</strong> Actives can sometimes cause initial irritation. To combat this, we enrich every formula with a soothing botanical buffer—such as Centella Asiatica, Licorice Root Extract, and Allantoin. These bio-actives calm redness, hydrate the skin layers, and support the barrier while the clinical actives do their work.
+              </li>
+              <li>
+                <strong className="text-stone-900 font-semibold">Zero Unnecessary Fillers:</strong> Our products are formulated without parabens, phthalates, synthetic dyes, or drying alcohols. Every single ingredient in a Skinimage bottle has a clear purpose for your skin.
+              </li>
+            </ul>
+          </div>
 
-              {/* Feature Highlights */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-xl">
-                {/* Feature 1 */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Clinically Inspired</h4>
-                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Advanced formulations</p>
-                  </div>
-                </div>
-
-                {/* Feature 2 */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Active Ingredients</h4>
-                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Proven premium actives</p>
-                  </div>
-                </div>
-
-                {/* Feature 3 */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Universal Care</h4>
-                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Suitable for all skin types</p>
-                  </div>
-                </div>
-
-                {/* Feature 4 */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white border border-stone-200/50 hover:border-emerald-500/20 hover:shadow-sm transition-all duration-300">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-semibold text-stone-900">Proven Results</h4>
-                    <p className="text-[10px] sm:text-xs text-stone-500 mt-0.5">Visible, long-lasting effects</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dermatologist Recommended */}
-              <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
-                <div className="flex items-center gap-3 bg-stone-150/50 p-2.5 pr-4 rounded-xl border border-stone-200/40">
-                  <img 
-                    src="/doctorlogo.jpeg" 
-                    alt="Dr Recommended Formulation" 
-                    className="h-12 w-auto object-contain rounded"
-                  />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest leading-none">Formulation</span>
-                    <span className="font-serif text-sm font-semibold text-stone-900 mt-1">Dermatologist Recommended</span>
-                  </div>
-                </div>
-
-                <Link 
-                  href="/shop" 
-                  className="inline-flex items-center justify-center rounded-full bg-stone-900 text-white font-semibold px-6 py-3 text-xs uppercase tracking-wider transition-all duration-300 hover:bg-emerald-800 hover:shadow-lg hover:scale-[1.03] active:scale-95 group self-start sm:self-auto"
-                >
-                  Shop the Collection <span className="ml-2 transition-transform duration-350 group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
-            </div>
+          <div className="border-t border-stone-200/60 pt-10 space-y-6">
+            <h2 className="font-serif text-3.5xl sm:text-4.5xl font-normal text-stone-900 tracking-tight leading-tight">
+              Meet our <span className="italic font-light text-emerald-800">Scientific Council</span>
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Behind every Skinimage bottle is a dedicated team of cosmetic chemists, dermatologists, and formulation researchers. Led by <strong className="text-stone-900 font-semibold">Dr. Ananya Verma, MD</strong>, our research council oversees every phase of product development—from initial ingredient selection and synergy mapping to consumer testing trials. This ensures that every formulation we release is safe, stable, and highly effective for long-term daily use.
+            </p>
           </div>
         </div>
       </section>

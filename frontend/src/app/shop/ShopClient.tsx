@@ -23,7 +23,7 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
   const [loading, setLoading] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [activeCategory, setActiveCategory] = useState(initialCategory || '');
   const [activeSkinType, setActiveSkinType] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeSort, setActiveSort] = useState('');
@@ -362,7 +362,7 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
                       key={cat}
                       onClick={() => { updateFilters('category', cat); }}
                       className={`text-left text-xs py-2 px-3 rounded text-center transition ${
-                        activeCategory.toLowerCase() === cat.toLowerCase()
+                        (activeCategory || '').toLowerCase() === cat.toLowerCase()
                           ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-250'
                           : 'bg-stone-50 text-stone-600 border border-stone-200/40 hover:bg-stone-100'
                       }`}

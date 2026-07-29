@@ -3,9 +3,30 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BLOG_POSTS } from '../page';
 import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react';
+import type { Metadata } from 'next';
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  if (!post) {
+    return {
+      title: 'Post Not Found | Skinimage',
+    };
+  }
+  return {
+    title: `${post.title} | Skinimage`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      images: [post.image],
+    },
+  };
 }
 
 export async function generateStaticParams() {

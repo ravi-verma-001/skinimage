@@ -30,6 +30,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://skinimage.in'),
   title: "Skinimage | Premium Science-Backed Luxury Skincare",
   description: "Formulated for maximum results, minimum irritation. We design luxury skincare backed by clinical science and powered by bio-active botanicals.",
   keywords: ["skincare", "serum", "cleanser", "moisturizer", "luxury skincare", "clean beauty"],
