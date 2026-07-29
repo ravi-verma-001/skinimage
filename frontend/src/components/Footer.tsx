@@ -55,17 +55,17 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Cleanser" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop/cleanser/" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Cleansers
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Serum" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop/serum/" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Treatment Serums
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=Moisturizer" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/shop/moisturizer/" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   Moisturizers
                 </Link>
               </li>

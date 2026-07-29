@@ -281,7 +281,7 @@ export default function HomeClient() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 justify-items-center">
             {/* Facewash */}
             <Link 
-              href="/shop?category=Facewash" 
+              href="/shop/cleanser/" 
               prefetch={false} 
               className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
@@ -318,7 +318,7 @@ export default function HomeClient() {
 
             {/* Sunscreen */}
             <Link 
-              href="/shop?category=Sunscreen" 
+              href="/shop/sunscreen/" 
               prefetch={false} 
               className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
@@ -355,7 +355,7 @@ export default function HomeClient() {
 
             {/* Cleanser */}
             <Link 
-              href="/shop?category=Cleanser" 
+              href="/shop/cleanser/" 
               prefetch={false} 
               className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >
@@ -392,7 +392,7 @@ export default function HomeClient() {
 
             {/* Toner */}
             <Link 
-              href="/shop?category=Toner" 
+              href="/shop/toner/" 
               prefetch={false} 
               className="group relative w-full aspect-[4/5] sm:max-w-none rounded-2xl overflow-hidden border border-stone-200/60 bg-stone-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-end"
             >

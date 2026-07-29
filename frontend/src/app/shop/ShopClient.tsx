@@ -146,16 +146,21 @@ const DUMMY_PRODUCTS: ProductType[] = [
   }
 ];
 
-function ShopContent() {
+interface ShopContentProps {
+  initialProducts?: ProductType[];
+  initialCategory?: string;
+}
+
+function ShopContent({ initialProducts = [], initialCategory = '' }: ShopContentProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<ProductType[]>(initialProducts);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  // Read filter values from URL search parameters
-  const activeCategory = searchParams.get('category') || '';
+  // Read filter values from URL search parameters, prioritizing the static path category if provided
+  const activeCategory = initialCategory || searchParams.get('category') || '';
   const activeSkinType = searchParams.get('skinType') || '';
   const searchQuery = searchParams.get('search') || '';
   const activeSort = searchParams.get('sort') || '';
@@ -163,8 +168,23 @@ function ShopContent() {
   const categories = ['Cleanser', 'Serum', 'Moisturizer', 'Sunscreen', 'Toner', 'Oil'];
   const skinTypes = ['Dry', 'Oily', 'Sensitive', 'Combination', 'Normal'];
 
+  // Handle client-side redirect if query parameter category is present (e.g. /shop?category=Serum)
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      router.replace(`/shop/${categoryParam.toLowerCase()}/`);
+    }
+  }, [searchParams, router]);
+
   useEffect(() => {
     async function fetchProducts() {
+      // If we already have initial products and haven't updated any other filters on client, we can skip initial load fetch
+      if (initialProducts.length > 0 && !activeSkinType && !searchQuery && !activeSort && activeCategory === initialCategory) {
+        setProducts(initialProducts);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       try {
         const queryParams = new URLSearchParams();
@@ -185,7 +205,7 @@ function ShopContent() {
       }
     }
     fetchProducts();
-  }, [activeCategory, activeSkinType, searchQuery, activeSort]);
+  }, [activeCategory, activeSkinType, searchQuery, activeSort, initialProducts, initialCategory]);
 
   // Client-side filtering in case server is not running
   const getFilteredFallback = () => {
@@ -230,13 +250,30 @@ function ShopContent() {
   };
 
   const updateFilters = (key: string, value: string) => {
+    if (key === 'category') {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete('category');
+      const queryString = params.toString();
+      if (value) {
+        router.push(`/shop/${value.toLowerCase()}/${queryString ? `?${queryString}` : ''}`);
+      } else {
+        router.push(`/shop/${queryString ? `?${queryString}` : ''}`);
+      }
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
     if (value) {
       params.set(key, value);
     } else {
       params.delete(key);
     }
-    router.push(`/shop?${params.toString()}`);
+    
+    if (initialCategory) {
+      router.push(`/shop/${initialCategory.toLowerCase()}/${params.toString() ? `?${params.toString()}` : ''}`);
+    } else {
+      router.push(`/shop?${params.toString()}`);
+    }
   };
 
   const clearAllFilters = () => {
@@ -519,14 +556,14 @@ function ShopContent() {
   );
 }
 
-export default function ShopClient() {
+export default function ShopClient({ initialProducts, initialCategory }: ShopContentProps) {
   return (
     <Suspense fallback={
       <div className="flex h-96 items-center justify-center">
         <RefreshCw className="h-8 w-8 animate-spin text-emerald-700" />
       </div>
     }>
-      <ShopContent />
+      <ShopContent initialProducts={initialProducts} initialCategory={initialCategory} />
     </Suspense>
   );
 }

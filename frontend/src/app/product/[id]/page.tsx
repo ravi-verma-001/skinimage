@@ -109,7 +109,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+import { FALLBACK_PRODUCTS } from '@/fallbackProducts';
+
 export default async function ProductDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
-  return <ProductDetailClient id={resolvedParams.id} />;
+  
+  let initialProduct = null;
+  try {
+    const res = await fetch(`${API_URL}/products/${resolvedParams.id}`, { next: { revalidate: 60 } });
+    if (res.ok) {
+      initialProduct = await res.json();
+    }
+  } catch (error) {
+    console.warn(`Failed to fetch product details for ${resolvedParams.id} on server:`, error);
+  }
+
+  if (!initialProduct) {
+    initialProduct = FALLBACK_PRODUCTS.find(
+      (p) => p._id === resolvedParams.id || p.id === resolvedParams.id
+    );
+  }
+
+  return <ProductDetailClient id={resolvedParams.id} initialProduct={initialProduct} />;
 }

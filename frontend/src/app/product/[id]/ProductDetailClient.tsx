@@ -640,16 +640,17 @@ const CATEGORY_FAQS: Record<string, { question: string; answer: string }[]> = {
 
 interface ProductDetailClientProps {
   id: string;
+  initialProduct?: any;
 }
 
-export default function ProductDetailClient({ id }: ProductDetailClientProps) {
+export default function ProductDetailClient({ id, initialProduct }: ProductDetailClientProps) {
   const router = useRouter();
   const { user, token, addToWishlist, removeFromWishlist } = useAuth();
   const { addToCart } = useCart();
 
-  const [product, setProduct] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [activeImage, setActiveImage] = useState<string>('');
+  const [product, setProduct] = useState<any>(initialProduct);
+  const [loading, setLoading] = useState(!initialProduct);
+  const [activeImage, setActiveImage] = useState<string>(initialProduct?.images?.[0] || '');
   const [quantity, setQuantity] = useState(1);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     description: true,
@@ -751,8 +752,14 @@ export default function ProductDetailClient({ id }: ProductDetailClientProps) {
   };
 
   useEffect(() => {
+    if (initialProduct && (initialProduct._id === id || initialProduct.id === id)) {
+      setProduct(initialProduct);
+      setActiveImage(initialProduct.images?.[0] || '');
+      setLoading(false);
+      return;
+    }
     fetchProductDetails();
-  }, [id]);
+  }, [id, initialProduct]);
 
   if (loading) {
     return (
