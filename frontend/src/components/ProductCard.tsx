@@ -141,11 +141,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="mt-3 flex items-center space-x-2">
           <div className="flex text-amber-400 gap-0.5">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-stone-200'}`} />
+              <Star key={i} className={`h-3 w-3 ${i < Math.floor(product.rating ?? 5) ? 'fill-current' : 'text-stone-200'}`} />
             ))}
           </div>
           <span className="text-[11px] font-bold text-stone-500">
-            {product.rating.toFixed(1)} <span className="text-stone-300 font-normal">({product.reviewsCount})</span>
+            {(product.rating ?? 5).toFixed(1)} <span className="text-stone-300 font-normal">({product.reviewsCount ?? 0})</span>
           </span>
         </div>
 

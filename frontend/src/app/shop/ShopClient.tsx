@@ -1,44 +1,19 @@
 'use client';
 
 import React, { useEffect, useState, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ProductCard, ProductType } from '@/components/ProductCard';
 import { SlidersHorizontal, Search, RefreshCw, X } from 'lucide-react';
 
 import { API_URL } from '@/config';
 import { FALLBACK_PRODUCTS } from '@/fallbackProducts';
+import URLQuerySync from '@/components/URLQuerySync';
 
 const DUMMY_PRODUCTS = FALLBACK_PRODUCTS;
 
 interface ShopContentProps {
   initialProducts?: ProductType[];
   initialCategory?: string;
-}
-
-// A tiny Suspense-wrapped component that syncs query params from the URL client-side
-function URLQuerySync({
-  onSync,
-}: {
-  onSync: (filters: { skinType: string; search: string; sort: string }) => void;
-}) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    if (categoryParam) {
-      router.replace(`/shop/${categoryParam.toLowerCase()}/`);
-      return;
-    }
-
-    onSync({
-      skinType: searchParams.get('skinType') || '',
-      search: searchParams.get('search') || '',
-      sort: searchParams.get('sort') || '',
-    });
-  }, [searchParams, onSync, router]);
-
-  return null;
 }
 
 export default function ShopClient({ initialProducts = [], initialCategory = '' }: ShopContentProps) {
@@ -106,7 +81,7 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
     let list = [...DUMMY_PRODUCTS];
 
     if (activeCategory) {
-      list = list.filter((p) => p.category.toLowerCase() === activeCategory.toLowerCase());
+      list = list.filter((p) => p.category && p.category.toLowerCase() === activeCategory.toLowerCase());
     }
     if (activeSkinType) {
       const skinMap: Record<string, string[]> = {
@@ -263,7 +238,7 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
                   key={cat}
                   onClick={() => updateFilters('category', cat)}
                   className={`w-full text-left text-xs py-1.5 px-2.5 rounded transition ${
-                    activeCategory.toLowerCase() === cat.toLowerCase()
+                    (activeCategory || '').toLowerCase() === cat.toLowerCase()
                       ? 'bg-emerald-50 text-emerald-800 font-bold'
                       : 'text-stone-600 hover:bg-stone-100'
                   }`}
