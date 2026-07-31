@@ -838,10 +838,12 @@ export default function HomeClient() {
               }
             ].map((review, idx) => (
               <div key={idx} className="flex flex-row items-start gap-5 p-6 rounded-[20px] bg-white border-2 border-[#4C1D95]/85 shadow-sm w-[85vw] sm:w-[450px] shrink-0 snap-center">
-                {/* Profile Image with dotted decorative shadow */}
+                {/* Profile Initials Avatar with dotted decorative shadow */}
                 <div className="relative shrink-0 mt-1">
                   <div className="absolute -bottom-2 -left-2 w-16 h-16 opacity-35" style={{ backgroundImage: 'radial-gradient(#4C1D95 2px, transparent 2px)', backgroundSize: '5px 5px' }} />
-                  <img src={review.image} loading="lazy" width={64} height={64} className="relative z-10 w-16 h-16 rounded-xl object-cover border border-stone-100 shadow-sm" alt={review.name} />
+                  <div className="relative z-10 w-16 h-16 rounded-xl flex items-center justify-center bg-[#E8DFF4] text-[#5B2A8C] font-semibold text-lg border border-purple-100 shadow-sm">
+                    {review.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                  </div>
                 </div>
 
                 <div className="space-y-3">
