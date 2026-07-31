@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold tracking-wider text-stone-900 uppercase mb-4">Customer Care</h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/#faq" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
+                <Link href="/faq" prefetch={false} className="text-sm text-stone-600 hover:text-emerald-700 transition">
                   FAQ & Support
                 </Link>
               </li>

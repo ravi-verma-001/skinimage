@@ -171,12 +171,7 @@ export default function HomeClient() {
     { name: "BHA (Salicylic Acid)", function: "Deep Pore Exfoliation", desc: "Oil-soluble acid that penetrates deep inside pores to clear acne-causing blockages." },
   ];
 
-  const faqs = [
-    { q: "Are your products suitable for sensitive skin?", a: "Yes, all Skinimage products are formulated with dermatological sensitivity in mind. We use soothing buffers like Centella Asiatica, Panthenol, and Ceramides to support skin health without triggering irritation." },
-    { q: "How should I store my Vitamin C Serum?", a: "To maintain maximum potency, store your 15% Vitamin C Serum in a cool, dark place away from direct sunlight (or in a cosmetics fridge). Keep the cap tightly sealed to prevent oxidation." },
-    { q: "When will I start seeing results?", a: "Hydration benefits (Hyaluronic Acid & Centella Cleanser) are immediate. Skin texture and pore improvements (BHA & Niacinamide) can be seen within 2-3 weeks, while pigment fading and wrinkle repair (Vitamin C & Retinol) typically require 4-6 weeks of consistent use." },
-    { q: "Are Skinimage products cruelty-free?", a: "100%. We never test our formulas or ingredients on animals, and we only partner with cruelty-free suppliers." }
-  ];
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -870,27 +865,21 @@ export default function HomeClient() {
       </section>
 
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-20 bg-white border-t border-stone-200">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl font-bold text-stone-900 text-center mb-10">Frequently Asked Questions</h2>
-          <div className="divide-y divide-stone-200">
-            {faqs.map((faq, index) => (
-              <div key={index} className="py-5">
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="flex w-full items-center justify-between text-left focus:outline-none"
-                >
-                  <span className="text-base font-semibold text-stone-950">{faq.q}</span>
-                  <ChevronDown className={`h-5 w-5 text-stone-500 transition-transform duration-200 ${openFaq === index ? 'rotate-180' : ''}`} />
-                </button>
-                {openFaq === index && (
-                  <div className="mt-3 text-sm text-stone-600 leading-relaxed animate-fade-in">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
+      {/* FAQ CTA Section */}
+      <section className="py-20 bg-stone-50 border-t border-stone-200">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h2 className="font-serif text-3xl font-bold text-stone-900 font-fraunces">Have Questions? We Have Answers</h2>
+          <p className="text-sm text-stone-600 max-w-xl mx-auto font-sans leading-relaxed">
+            Read our dedicated FAQ page to learn about skin suitability, shipping times, return policies, and how to maximize your results.
+          </p>
+          <div className="pt-2">
+            <Link 
+              href="/faq" 
+              prefetch={false}
+              className="inline-block bg-[#5B2A8C] hover:bg-[#5B2A8C]/95 text-white font-semibold font-sans px-8 py-3.5 rounded-full transition-all duration-300 shadow-md text-sm uppercase tracking-wider"
+            >
+              View Full FAQ
+            </Link>
           </div>
         </div>
       </section>

@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
     { name: 'Skin Analyzer', href: '/skin-analyzer' },
     { name: 'About Us', href: '/about-us' },
     { name: 'Our Blog', href: '/blog' },
-    { name: 'FAQ', href: '/#faq' },
+    { name: 'FAQ', href: '/faq' },
   ];
 
   return (
