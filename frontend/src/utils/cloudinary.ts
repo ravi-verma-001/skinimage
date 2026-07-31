@@ -25,6 +25,8 @@ export const getOptimizedMediaUrl = (
   // 1. Resolve local path to Cloudinary URL via mapping if available
   if (url.startsWith('/') && mapping[url]) {
     finalUrl = mapping[url];
+    // Strip version prefix (e.g., /v12345678/) to bypass Cloudinary CDN cache and fetch the latest uploaded version
+    finalUrl = finalUrl.replace(/\/v\d+\//, '/');
   }
 
   // 2. If it's not a Cloudinary URL (no mapping and not a direct Cloudinary URL), return original fallback path
