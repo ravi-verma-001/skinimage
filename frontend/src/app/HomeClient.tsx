@@ -18,8 +18,8 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     stock: 85,
     images: ["/cleanser.png", "/CleanserVideo.mp4"],
     description: "Skinimage Oil Cleanser (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
-    rating: 4.8,
-    reviewsCount: 142,
+    rating: 5.0,
+    reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true
   },
@@ -31,8 +31,8 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     stock: 50,
     images: ["/aha_bha_face_serum.jpg"],
     description: "AHA & BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more youthful complexion with regular use.",
-    rating: 4.7,
-    reviewsCount: 98,
+    rating: 5.0,
+    reviewsCount: 0,
     isFeatured: true,
     isNewArrival: true
   },
@@ -44,8 +44,8 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     stock: 120,
     images: ["/uv_aurora_sunscreen.png"],
     description: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is an ultra-lightweight, fast-absorbing sunscreen formulated to provide broad-spectrum protection against UVA and UVB rays while delivering deep hydration and a non-greasy, water-light feel suitable for daily use. This advanced aqua sunscreen gel is powered by key ingredients such as Hyaluronic Acid to deeply hydrate and maintain skin moisture, Homosalate and Octyl Methoxy Cinnamate to provide effective UVB protection, Tinosorb M for broad-spectrum UVA and UVB defense, Zinc PCA to help balance oil and support skin clarity, Vitamin E for antioxidant protection, Kakadu Plum Extract to support skin radiance and environmental defense, Silk Protein Extract for a smooth and soft skin finish, Aristoflex AVC for lightweight gel texture, Allantoin to soothe and calm the skin, and Melanin to enhance photoprotection. Designed for all skin types, this sunscreen spreads effortlessly, absorbs quickly without white cast, and helps protect skin from sun damage, premature ageing, and dehydration when applied regularly as directed.",
-    rating: 4.9,
-    reviewsCount: 215,
+    rating: 5.0,
+    reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true
   },
@@ -57,8 +57,8 @@ const FALLBACK_PRODUCTS: ProductType[] = [
     stock: 150,
     images: ["/aha_bha_face_wash.jpg"],
     description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
-    rating: 4.8,
-    reviewsCount: 210,
+    rating: 5.0,
+    reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true
   }
@@ -74,8 +74,8 @@ const getFallbackTrending = (): ProductType[] => [
     stock: 110,
     images: ["/pdrn_regenerating_serum.jpg"],
     description: "Give your skin the tools to repair and renew itself with PDRN Regenerating Serum — an advanced formula built on DNA repair technology and clinically studied peptides. Designed for anyone looking to restore firmness, improve elasticity, and support long-term skin recovery.",
-    rating: 4.9,
-    reviewsCount: 189,
+    rating: 5.0,
+    reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
     isNewArrival: false
