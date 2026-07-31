@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Send, Instagram, Twitter, Youtube, Sparkles } from 'lucide-react';
+import { getOptimizedMediaUrl } from '@/utils/cloudinary';
 import toast from 'react-hot-toast';
 
 export const Footer: React.FC = () => {
@@ -24,7 +25,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <Link href="/" className="transition hover:opacity-85 flex items-center">
               <img
-                src="/skinimagelogo.png"
+                src={getOptimizedMediaUrl('/skinimagelogo.png', { width: 250 })}
                 alt="Skin Image Logo"
                 className="h-10 w-auto object-contain brightness-95"
               />

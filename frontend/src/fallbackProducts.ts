@@ -29,7 +29,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     category: "Cleanser",
     price: 1329.00,
     stock: 85,
-    images: ["/cleanser.png", "/CleanserVideo.mp4"],
+    images: ["/cleanser.png"],
     description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
     rating: 4.8,
     reviewsCount: 142,

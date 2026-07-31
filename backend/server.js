@@ -956,6 +956,11 @@ app.get('/', (req, res) => {
   res.send('NextSkin Premium Skincare REST API is Running.');
 });
 
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Health check passed', timestamp: new Date() });
+});
+
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

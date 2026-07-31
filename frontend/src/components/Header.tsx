@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Search, Heart, ShoppingBag, User, Menu, X, LogOut, ShieldAlert } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
+import { getOptimizedMediaUrl } from '@/utils/cloudinary';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ export const Header: React.FC = () => {
     { name: 'Home', href: '/' },
     { name: 'Shop All', href: '/shop' },
     { name: 'Skin Analyzer', href: '/skin-analyzer' },
-    { name: 'Our Story', href: '/our-story' },
+    { name: 'About Us', href: '/about-us' },
     { name: 'Our Blog', href: '/blog' },
     { name: 'FAQ', href: '/#faq' },
   ];
@@ -57,7 +58,7 @@ export const Header: React.FC = () => {
             <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
               <Link href="/" prefetch={false} className="transition hover:opacity-85 flex items-center">
                 <img
-                  src="/skinimagelogo.png"
+                  src={getOptimizedMediaUrl('/skinimagelogo.png', { width: 250 })}
                   alt="Skin Image Logo"
                   className="h-10 w-auto object-contain"
                 />

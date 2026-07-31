@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
 
 @theme {
   --color-emerald-50: #faf8ff;
@@ -11,8 +13,10 @@
   --color-emerald-900: #6D4EB3;
   --color-emerald-950: #6F4A8E; /* Deep Lavender heading color */
   
-  --font-sans: var(--font-dmsans), var(--font-sans), sans-serif;
-  --font-serif: var(--font-poppins), var(--font-serif), serif;
+  --font-display: var(--font-display), serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-sans: var(--font-body), sans-serif;
+  --font-serif: var(--font-display), serif;
 }
 
 @layer base {
@@ -28,12 +32,12 @@
   body {
     background-color: #ffffff;
     color: var(--foreground);
-    font-family: var(--font-dmsans), var(--font-sans), sans-serif;
+    font-family: var(--font-body), sans-serif;
     line-height: 1.7; /* Line height 170% */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins), var(--font-serif), serif;
+    font-family: var(--font-display), serif;
     color: #6F4A8E; /* Deep Lavender headings color */
     letter-spacing: -1px;
     line-height: 1.1; /* Line height 110% */
@@ -78,4 +82,47 @@
 .animate-banner-text {
   animation: bannerText 4s ease-in-out infinite;
   display: inline-block;
+}
+
+/* About Us Stamps & Fonts */
+
+.font-fraunces {
+  font-family: 'Fraunces', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.stamp-reveal {
+  opacity: 0;
+  transform: scale(1.15) rotate(-3deg);
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stamp-active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.4s ease-out, 
+                filter 0.4s ease-out;
+  }
+  
+  .stamp-delay-1 {
+    transition-delay: 200ms;
+  }
+  
+  .stamp-delay-2 {
+    transition-delay: 400ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }

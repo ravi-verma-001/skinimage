@@ -149,7 +149,6 @@ const DUMMY_PRODUCTS = [
     stock: 85,
     images: [
       "/cleanser.png",
-      "/CleanserVideo.mp4",
       "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage Oil Cleanser (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants without damaging the skin barrier. If you are looking for an effective cleansing oil for makeup removal that breaks down waterproof products within minutes, this gentle yet deep-action formula is the ultimate essential step in your skincare routine.\n\nThis formula features an optimal blend of premium botanical oils and Ayurvedic extracts: Sweet Almond, Argan, Jojoba, Rosehip, Coconut & Sesame Oils for skin barrier repair and deep nourishment, Plant-Derived Squalane to maintain skin hydration and softness, Amla, Bhringraj & Brahmi (Bacopa Monnieri) for antioxidant protection, and Neem Seed Oil, Bisabolol & Vitamin E to soothe irritation and promote a clear complexion. Systematically designed for all skin types, this cleanser stands out as the best cleansing oil for double cleansing, instantly transforming into a lightweight, non-greasy milky emulsion upon contact with water, leaving the skin feeling velvety soft and perfectly clean.",
@@ -639,7 +638,6 @@ const seedMongoDB = async () => {
         product.howToUse = "Pump/apply a sufficient quantity onto dry hands and apply directly onto a dry face.\n\nGently massage in circular motions for 1–2 minutes to melt away makeup, sunscreen, and daily grime.\n\nAdd a small amount of water to emulsify the oil into a rich, milky lotion.\n\nRinse thoroughly with water.\n\nDouble Cleanse: Follow up with a gentle water-based cleanser (like Skinimage Acne & Oil Control Face Cleanser) for a complete deep-pore clean.";
         product.images = [
           "/cleanser.png",
-          "/CleanserVideo.mp4",
           "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600"
         ];
         product.price = 1329.00;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, DM_Sans } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
@@ -9,24 +9,18 @@ import { FloatingAnalyzer } from "@/components/FloatingAnalyzer";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
+const fraunces = Fraunces({ 
+  subsets: ['latin'], 
+  variable: '--font-display',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
-const poppins = Poppins({
-  weight: ["600", "700"],
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  weight: ["400", "500", "700"],
-  variable: "--font-dmsans",
-  subsets: ["latin"],
-  display: "swap",
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-body',
+  weight: ['400', '500', '600'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -59,9 +53,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${poppins.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white font-sans text-stone-850">
+      <body className="min-h-full flex flex-col bg-white text-stone-850">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

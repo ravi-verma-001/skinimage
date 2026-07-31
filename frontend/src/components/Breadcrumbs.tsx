@@ -26,7 +26,7 @@ interface BreadcrumbsProps {
 const STANDARD_SEGMENT_MAP: Record<string, string> = {
   shop: 'Shop',
   blog: 'Journal',
-  'our-story': 'About Us',
+  'about-us': 'About Us',
   contact: 'Contact',
   faq: 'FAQ',
   'privacy-policy': 'Privacy Policy',

@@ -6,6 +6,7 @@ import { ProductCard, ProductType } from '@/components/ProductCard';
 import { Sparkles, ArrowRight, ShieldCheck, Award, Heart, CheckCircle2, ChevronDown, RefreshCw, Star, Camera, CheckCircle } from 'lucide-react';
 
 import { API_URL } from '@/config';
+import { getOptimizedMediaUrl } from '@/utils/cloudinary';
 
 // Fallback dummy products in case API is loading or fails
 const FALLBACK_PRODUCTS: ProductType[] = [
@@ -196,11 +197,13 @@ export default function HomeClient() {
       <section className="relative w-full overflow-hidden bg-white">
         <div className="w-full relative">
           <video 
-            src="/Aha_Bha_video.mp4" 
+            src={getOptimizedMediaUrl('/Aha_Bha_video.mp4', { resourceType: 'video' })} 
             autoPlay 
             loop 
             muted 
             playsInline
+            width={1920}
+            height={480}
             className="w-full h-auto max-h-[380px] md:max-h-[480px] object-cover block"
           />
         </div>
@@ -219,8 +222,10 @@ export default function HomeClient() {
               {/* Image container */}
               <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white">
                 <img 
-                  src="/doctorlogo.jpeg" 
+                  src={getOptimizedMediaUrl('/doctorlogo.jpeg', { width: 128, height: 128 })} 
                   alt="Dermatologist Recommended" 
+                  width={64}
+                  height={64}
                   className="w-full h-full object-cover hover:scale-115 transition-transform duration-500"
                 />
               </div>
@@ -288,8 +293,11 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/aha_bha_face_wash.jpg"
+                  src={getOptimizedMediaUrl('/aha_bha_face_wash.jpg', { width: 400, height: 500 })}
                   alt="Facewash"
+                  loading="lazy"
+                  width={400}
+                  height={500}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
@@ -325,8 +333,11 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/uv_aurora_sunscreen.png"
+                  src={getOptimizedMediaUrl('/uv_aurora_sunscreen.png', { width: 400, height: 500 })}
                   alt="Sunscreen"
+                  loading="lazy"
+                  width={400}
+                  height={500}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
@@ -362,8 +373,11 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/cleanser.png"
+                  src={getOptimizedMediaUrl('/cleanser.png', { width: 400, height: 500 })}
                   alt="Cleanser"
+                  loading="lazy"
+                  width={400}
+                  height={500}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
@@ -399,8 +413,11 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/sugarcane_squalane_oil.jpg"
-                  alt="Toner"
+                  src={getOptimizedMediaUrl('/sugarcane_squalane_oil.jpg', { width: 400, height: 500 })}
+                  alt="Oil"
+                  loading="lazy"
+                  width={400}
+                  height={500}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
@@ -440,8 +457,11 @@ export default function HomeClient() {
           >
             {/* Background Image */}
             <img 
-              src="/PDRNIMAGE.png" 
+              src={getOptimizedMediaUrl('/PDRNIMAGE.png', { width: 1200, height: 400 })} 
               alt="PDRN Regenerating Banner" 
+              loading="lazy"
+              width={1200}
+              height={400}
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             />
             {/* Subtle glow border */}
@@ -515,8 +535,11 @@ export default function HomeClient() {
               
               <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
                 <img
-                  src="/skinimage-skincare-active-ingredients.jpg"
+                  src={getOptimizedMediaUrl('/skinimage-skincare-active-ingredients.jpg', { width: 480, height: 600 })}
                   alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
+                  loading="lazy"
+                  width={480}
+                  height={600}
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
               </div>
@@ -599,8 +622,11 @@ export default function HomeClient() {
                 {/* Dermatologist Recommended Logo & Text */}
                 <div className="flex items-center gap-3 bg-stone-100/50 p-2.5 pr-4 rounded-xl border border-stone-200/40">
                   <img 
-                    src="/doctorlogo.jpeg" 
+                    src={getOptimizedMediaUrl('/doctorlogo.jpeg', { width: 96, height: 96 })} 
                     alt="Dr Recommended Formulation" 
+                    loading="lazy"
+                    width={48}
+                    height={48}
                     className="h-12 w-auto object-contain rounded"
                   />
                   <div className="flex flex-col">
@@ -655,13 +681,13 @@ export default function HomeClient() {
               <div className="space-y-2">
                 <span className="block text-center text-xs font-semibold uppercase tracking-wider text-stone-500">Before</span>
                 <div className="aspect-square rounded-lg overflow-hidden border border-stone-200">
-                  <img src={beforeAfterData[activeBeforeAfter].before} alt="Skin concern before treatment" className="w-full h-full object-cover" />
+                  <img src={getOptimizedMediaUrl(beforeAfterData[activeBeforeAfter].before, { width: 500, height: 500 })} alt="Skin concern before treatment" loading="lazy" width={400} height={400} className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="space-y-2">
                 <span className="block text-center text-xs font-semibold uppercase tracking-wider text-emerald-800 font-bold">After</span>
                 <div className="aspect-square rounded-lg overflow-hidden border-2 border-emerald-600/30">
-                  <img src={beforeAfterData[activeBeforeAfter].after} alt="Skin after treatment" className="w-full h-full object-cover" />
+                  <img src={getOptimizedMediaUrl(beforeAfterData[activeBeforeAfter].after, { width: 500, height: 500 })} alt="Skin after treatment" loading="lazy" width={400} height={400} className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -815,7 +841,7 @@ export default function HomeClient() {
                 {/* Profile Image with dotted decorative shadow */}
                 <div className="relative shrink-0 mt-1">
                   <div className="absolute -bottom-2 -left-2 w-16 h-16 opacity-35" style={{ backgroundImage: 'radial-gradient(#4C1D95 2px, transparent 2px)', backgroundSize: '5px 5px' }} />
-                  <img src={review.image} className="relative z-10 w-16 h-16 rounded-xl object-cover border border-stone-100 shadow-sm" alt={review.name} />
+                  <img src={review.image} loading="lazy" width={64} height={64} className="relative z-10 w-16 h-16 rounded-xl object-cover border border-stone-100 shadow-sm" alt={review.name} />
                 </div>
 
                 <div className="space-y-3">

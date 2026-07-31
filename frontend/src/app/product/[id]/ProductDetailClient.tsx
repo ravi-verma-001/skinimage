@@ -9,6 +9,7 @@ import { Star, Heart, ShoppingCart, ShieldCheck, RefreshCcw, ChevronDown, CheckC
 import toast from 'react-hot-toast';
 
 import { API_URL } from '@/config';
+import { getOptimizedMediaUrl } from '@/utils/cloudinary';
 
 const DUMMY_PRODUCTS = [
   {
@@ -906,7 +907,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
                   >
                     {img.toLowerCase().endsWith('.mp4') ? (
                       <div className="relative w-full h-full flex items-center justify-center bg-stone-50">
-                        <video src={img} className="object-contain max-h-full max-w-full opacity-60" preload="metadata" muted />
+                        <video src={getOptimizedMediaUrl(img, { resourceType: 'video' })} className="object-contain max-h-full max-w-full opacity-60" preload="metadata" muted />
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="bg-purple-600/80 text-white rounded-full p-0.5 shadow-sm">
                             <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
@@ -916,7 +917,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
                         </div>
                       </div>
                     ) : (
-                      <img src={img} alt="" className="object-contain max-h-full max-w-full" />
+                      <img src={getOptimizedMediaUrl(img, { width: 100, height: 100 })} alt="" className="object-contain max-h-full max-w-full" />
                     )}
                   </button>
                 ))}
@@ -927,7 +928,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
             <div className="relative flex-1 w-full max-w-[340px] aspect-square overflow-hidden rounded-xl border border-stone-200 bg-white flex items-center justify-center order-1 md:order-2 shadow-sm">
               {activeImage.toLowerCase().endsWith('.mp4') ? (
                 <video
-                  src={activeImage}
+                  src={getOptimizedMediaUrl(activeImage, { resourceType: 'video' })}
                   controls
                   className="object-contain max-h-full max-w-full rounded-xl"
                   autoPlay
@@ -936,7 +937,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
                 />
               ) : (
                 <img
-                  src={activeImage || "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"}
+                  src={getOptimizedMediaUrl(activeImage || "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600", { width: 600, height: 600 })}
                   alt={product.name}
                   className="object-contain max-h-[85%] max-w-[85%] transition-all duration-300"
                 />
