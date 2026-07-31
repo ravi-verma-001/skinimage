@@ -505,18 +505,117 @@ app.delete('/api/products/:id', protect, adminOnly, async (req, res) => {
 });
 
 // 3. REVIEW ENDPOINTS
-app.post('/api/reviews', protect, async (req, res) => {
-  const { productId, rating, comment } = req.body;
+const badWords = ['spam', 'scam', 'fake', 'abuse', 'shit', 'fucking', 'fuck', 'bastard', 'bitch', 'asshole'];
+function filterProfanity(text) {
+  let filtered = text;
+  badWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'gi');
+    filtered = filtered.replace(regex, '***');
+  });
+  return filtered;
+}
+
+app.post('/api/reviews', async (req, res) => {
+  const { productId, rating, comment, website, email_confirm, orderId } = req.body;
+  let { email, userName } = req.body;
+
+  // Honeypot spam trap check
+  if (website || email_confirm) {
+    return res.status(201).json({ message: 'Thank you! Your review will appear after moderation.' });
+  }
+
+  // Input validation
+  if (!productId || !rating || !comment) {
+    return res.status(400).json({ message: 'Product ID, rating, and comment are required.' });
+  }
+  const ratingNum = Number(rating);
+  if (isNaN(ratingNum) || ratingNum < 1 || ratingNum > 5) {
+    return res.status(400).json({ message: 'Rating must be a number between 1 and 5.' });
+  }
+  if (comment.trim().length < 3) {
+    return res.status(400).json({ message: 'Comment must be at least 3 characters long.' });
+  }
+
   try {
+    let user;
+    // Check if authorization token is provided for logged-in user
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        const token = authHeader.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'supersecret_skincare_jwt_token_key_123!');
+        user = await dbHelper.findUserById(decoded.id);
+        if (user) {
+          email = user.email;
+          userName = user.name;
+        }
+      } catch (err) {
+        return res.status(401).json({ message: 'Not authorized, token failed' });
+      }
+    }
+
+    if (!email || !userName) {
+      if (!email || !userName) {
+        return res.status(400).json({ message: 'Name and Email are required for submitting a review.' });
+      }
+    }
+
+    // Verify Purchase Check
+    let isVerifiedPurchase = false;
+    if (dbHelper.getDBMode()) {
+      // Local JSON DB Verification
+      const data = dbHelper.readLocalDB();
+      const matchedOrders = data.orders.filter(o => 
+        (user && o.userId === user.id) || 
+        (o.guestInfo && o.guestInfo.email && o.guestInfo.email.toLowerCase() === email.toLowerCase()) ||
+        (orderId && (o.id === orderId || o._id === orderId))
+      );
+      isVerifiedPurchase = matchedOrders.some(o => 
+        o.status === 'Delivered' && 
+        o.items.some(item => item.productId === productId)
+      );
+    } else {
+      // MongoDB Verification
+      const query = {
+        status: 'Delivered',
+        'items.productId': productId,
+        $or: []
+      };
+      if (user) {
+        query.$or.push({ userId: user._id.toString() });
+      }
+      query.$or.push({ 'guestInfo.email': email.toLowerCase() });
+      if (orderId) {
+        if (mongoose.Types.ObjectId.isValid(orderId)) {
+          query.$or.push({ _id: new mongoose.Types.ObjectId(orderId) });
+        } else {
+          query.$or.push({ _id: orderId });
+        }
+      }
+      if (query.$or.length === 0) delete query.$or;
+
+      const orderCount = await dbHelper.Order.countDocuments(query);
+      isVerifiedPurchase = orderCount > 0;
+    }
+
+    const cleanComment = filterProfanity(comment);
+
     const review = await dbHelper.createReview({
       productId,
-      userName: req.user.name,
-      rating: Number(rating),
-      comment,
+      userName,
+      email: email.toLowerCase(),
+      rating: ratingNum,
+      comment: cleanComment,
+      isVerifiedPurchase,
+      isApproved: false
     });
-    res.status(201).json(review);
+
+    res.status(201).json({ 
+      message: 'Thank you! Your review will appear after moderation.',
+      review 
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -524,6 +623,40 @@ app.get('/api/reviews/product/:productId', async (req, res) => {
   try {
     const reviews = await dbHelper.findReviewsByProduct(req.params.productId);
     res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Admin Review Moderation Endpoints
+app.get('/api/admin/reviews', protect, adminOnly, async (req, res) => {
+  try {
+    const reviews = await dbHelper.getAllReviews();
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.patch('/api/reviews/:id/approve', protect, adminOnly, async (req, res) => {
+  try {
+    const review = await dbHelper.approveReview(req.params.id);
+    if (!review) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+    res.json({ message: 'Review approved successfully', review });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.delete('/api/reviews/:id', protect, adminOnly, async (req, res) => {
+  try {
+    const success = await dbHelper.deleteReview(req.params.id);
+    if (!success) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+    res.json({ message: 'Review deleted/rejected successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

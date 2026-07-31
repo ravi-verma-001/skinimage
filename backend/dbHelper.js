@@ -105,8 +105,11 @@ const CouponSchema = new mongoose.Schema({
 const ReviewSchema = new mongoose.Schema({
   productId: { type: String, required: true },
   userName: { type: String, required: true },
+  email: { type: String, required: true },
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
+  isApproved: { type: Boolean, default: false },
+  isVerifiedPurchase: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -1215,44 +1218,148 @@ const dbHelper = {
   createReview: async (reviewData) => {
     if (getDBMode()) {
       const data = readLocalDB();
-      const newReview = {
-        id: 'r_' + Math.random().toString(36).substr(2, 9),
-        _id: 'r_' + Math.random().toString(36).substr(2, 9),
-        createdAt: new Date(),
-        ...reviewData
-      };
-      data.reviews.push(newReview);
-      
-      // Update product rating average
-      const prod = data.products.find(p => p.id === reviewData.productId || p._id === reviewData.productId);
-      if (prod) {
-        const prodReviews = data.reviews.filter(r => r.productId === reviewData.productId);
-        const totalRating = prodReviews.reduce((sum, r) => sum + r.rating, 0);
-        prod.rating = parseFloat((totalRating / prodReviews.length).toFixed(1));
-        prod.reviewsCount = prodReviews.length;
+      const existingIndex = data.reviews.findIndex(r => r.email === reviewData.email && r.productId === reviewData.productId);
+      let review;
+      if (existingIndex !== -1) {
+        review = {
+          ...data.reviews[existingIndex],
+          userName: reviewData.userName,
+          rating: Number(reviewData.rating),
+          comment: reviewData.comment,
+          isVerifiedPurchase: !!reviewData.isVerifiedPurchase,
+          isApproved: false,
+          createdAt: new Date()
+        };
+        data.reviews[existingIndex] = review;
+      } else {
+        review = {
+          id: 'r_' + Math.random().toString(36).substr(2, 9),
+          _id: 'r_' + Math.random().toString(36).substr(2, 9),
+          createdAt: new Date(),
+          isApproved: false,
+          isVerifiedPurchase: false,
+          ...reviewData
+        };
+        data.reviews.push(review);
       }
-      
       writeLocalDB(data);
-      return newReview;
+      return review;
     } else {
-      const newReview = await Review.create(reviewData);
-      // Recalculate average rating
-      const reviews = await Review.find({ productId: reviewData.productId });
-      const avgRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
-      await Product.findByIdAndUpdate(reviewData.productId, {
-        rating: parseFloat(avgRating.toFixed(1)),
-        $inc: { reviewsCount: 1 }
-      });
-      return newReview;
+      let review = await Review.findOne({ email: reviewData.email, productId: reviewData.productId });
+      if (review) {
+        review.userName = reviewData.userName;
+        review.rating = Number(reviewData.rating);
+        review.comment = reviewData.comment;
+        review.isVerifiedPurchase = !!reviewData.isVerifiedPurchase;
+        review.isApproved = false;
+        review.createdAt = new Date();
+        await review.save();
+      } else {
+        review = await Review.create({
+          ...reviewData,
+          isApproved: false
+        });
+      }
+      return review;
     }
   },
 
   findReviewsByProduct: async (productId) => {
     if (getDBMode()) {
       const data = readLocalDB();
-      return data.reviews.filter(r => r.productId === productId);
+      return data.reviews
+        .filter(r => (r.productId === productId) && r.isApproved)
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     } else {
-      return await Review.find({ productId }).sort({ createdAt: -1 });
+      return await Review.find({ productId, isApproved: true }).sort({ createdAt: -1 });
+    }
+  },
+
+  getAllReviews: async () => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      return [...data.reviews].sort((a, b) => {
+        if (a.isApproved === b.isApproved) {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }
+        return a.isApproved ? 1 : -1;
+      });
+    } else {
+      return await Review.find({}).sort({ isApproved: 1, createdAt: -1 });
+    }
+  },
+
+  approveReview: async (reviewId) => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      const review = data.reviews.find(r => r.id === reviewId || r._id === reviewId);
+      if (!review) return null;
+      review.isApproved = true;
+
+      // Recalculate average rating
+      const productId = review.productId;
+      const prod = data.products.find(p => p.id === productId || p._id === productId);
+      if (prod) {
+        const prodReviews = data.reviews.filter(r => (r.productId === productId) && r.isApproved);
+        const totalRating = prodReviews.reduce((sum, r) => sum + r.rating, 0);
+        prod.rating = prodReviews.length > 0 ? parseFloat((totalRating / prodReviews.length).toFixed(1)) : 5.0;
+        prod.reviewsCount = prodReviews.length;
+      }
+      writeLocalDB(data);
+      return review;
+    } else {
+      const review = await Review.findById(reviewId);
+      if (!review) return null;
+      review.isApproved = true;
+      await review.save();
+
+      // Recalculate average rating
+      const productId = review.productId;
+      const reviews = await Review.find({ productId, isApproved: true });
+      const reviewsCount = reviews.length;
+      const avgRating = reviewsCount > 0 ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviewsCount : 5.0;
+      await Product.findByIdAndUpdate(productId, {
+        rating: parseFloat(avgRating.toFixed(1)),
+        reviewsCount: reviewsCount
+      });
+      return review;
+    }
+  },
+
+  deleteReview: async (reviewId) => {
+    if (getDBMode()) {
+      const data = readLocalDB();
+      const idx = data.reviews.findIndex(r => r.id === reviewId || r._id === reviewId);
+      if (idx === -1) return false;
+      const review = data.reviews[idx];
+      data.reviews.splice(idx, 1);
+
+      // Recalculate average rating
+      const productId = review.productId;
+      const prod = data.products.find(p => p.id === productId || p._id === productId);
+      if (prod) {
+        const prodReviews = data.reviews.filter(r => (r.productId === productId) && r.isApproved);
+        const totalRating = prodReviews.reduce((sum, r) => sum + r.rating, 0);
+        prod.rating = prodReviews.length > 0 ? parseFloat((totalRating / prodReviews.length).toFixed(1)) : 5.0;
+        prod.reviewsCount = prodReviews.length;
+      }
+      writeLocalDB(data);
+      return true;
+    } else {
+      const review = await Review.findById(reviewId);
+      if (!review) return false;
+      const productId = review.productId;
+      await Review.findByIdAndDelete(reviewId);
+
+      // Recalculate average rating
+      const reviews = await Review.find({ productId, isApproved: true });
+      const reviewsCount = reviews.length;
+      const avgRating = reviewsCount > 0 ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviewsCount : 5.0;
+      await Product.findByIdAndUpdate(productId, {
+        rating: parseFloat(avgRating.toFixed(1)),
+        reviewsCount: reviewsCount
+      });
+      return true;
     }
   },
 

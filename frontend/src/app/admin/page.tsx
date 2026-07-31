@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { BarChart3, Package, ShoppingCart, Percent, RefreshCw, Trash2, Plus, Edit2, ShieldAlert } from 'lucide-react';
+import { BarChart3, Package, ShoppingCart, Percent, RefreshCw, Trash2, Plus, Edit2, ShieldAlert, Star, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 import { API_URL } from '@/config';
@@ -20,6 +20,7 @@ export default function AdminPanel() {
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
   const [coupons, setCoupons] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<any[]>([]);
 
   // Forms states
   const [productForm, setProductForm] = useState({
@@ -98,6 +99,15 @@ export default function AdminPanel() {
         const data = await res.json();
         setCoupons(res.ok ? data : []);
       }
+
+      // 5. Load Reviews
+      if (activeTab === 'reviews') {
+        const res = await fetch(`${API_URL}/admin/reviews`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+        setReviews(res.ok ? data : []);
+      }
     } catch (error) {
       console.warn('API error loading admin data. Simulating admin capabilities.', error);
     } finally {
@@ -108,6 +118,38 @@ export default function AdminPanel() {
   useEffect(() => {
     loadData();
   }, [activeTab, token]);
+
+  // Review Actions
+  const handleApproveReview = async (id: string) => {
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_URL}/reviews/${id}/approve`, {
+        method: 'PATCH',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to approve review');
+      toast.success('Review approved successfully!');
+      loadData();
+    } catch (err: any) {
+      toast.error(err.message || 'Error approving review');
+    }
+  };
+
+  const handleDeleteReview = async (id: string) => {
+    if (!token) return;
+    if (!window.confirm('Are you sure you want to delete/reject this review?')) return;
+    try {
+      const res = await fetch(`${API_URL}/reviews/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to delete review');
+      toast.success('Review rejected and deleted.');
+      loadData();
+    } catch (err: any) {
+      toast.error(err.message || 'Error deleting review');
+    }
+  };
 
   // Product Actions
   const handleProductSubmit = async (e: React.FormEvent) => {
@@ -245,6 +287,7 @@ export default function AdminPanel() {
     { id: 'products', label: 'Products', icon: Package },
     { id: 'orders', label: 'Orders', icon: ShoppingCart },
     { id: 'coupons', label: 'Coupons', icon: Percent },
+    { id: 'reviews', label: 'Reviews', icon: Star },
   ];
 
   return (
@@ -649,6 +692,74 @@ export default function AdminPanel() {
                     )}
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 5: Reviews Moderation */}
+          {activeTab === 'reviews' && (
+            <div className="space-y-6">
+              <h2 className="font-serif text-xl font-bold text-stone-900 border-b border-stone-100 pb-3 font-fraunces">Customer Review Moderation</h2>
+              
+              <div className="space-y-4">
+                {reviews.length === 0 ? (
+                  <p className="text-xs text-stone-400 font-sans">No reviews submitted yet.</p>
+                ) : (
+                  reviews.map((rev) => (
+                    <div key={rev._id || rev.id} className="p-4 border border-stone-250 rounded-lg bg-white space-y-3 font-sans shadow-sm">
+                      <div className="flex flex-col sm:flex-row justify-between border-b border-stone-200/60 pb-2 gap-2 text-xs">
+                        <div>
+                          <span className="block font-semibold text-stone-900">{rev.userName} ({rev.email})</span>
+                          <span className="text-[10px] text-stone-400">Submitted: {new Date(rev.createdAt).toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border border-purple-200 text-[#5B2A8C] bg-purple-50">
+                            Product ID: {rev.productId}
+                          </span>
+                          {rev.isVerifiedPurchase && (
+                            <span className="inline-flex items-center gap-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-medium px-2 py-0.5 rounded-full border border-emerald-100">
+                              <CheckCircle2 className="h-2.5 w-2.5 text-emerald-700" /> Verified Purchase
+                            </span>
+                          )}
+                          <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${rev.isApproved ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800'}`}>
+                            {rev.isApproved ? 'Approved' : 'Pending Moderation'}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 text-xs sm:text-sm">
+                        <div className="flex items-center text-amber-500">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`h-4 w-4 ${
+                                i < rev.rating ? 'fill-current' : 'text-stone-300'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <p className="text-stone-700 font-light leading-relaxed">{rev.comment}</p>
+                      </div>
+
+                      <div className="flex justify-end space-x-3 pt-2">
+                        {!rev.isApproved && (
+                          <button
+                            onClick={() => handleApproveReview(rev._id || rev.id)}
+                            className="bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs tracking-wider uppercase px-4 py-2 rounded transition-colors"
+                          >
+                            Approve
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDeleteReview(rev._id || rev.id)}
+                          className="bg-red-750 hover:bg-red-800 text-white font-medium text-xs tracking-wider uppercase px-4 py-2 rounded transition-colors"
+                        >
+                          {rev.isApproved ? 'Delete' : 'Reject'}
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           )}

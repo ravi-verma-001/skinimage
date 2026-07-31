@@ -732,6 +732,11 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
   // Review Form state
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
+  const [guestName, setGuestName] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
+  const [orderId, setOrderId] = useState('');
+  const [website, setWebsite] = useState('');
+  const [emailConfirm, setEmailConfirm] = useState('');
   const [submittingReview, setSubmittingReview] = useState(false);
 
   const fetchProductDetails = async () => {
@@ -818,30 +823,47 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
 
   const handleAddReview = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !token) {
-      toast.error('Please log in to leave a review.');
-      return;
-    }
     if (!comment.trim()) {
       toast.error('Please write a comment.');
+      return;
+    }
+    if (!user && (!guestName.trim() || !guestEmail.trim())) {
+      toast.error('Please provide your name and email to leave a review.');
       return;
     }
 
     setSubmittingReview(true);
     try {
-      const res = await fetch(`${API_URL}/products/${product._id || product.id}/reviews`, {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json'
+      };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const bodyData = {
+        productId: product._id || product.id,
+        rating,
+        comment,
+        userName: user ? user.name : guestName,
+        email: user ? user.email : guestEmail,
+        orderId: orderId.trim() || undefined,
+        website,
+        email_confirm: emailConfirm
+      };
+
+      const res = await fetch(`${API_URL}/reviews`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ rating, comment })
+        headers,
+        body: JSON.stringify(bodyData)
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to submit review');
-      toast.success('Review added successfully!');
+      toast.success(data.message || 'Thank you! Your review will appear after moderation.');
       setComment('');
-      fetchProductDetails();
+      setGuestName('');
+      setGuestEmail('');
+      setOrderId('');
     } catch (err: any) {
       toast.error(err.message || 'Error submitting review');
     } finally {
@@ -1333,7 +1355,14 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
                   <div key={rev.id || idx} className="border-b border-stone-200 pb-6">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h4 className="text-sm font-semibold text-stone-800">{rev.userName || 'Anonymous'}</h4>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-semibold text-stone-800">{rev.userName || 'Anonymous'}</h4>
+                          {rev.isVerifiedPurchase && (
+                            <span className="inline-flex items-center gap-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-medium px-2 py-0.5 rounded-full border border-emerald-100">
+                              <CheckCircle2 className="h-2.5 w-2.5 text-emerald-700" /> Verified Purchase
+                            </span>
+                          )}
+                        </div>
                         <div className="flex items-center text-amber-500 mt-1">
                           {[...Array(5)].map((_, i) => (
                             <Star
@@ -1358,54 +1387,102 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
             {/* Leave a review */}
             <div className="bg-white p-6 rounded-xl border border-stone-200 h-fit">
               <h3 className="text-lg font-serif text-stone-900 mb-4">Write a Review</h3>
-              {user ? (
-                <form onSubmit={handleAddReview} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Rating</label>
-                    <div className="flex gap-2">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          onClick={() => setRating(star)}
-                          className="text-amber-500 hover:scale-110 transition-transform"
-                        >
-                          <Star className={`h-6 w-6 ${rating >= star ? 'fill-current' : ''}`} />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Comment</label>
-                    <textarea
-                      rows={4}
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      placeholder="Share your experience with this product..."
-                      className="w-full text-xs p-3 rounded-lg border border-stone-200 focus:outline-none focus:border-emerald-800"
-                    />
-                  </div>
+              <form onSubmit={handleAddReview} className="space-y-4">
+                {/* Honeypot Spam Trap Fields (Hidden) */}
+                <input 
+                  type="text" 
+                  name="website" 
+                  value={website} 
+                  onChange={(e) => setWebsite(e.target.value)} 
+                  className="hidden" 
+                  tabIndex={-1} 
+                  autoComplete="off" 
+                />
+                <input 
+                  type="text" 
+                  name="email_confirm" 
+                  value={emailConfirm} 
+                  onChange={(e) => setEmailConfirm(e.target.value)} 
+                  className="hidden" 
+                  tabIndex={-1} 
+                  autoComplete="off" 
+                />
 
-                  <button
-                    type="submit"
-                    disabled={submittingReview}
-                    className="w-full bg-stone-900 hover:bg-stone-850 disabled:bg-stone-300 text-white font-medium text-xs tracking-wider uppercase py-3 rounded transition-colors"
-                  >
-                    {submittingReview ? 'Submitting...' : 'Submit Review'}
-                  </button>
-                </form>
-              ) : (
-                <div className="text-center py-6">
-                  <p className="text-xs text-stone-500 mb-4">You must be logged in to leave a review.</p>
-                  <Link
-                    href="/login"
-                    className="inline-block bg-stone-950 text-white text-xs font-semibold uppercase tracking-wider py-2.5 px-4 rounded hover:bg-stone-800"
-                  >
-                    Log In
-                  </Link>
+                <div>
+                  <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Rating</label>
+                  <div className="flex gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setRating(star)}
+                        className="text-amber-500 hover:scale-110 transition-transform"
+                      >
+                        <Star className={`h-6 w-6 ${rating >= star ? 'fill-current' : ''}`} />
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              )}
+
+                {!user && (
+                  <>
+                    <div>
+                      <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Name</label>
+                      <input
+                        type="text"
+                        required
+                        value={guestName}
+                        onChange={(e) => setGuestName(e.target.value)}
+                        placeholder="Your Name"
+                        className="w-full text-xs p-3 rounded-lg border border-stone-200 focus:outline-none focus:border-[#5B2A8C]"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Email</label>
+                      <input
+                        type="email"
+                        required
+                        value={guestEmail}
+                        onChange={(e) => setGuestEmail(e.target.value)}
+                        placeholder="your@email.com"
+                        className="w-full text-xs p-3 rounded-lg border border-stone-200 focus:outline-none focus:border-[#5B2A8C]"
+                      />
+                    </div>
+                  </>
+                )}
+
+                <div>
+                  <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">
+                    Order ID <span className="text-stone-400 font-normal">(Optional, for Verified Badge)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={orderId}
+                    onChange={(e) => setOrderId(e.target.value)}
+                    placeholder="Enter Order ID"
+                    className="w-full text-xs p-3 rounded-lg border border-stone-200 focus:outline-none focus:border-[#5B2A8C]"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Comment</label>
+                  <textarea
+                    rows={4}
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="Share your experience with this product..."
+                    className="w-full text-xs p-3 rounded-lg border border-stone-200 focus:outline-none focus:border-[#5B2A8C]"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submittingReview}
+                  className="w-full bg-[#5B2A8C] hover:bg-[#5B2A8C]/90 disabled:bg-stone-300 text-white font-medium text-xs tracking-wider uppercase py-3 rounded transition-colors"
+                >
+                  {submittingReview ? 'Submitting...' : 'Submit Review'}
+                </button>
+              </form>
             </div>
           </div>
         </section>
