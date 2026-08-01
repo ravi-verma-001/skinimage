@@ -564,7 +564,7 @@ app.post('/api/reviews', async (req, res) => {
 
     // Verify Purchase Check
     let isVerifiedPurchase = false;
-    if (dbHelper.getDBMode()) {
+    if (getDBMode()) {
       // Local JSON DB Verification
       const data = dbHelper.readLocalDB();
       const matchedOrders = data.orders.filter(o => 

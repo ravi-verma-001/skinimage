@@ -1390,6 +1390,7 @@ const dbHelper = {
     }
   },
 
+  readLocalDB,
   seedMongoDB
 };
 
