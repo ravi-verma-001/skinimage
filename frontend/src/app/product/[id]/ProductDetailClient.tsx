@@ -762,10 +762,9 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
       setProduct(initialProduct);
       setActiveImage(initialProduct.images?.[0] || '');
       setLoading(false);
-      return;
     }
     fetchProductDetails();
-  }, [id, initialProduct]);
+  }, [id]);
 
   if (loading) {
     return (
