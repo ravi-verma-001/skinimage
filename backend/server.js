@@ -551,7 +551,8 @@ app.post('/api/reviews', async (req, res) => {
           userName = user.name;
         }
       } catch (err) {
-        return res.status(401).json({ message: 'Not authorized, token failed' });
+        // Fallback to guest submission if token verification fails, do not throw 401
+        console.warn('Token verification failed, continuing as guest:', err.message);
       }
     }
 
