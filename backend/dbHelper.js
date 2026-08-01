@@ -380,7 +380,7 @@ const DUMMY_PRODUCTS = [
     price: 599.00,
     stock: 75,
     images: [
-      "/centella_soothing_gel.png",
+      "/Gluta_foming.png",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage Gluta Foaming Facewash is a gentle yet effective daily cleanser formulated to purify the skin, remove impurities, and enhance natural brightness while maintaining skin hydration and balance. This foaming facewash is enriched with key skin-beneficial ingredients such as Vitamin C to help brighten the complexion and support an even skin tone, Vitamin E to provide antioxidant protection and nourish the skin, Glutathione to support skin clarity and radiance, and Aloe Vera Extract to soothe, hydrate, and calm the skin during cleansing. Its mild foaming action helps lift dirt, excess oil, and pollutants without stripping moisture, making it suitable for regular use to achieve refreshed, clean, and visibly brighter skin. With consistent use, Skinimage Gluta Foaming Facewash helps promote clearer-looking skin, improved glow, and a smooth, healthy appearance.",
@@ -454,7 +454,7 @@ const DUMMY_PRODUCTS = [
     discountPrice: 939.00,
     stock: 60,
     images: [
-      "/sugarcane_squalane_oil.jpg",
+      "/milk_barrier_repair_toner.png",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage Milk Barrier Repair Hydrating Toner (Ceramide NP + Hyaluronic Acid + Snow Mushroom + Squalane + Meadowfoam Seed Oil) is an ultra-nourishing, milky-hydrating toner. It instantly replenishes skin moisture loss after cleansing, reduces transepidermal water loss (TEWL), and rebuilds the skin's natural protective barrier. If you are looking for an effective ceramide toner for skin barrier repair to treat a damaged barrier, irritation, or dehydration, this advanced milky formula is the ultimate hydrating base for your skincare routine.\n\nThis toner features a scientific blend of rich emollient oils, peptides, and hydrating active ingredients: Ceramide NP for skin barrier strengthening, Hyaluronic Acid & Tremella Fuciformis (Snow Mushroom) Extract for multi-layer deep hydration, Squalane & Meadowfoam Seed Oil to restore the skin's lipid barrier, Acetyl Tetrapeptide-11 to smooth fine lines and improve elasticity, and Green Tea & Camellia Japonica Flower Extracts for powerful antioxidant protection. Being completely fragrance-free and alcohol-free, it stands out as the best hydrating toner for dry skin, sensitive skin, and post-dermatological procedure care.",
@@ -798,7 +798,7 @@ const seedMongoDB = async () => {
         centellaGel.price = 599.00;
         centellaGel.discountPrice = undefined;
         centellaGel.images = [
-          "/centella_soothing_gel.png",
+          "/Gluta_foming.png",
           "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
         ];
         centellaGel.description = "Skinimage Gluta Foaming Facewash is a gentle yet effective daily cleanser formulated to purify the skin, remove impurities, and enhance natural brightness while maintaining skin hydration and balance. This foaming facewash is enriched with key skin-beneficial ingredients such as Vitamin C to help brighten the complexion and support an even skin tone, Vitamin E to provide antioxidant protection and nourish the skin, Glutathione to support skin clarity and radiance, and Aloe Vera Extract to soothe, hydrate, and calm the skin during cleansing. Its mild foaming action helps lift dirt, excess oil, and pollutants without stripping moisture, making it suitable for regular use to achieve refreshed, clean, and visibly brighter skin. With consistent use, Skinimage Gluta Foaming Facewash helps promote clearer-looking skin, improved glow, and a smooth, healthy appearance.";
@@ -828,7 +828,7 @@ const seedMongoDB = async () => {
         squalaneOil.price = 1099.00;
         squalaneOil.discountPrice = 939.00;
         squalaneOil.images = [
-          "/sugarcane_squalane_oil.jpg",
+          "/milk_barrier_repair_toner.png",
           "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
         ];
         squalaneOil.description = "Skinimage Milk Barrier Repair Hydrating Toner (Ceramide NP + Hyaluronic Acid + Snow Mushroom + Squalane + Meadowfoam Seed Oil) is an ultra-nourishing, milky-hydrating toner. It instantly replenishes skin moisture loss after cleansing, reduces transepidermal water loss (TEWL), and rebuilds the skin's natural protective barrier. If you are looking for an effective ceramide toner for skin barrier repair to treat a damaged barrier, irritation, or dehydration, this advanced milky formula is the ultimate hydrating base for your skincare routine.\n\nThis toner features a scientific blend of rich emollient oils, peptides, and hydrating active ingredients: Ceramide NP for skin barrier strengthening, Hyaluronic Acid & Tremella Fuciformis (Snow Mushroom) Extract for multi-layer deep hydration, Squalane & Meadowfoam Seed Oil to restore the skin's lipid barrier, Acetyl Tetrapeptide-11 to smooth fine lines and improve elasticity, and Green Tea & Camellia Japonica Flower Extracts for powerful antioxidant protection. Being completely fragrance-free and alcohol-free, it stands out as the best hydrating toner for dry skin, sensitive skin, and post-dermatological procedure care.";

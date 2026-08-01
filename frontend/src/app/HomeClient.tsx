@@ -408,8 +408,8 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src={getOptimizedMediaUrl('/sugarcane_squalane_oil.jpg', { width: 400, height: 500 })}
-                  alt="Oil"
+                  src={getOptimizedMediaUrl('/milk_barrier_repair_toner.png', { width: 400, height: 500 })}
+                  alt="Toner"
                   loading="lazy"
                   width={400}
                   height={500}
