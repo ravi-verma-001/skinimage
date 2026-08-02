@@ -286,7 +286,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Wet your face and apply a small amount of Skinimage Benzotree Face Wash. Gently massage for 10–20 seconds and rinse thoroughly with water.",
     skinType: ["Oily", "Combination", "Acne-Prone"],
-    specs: { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
+    specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
     rating: 4.6,
     reviewsCount: 88,
     isFeatured: false,
@@ -399,7 +399,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Wet face and hands, apply the facewash, massage gently in circular motions for about a minute, rinse with lukewarm water, and pat dry.",
     skinType: ["Sensitive", "Oily", "Acne-Prone", "Combination"],
-    specs: { "Volume": "80ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" },
+    specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" },
     rating: 4.7,
     reviewsCount: 64,
     isFeatured: false,
@@ -414,7 +414,7 @@ const DUMMY_PRODUCTS = [
     price: 799.00,
     stock: 150,
     images: [
-      "/aha_bha_face_wash.jpg",
+      "https://res.cloudinary.com/qm72f5jf/image/upload/v1785687583/Aha_Bha_facewash_hhurxl.png",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.",
@@ -477,7 +477,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Cleanse your face with a gentle face wash and pat dry.\n\nDispense an adequate amount of toner onto a cotton pad or directly into the palms of clean hands.\n\nGently sweep or pat over your face and neck until fully absorbed (do not rinse).\n\nFollow with your favorite serum (like Skinimage PDRN Regenerating Serum) and moisturizer.\n\nUse twice daily (morning and evening).",
     skinType: ["Dry", "Sensitive", "Normal", "Combination"],
-    specs: { "Volume": "150ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" },
+    specs: { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" },
     rating: 4.9,
     reviewsCount: 118,
     isFeatured: false,
@@ -713,7 +713,7 @@ const seedMongoDB = async () => {
           "Leaves skin feeling balanced, smooth, and comfortable without over-drying."
         ];
         oldNightCream.howToUse = "Wet your face and apply a small amount of Skinimage Benzotree Face Wash. Gently massage for 10–20 seconds and rinse thoroughly with water.";
-        oldNightCream.specs = { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" };
+        oldNightCream.specs = { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" };
         await oldNightCream.save();
         console.log('Successfully updated/verified Benzotree Face Wash in MongoDB with the correct image.');
       }
@@ -850,7 +850,7 @@ const seedMongoDB = async () => {
           "Safe for Sensitive & Post-Procedure Skin: Completely fragrance-free, alcohol-free, essential oil-free, and non-comedogenic."
         ];
         squalaneOil.howToUse = "Cleanse your face with a gentle face wash and pat dry.\n\nDispense an adequate amount of toner onto a cotton pad or directly into the palms of clean hands.\n\nGently sweep or pat over your face and neck until fully absorbed (do not rinse).\n\nFollow with your favorite serum (like Skinimage PDRN Regenerating Serum) and moisturizer.\n\nUse twice daily (morning and evening).";
-        squalaneOil.specs = { "Volume": "150ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" };
+        squalaneOil.specs = { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" };
         await squalaneOil.save();
         console.log('Successfully updated/verified Milk Barrier Repair Hydrating Toner in MongoDB.');
       }
@@ -895,7 +895,7 @@ const seedMongoDB = async () => {
       const faceWash = await Product.findOne({ name: "AHA BHA Face Wash" });
       if (faceWash) {
         faceWash.images = [
-          "/aha_bha_face_wash.jpg",
+          "https://res.cloudinary.com/qm72f5jf/image/upload/v1785687583/Aha_Bha_facewash_hhurxl.png",
           "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
         ];
         faceWash.description = "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.";
