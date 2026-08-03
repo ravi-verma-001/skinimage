@@ -9,23 +9,23 @@ const FB_ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN;
 // Validation Schema using Zod
 const fbConversionSchema = z.object({
   eventName: z.string().min(1, 'Event name is required'),
-  eventId: z.string().optional(),
+  eventId: z.string().optional().nullable(),
   userData: z.object({
-    email: z.string().email('Invalid email format').optional().or(z.literal('')),
-    phone: z.string().optional(),
-    firstName: z.string().optional(),
-    lastName: z.string().optional(),
-    clientUserAgent: z.string().optional(),
-    clientIpAddress: z.string().optional(),
-  }).optional(),
+    email: z.string().email('Invalid email format').optional().or(z.literal('')).nullable(),
+    phone: z.string().optional().nullable(),
+    firstName: z.string().optional().nullable(),
+    lastName: z.string().optional().nullable(),
+    clientUserAgent: z.string().optional().nullable(),
+    clientIpAddress: z.string().optional().nullable(),
+  }).optional().nullable(),
   customData: z.object({
-    value: z.number().optional(),
-    contentIds: z.array(z.union([z.string(), z.number()])).optional(),
-    contentType: z.string().optional(),
-    contentName: z.string().optional(),
-    orderId: z.string().optional(),
-  }).optional(),
-  sourceUrl: z.string().optional().or(z.literal('')),
+    value: z.number().optional().nullable(),
+    contentIds: z.array(z.union([z.string(), z.number()])).optional().nullable(),
+    contentType: z.string().optional().nullable(),
+    contentName: z.string().optional().nullable(),
+    orderId: z.string().optional().nullable(),
+  }).optional().nullable(),
+  sourceUrl: z.string().optional().or(z.literal('')).nullable(),
 });
 
 // Helper to hash user data using SHA-256 as required by Meta
@@ -85,7 +85,9 @@ export async function POST(req: Request) {
       }, { status: 400 });
     }
 
-    const { eventName, eventId, userData = {}, customData = {}, sourceUrl } = validationResult.data;
+    const { eventName, eventId, userData: rawUserData, customData: rawCustomData, sourceUrl } = validationResult.data;
+    const userData = rawUserData || {};
+    const customData = rawCustomData || {};
 
     // Client user agent and IP address are highly recommended for CAPI matching
     const headers = req.headers;
