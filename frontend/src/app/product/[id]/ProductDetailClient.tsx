@@ -7,6 +7,7 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { Star, Heart, ShoppingCart, ShieldCheck, RefreshCcw, ChevronDown, CheckCircle2, Award } from 'lucide-react';
 import toast from 'react-hot-toast';
+import * as fpixel from '@/utils/fpixel';
 
 import { API_URL } from '@/config';
 import { getOptimizedMediaUrl } from '@/utils/cloudinary';
@@ -129,7 +130,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Clean and pat dry the face, apply two finger-lengths of sunscreen to the face and neck, massage gently until absorbed, apply 20 minutes before sun exposure, and reapply every 2–3 hours for continued protection.",
     skinType: ["Combination", "Oily", "Normal", "Sensitive"],
-    specs: { "Volume": "50ml", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
+    specs: { "Volume": "50gm", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
     rating: 4.9,
     reviewsCount: 215,
     isFeatured: true,
@@ -162,7 +163,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Wet your face and apply a small amount of Skinimage Benzotree Face Wash. Gently massage for 10–20 seconds and rinse thoroughly with water.",
     skinType: ["Oily", "Combination", "Acne-Prone"],
-    specs: { "Volume": "150ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
+    specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
     rating: 4.6,
     reviewsCount: 88,
     isFeatured: false,
@@ -279,7 +280,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Wet face and hands, apply the facewash, massage gently in circular motions for about a minute, rinse with lukewarm water, and pat dry.",
     skinType: ["Sensitive", "Oily", "Acne-Prone", "Combination"],
-    specs: { "Volume": "80ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" },
+    specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" },
     rating: 4.7,
     reviewsCount: 64,
     isFeatured: false,
@@ -295,7 +296,7 @@ const DUMMY_PRODUCTS = [
     price: 799.00,
     stock: 150,
     images: [
-      "/aha_bha_face_wash.jpg",
+      "https://res.cloudinary.com/qm72f5jf/image/upload/v1785687583/Aha_Bha_facewash_hhurxl.png",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.",
@@ -359,7 +360,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Cleanse your face with a gentle face wash and pat dry.\n\nDispense an adequate amount of toner onto a cotton pad or directly into the palms of clean hands.\n\nGently sweep or pat over your face and neck until fully absorbed (do not rinse).\n\nFollow with your favorite serum (like Skinimage PDRN Regenerating Serum) and moisturizer.\n\nUse twice daily (morning and evening).",
     skinType: ["Dry", "Sensitive", "Normal", "Combination"],
-    specs: { "Volume": "150ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" },
+    specs: { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" },
     rating: 4.9,
     reviewsCount: 118,
     isFeatured: false,
@@ -766,6 +767,16 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
     fetchProductDetails();
   }, [id]);
 
+  useEffect(() => {
+    if (product) {
+      fpixel.trackViewContent({
+        id: product._id || product.id || id,
+        name: product.name,
+        price: product.discountPrice || product.price
+      });
+    }
+  }, [product, id]);
+
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-stone-50">
@@ -816,6 +827,12 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
       discountPrice: product.discountPrice,
       quantity,
       image: product.images?.[0] || '',
+    });
+    fpixel.trackAddToCart({
+      id: product._id || product.id,
+      name: product.name,
+      price: product.discountPrice || product.price,
+      quantity
     });
     toast.success(`${product.name} added to cart!`);
   };
@@ -1030,7 +1047,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
             <div className="mb-5">
               <span className="block text-xs font-medium text-stone-500 mb-1.5">Size:</span>
               <button className="px-3.5 py-1 rounded-lg border border-purple-600 bg-purple-50 text-purple-700 font-semibold text-xs">
-                {product.specs?.Volume || "30 ml"}
+                {product.specs?.Volume || "100 ml"}
               </button>
             </div>
 
@@ -1093,10 +1110,6 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
                 <li className="flex items-start gap-1.5">
                   <span className="text-green-600 font-bold">•</span>
                   <span>Get 5% Extra discount on UPI transactions.</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-green-600 font-bold">•</span>
-                  <span>Buy 2 Get 1 Free on all Face Serums. Use code: <span className="font-bold text-purple-700">GLOW3</span></span>
                 </li>
               </ul>
             </div>

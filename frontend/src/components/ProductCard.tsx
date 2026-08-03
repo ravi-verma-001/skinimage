@@ -86,9 +86,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Image & Badges */}
       <Link href={`/product/${id}`} prefetch={false} className="relative block aspect-[4/5] w-full overflow-hidden bg-stone-50">
         <img
-          src={getOptimizedMediaUrl(product.images[0] || 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600', { width: 500, height: 625 })}
+          src={getOptimizedMediaUrl(product.images[0] || 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600', { width: 500, height: 625, crop: 'fit' })}
           alt={product.name}
-          className="h-full w-full object-cover object-center transition-transform duration-750 ease-out group-hover:scale-106"
+          className="h-full w-full object-contain p-1 transition-transform duration-750 ease-out group-hover:scale-106"
           loading="lazy"
         />
 

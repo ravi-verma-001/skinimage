@@ -2,15 +2,21 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Send, Instagram, Twitter, Youtube, Sparkles } from 'lucide-react';
+import { Send, Instagram, Facebook, Sparkles } from 'lucide-react';
 import { getOptimizedMediaUrl } from '@/utils/cloudinary';
 import toast from 'react-hot-toast';
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [confirmName, setConfirmName] = useState('');
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
+    if (confirmName) {
+      // Quietly reject bot
+      setEmail('');
+      return;
+    }
     if (email.trim()) {
       toast.success('Thank you for subscribing to our newsletter! Enjoy 10% off.');
       setEmail('');
@@ -37,11 +43,8 @@ export const Footer: React.FC = () => {
               <a href="https://www.instagram.com/skin_image_/" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Youtube">
-                <Youtube className="h-5 w-5" />
+              <a href="https://www.facebook.com/profile.php?id=61591932609663&mibextid=wwXIfr&rdid=1EATmaX6qLUPqhcz&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Ct1fTUFde%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-emerald-700 transition" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -108,7 +111,17 @@ export const Footer: React.FC = () => {
             <p className="text-sm text-stone-600 leading-relaxed">
               Subscribe to unlock 10% off your first order, and receive early access to new launches.
             </p>
-            <form onSubmit={handleSubscribe} className="flex">
+            <form onSubmit={handleSubscribe} className="flex relative">
+              {/* Honeypot Spam Trap Field */}
+              <input
+                type="text"
+                name="confirm_name"
+                value={confirmName}
+                onChange={(e) => setConfirmName(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
               <input
                 type="email"
                 placeholder="Enter your email"

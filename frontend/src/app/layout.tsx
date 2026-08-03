@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { FloatingAnalyzer } from "@/components/FloatingAnalyzer";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import MetaPixelTracker from "@/components/MetaPixelTracker";
 
 const fraunces = Fraunces({ 
   subsets: ['latin'], 
@@ -42,6 +43,9 @@ export const metadata: Metadata = {
     title: "Skinimage | Science-Backed Luxury Skincare",
     description: "Experience the ultimate collection of premium, dermatologist-formulated skincare solutions.",
     type: "website",
+  },
+  other: {
+    "facebook-domain-verification": "PLACEHOLDER"
   }
 };
 
@@ -99,7 +103,23 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Meta Pixel */}
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "YOUR_PIXEL_ID_HERE"}');
+          `}
+        </Script>
+
         <AuthProvider>
+          <MetaPixelTracker />
           <CartProvider>
             <Header />
             <main className="flex-grow">{children}</main>

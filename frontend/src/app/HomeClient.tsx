@@ -156,8 +156,8 @@ export default function HomeClient() {
       routine: "AM: Gentle Cleanser + SPF 50. PM: Gentle Cleanser + 2% BHA."
     },
     pigment: {
-      before: "/Pigmentation_before.jpeg",
-      after: "/Pigmentation_after.jpeg",
+      before: "https://res.cloudinary.com/qm72f5jf/image/upload/v1785661761/before_irpwuw.jpg",
+      after: "https://res.cloudinary.com/qm72f5jf/image/upload/v1785661761/after_ilacsz.jpg",
       title: "Brightening Dark Spots & Sun Damage",
       desc: "Result after 6 weeks of using 15% Vitamin C Glow Brightening Serum and Triple Hyaluronic Acid + B5 Plumping Serum.",
       routine: "AM: Vitamin C Serum + Hyaluronic Acid + SPF 50. PM: Gentle Cleanser + Hyaluronic Acid + Retinol."
@@ -190,16 +190,16 @@ export default function HomeClient() {
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden bg-white">
-        <div className="w-full relative">
+        <div className="w-full relative overflow-hidden">
           <video 
-            src={getOptimizedMediaUrl('/Aha_Bha_video.mp4', { resourceType: 'video' })} 
+            src="https://res.cloudinary.com/qm72f5jf/video/upload/v1785745287/AHA_BHA_VIDEO_jptota.mp4" 
             autoPlay 
             loop 
             muted 
             playsInline
             width={1920}
             height={480}
-            className="w-full h-auto max-h-[380px] md:max-h-[480px] object-cover block"
+            className="w-full h-auto max-h-[380px] md:max-h-[480px] object-cover block scale-105 origin-center"
           />
         </div>
       </section>
@@ -288,7 +288,7 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src={getOptimizedMediaUrl('/aha_bha_face_wash.jpg', { width: 400, height: 500 })}
+                  src={getOptimizedMediaUrl('https://res.cloudinary.com/qm72f5jf/image/upload/v1785754356/Untitled_design_1_zln5if.png')}
                   alt="Facewash"
                   loading="lazy"
                   width={400}
@@ -303,9 +303,6 @@ export default function HomeClient() {
 
               {/* Glassmorphic Label Info */}
               <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
-                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
-                  Step 1 / Pure Cleanse
-                </span>
                 <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Facewash
                 </h3>
@@ -328,12 +325,12 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src={getOptimizedMediaUrl('/uv_aurora_sunscreen.png', { width: 400, height: 500 })}
+                  src={getOptimizedMediaUrl('/uv_aurora_sunscreen.png', { width: 400, height: 500, crop: 'fit' })}
                   alt="Sunscreen"
                   loading="lazy"
                   width={400}
                   height={500}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-contain p-1.5 pb-28 transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent transition-opacity duration-500 group-hover:from-stone-950/90" />
               </div>
@@ -343,9 +340,6 @@ export default function HomeClient() {
 
               {/* Glassmorphic Label Info */}
               <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
-                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
-                  Daily Shield / UV Care
-                </span>
                 <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Sunscreen
                 </h3>
@@ -368,7 +362,7 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src={getOptimizedMediaUrl('/cleanser.png', { width: 400, height: 500 })}
+                  src={getOptimizedMediaUrl('/cleanser.png')}
                   alt="Cleanser"
                   loading="lazy"
                   width={400}
@@ -383,9 +377,6 @@ export default function HomeClient() {
 
               {/* Glassmorphic Label Info */}
               <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
-                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
-                  Double Cleanse / Barrier
-                </span>
                 <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Cleanser
                 </h3>
@@ -408,7 +399,7 @@ export default function HomeClient() {
               {/* Image Background */}
               <div className="absolute inset-0 w-full h-full">
                 <img
-                  src={getOptimizedMediaUrl('/milk_barrier_repair_toner.png', { width: 400, height: 500 })}
+                  src={getOptimizedMediaUrl('/milk_barrier_repair_toner.png')}
                   alt="Toner"
                   loading="lazy"
                   width={400}
@@ -423,9 +414,6 @@ export default function HomeClient() {
 
               {/* Glassmorphic Label Info */}
               <div className="relative z-10 m-2.5 p-3 sm:m-4 sm:p-4 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 shadow-md transition-all duration-500 group-hover:bg-white group-hover:translate-y-[-2px] group-hover:shadow-lg">
-                <span className="text-[9px] font-bold text-emerald-800 tracking-widest uppercase">
-                  Infuse / Balance Prep
-                </span>
                 <h3 className="font-serif text-base font-bold text-stone-900 mt-1">
                   Toner
                 </h3>
@@ -448,7 +436,7 @@ export default function HomeClient() {
           <Link 
             href="/shop?search=PDRN" 
             prefetch={false}
-            className="relative block overflow-hidden rounded-2xl md:rounded-3xl bg-stone-900 shadow-xl md:shadow-2xl group aspect-[1.8/1] sm:aspect-[3/1] w-full"
+            className="relative block overflow-hidden rounded-2xl md:rounded-3xl bg-stone-900 shadow-xl md:shadow-2xl group w-full"
           >
             {/* Background Image */}
             <img 
@@ -457,10 +445,10 @@ export default function HomeClient() {
               loading="lazy"
               width={1200}
               height={400}
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             />
             {/* Subtle glow border */}
-            <div className="absolute inset-0 ring-1 ring-white/10 group-hover:ring-emerald-400/30 transition-all duration-500 pointer-events-none rounded-3xl" />
+            <div className="absolute inset-0 ring-1 ring-white/10 group-hover:ring-emerald-400/30 transition-all duration-500 pointer-events-none rounded-2xl md:rounded-3xl" />
           </Link>
         </div>
       </section>

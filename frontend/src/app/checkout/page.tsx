@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { Check, CreditCard, ChevronRight, ShieldCheck, ShoppingBag, Truck, RefreshCw } from 'lucide-react';
 import toast from 'react-hot-toast';
+import * as fpixel from '@/utils/fpixel';
 
 import { API_URL } from '@/config';
 
@@ -22,6 +23,15 @@ export default function CheckoutPage() {
       router.push('/login');
     }
   }, [user, authLoading, router]);
+
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      fpixel.trackInitiateCheckout(
+        cart.map(item => ({ id: item.productId, price: item.discountPrice || item.price, quantity: item.quantity })),
+        totals.grandTotal
+      );
+    }
+  }, [cart, totals.grandTotal]);
 
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -134,6 +144,14 @@ export default function CheckoutPage() {
       }
 
       setConfirmedOrder(data);
+      fpixel.trackPurchase({
+        id: data._id || data.id,
+        total: data.totals?.grandTotal || finalTotals.grandTotal,
+        items: data.items ? data.items.map((item: any) => ({ id: item.productId })) : cart.map(item => ({ id: item.productId })),
+        email: customerInfo.email,
+        phone: customerInfo.phone,
+        name: customerInfo.name
+      });
       clearCart();
       setStep(6); // Go to success confirmation screen
       toast.success('Order placed successfully!');

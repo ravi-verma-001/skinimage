@@ -98,7 +98,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: true,
+    specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" }
   },
   {
     _id: "p5",
@@ -143,7 +144,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: true,
+    specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" }
   },
   {
     _id: "p8",
@@ -152,13 +154,14 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     category: "Cleanser",
     price: 799.00,
     stock: 150,
-    images: ["/aha_bha_face_wash.jpg"],
+    images: ["https://res.cloudinary.com/qm72f5jf/image/upload/v1785754356/Untitled_design_1_zln5if.png"],
     description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false
+    isNewArrival: false,
+    specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },
   {
     _id: "p9",
@@ -174,6 +177,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false
+    isNewArrival: false,
+    specs: { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" }
   }
 ];
