@@ -1,12 +1,13 @@
 import type { NextConfig } from "next";
 
-const cspHeader = `
+// Production CSP (enforces upgrade-insecure-requests on production servers)
+const cspHeaderProd = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net;
+  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://connect.facebook.net https://www.facebook.com http://localhost:* ws://localhost:* wss://localhost:*;
+  connect-src 'self' https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -15,10 +16,25 @@ const cspHeader = `
   upgrade-insecure-requests;
 `.replace(/\s{2,}/g, ' ').trim();
 
-const securityHeaders = [
+// Development CSP (omits upgrade-insecure-requests so local HTTP development on port 3000 doesn't crash)
+const cspHeaderDev = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com;
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
+  media-src 'self' https://res.cloudinary.com;
+  connect-src 'self' https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
+  font-src 'self' data:;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+`.replace(/\s{2,}/g, ' ').trim();
+
+const securityHeadersDev = [
   {
     key: 'Content-Security-Policy',
-    value: cspHeader,
+    value: cspHeaderDev,
   },
   {
     key: 'X-Frame-Options',
@@ -49,7 +65,7 @@ const nextConfig: NextConfig = {
       return [
         {
           source: '/:path*',
-          headers: securityHeaders,
+          headers: securityHeadersDev,
         },
       ];
     }
