@@ -63,7 +63,7 @@ app.set('trust proxy', 1);
 
 // Security Middlewares
 app.use(helmet());
-const allowedOrigins = (process.env.ALLOWED_ORIGIN || process.env.CLIENT_URL || 'http://localhost:3000')
+const allowedOrigins = (process.env.ALLOWED_ORIGIN || process.env.CLIENT_URL || 'https://skinimage.in,https://www.skinimage.in,http://localhost:3000,http://127.0.0.1:3000')
   .split(',')
   .map(origin => origin.trim());
 
