@@ -254,7 +254,7 @@ const DUMMY_PRODUCTS = [
     ],
     howToUse: "Clean and pat dry the face, apply two finger-lengths of sunscreen to the face and neck, massage gently until absorbed, apply 20 minutes before sun exposure, and reapply every 2–3 hours for continued protection.",
     skinType: ["Combination", "Oily", "Normal", "Sensitive"],
-    specs: { "Volume": "50ml", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
+    specs: { "Volume": "50gm", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" },
     rating: 4.9,
     reviewsCount: 215,
     isFeatured: true,
@@ -414,7 +414,7 @@ const DUMMY_PRODUCTS = [
     price: 799.00,
     stock: 150,
     images: [
-      "https://res.cloudinary.com/qm72f5jf/image/upload/v1785687583/Aha_Bha_facewash_hhurxl.png",
+      "https://res.cloudinary.com/qm72f5jf/image/upload/v1785754356/Untitled_design_1_zln5if.png",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
     ],
     description: "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.",
@@ -785,6 +785,7 @@ const seedMongoDB = async () => {
         sunScreen.howToUse = "Clean and pat dry the face, apply two finger-lengths of sunscreen to the face and neck, massage gently until absorbed, apply 20 minutes before sun exposure, and reapply every 2–3 hours for continued protection.";
         sunScreen.price = 798.00;
         sunScreen.discountPrice = undefined;
+        sunScreen.specs = { "Volume": "50gm", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" };
         await sunScreen.save();
         console.log('Successfully updated/verified UV-Aurora Sunscreen in MongoDB.');
       }
@@ -895,7 +896,7 @@ const seedMongoDB = async () => {
       const faceWash = await Product.findOne({ name: "AHA BHA Face Wash" });
       if (faceWash) {
         faceWash.images = [
-          "https://res.cloudinary.com/qm72f5jf/image/upload/v1785687583/Aha_Bha_facewash_hhurxl.png",
+          "https://res.cloudinary.com/qm72f5jf/image/upload/v1785754356/Untitled_design_1_zln5if.png",
           "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600"
         ];
         faceWash.description = "Skinimage AHA & BHA Face Wash Acne & Oil Control Gentle Face Cleanser (Niacinamide 5% + Salicylic Acid 2% + Zinc PCA 1%) is a dermatologist-tested, skin-barrier friendly daily foaming cleanser. This formula deeply purifies pores, removes blackheads, and reduces acne-causing bacteria. If you are looking for an effective salicylic acid face wash for acne that deeply cleanses without drying out the skin, this cleanser is the perfect solution. Its balanced pH 5.5 protects the skin's natural protective barrier.\n\nThis cleanser is enriched with high-performance active ingredients: Niacinamide (5%) to brighten skin tone and improve texture, Salicylic Acid (2%) to deeply unclog pores, and Zinc PCA (1%) to control excess oil and sebum. This formula is specially formulated to be the best face wash for oily skin, combination, and acne-prone skin types. The inclusion of Centella Asiatica (Cica) & Green Tea Extract helps calm inflammation and redness, while Sodium Hyaluronate and Panthenol (Pro-Vitamin B5) keep the skin hydrated and smooth.";

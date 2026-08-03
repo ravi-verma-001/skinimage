@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
@@ -63,11 +64,39 @@ app.set('trust proxy', 1);
 // Security Middlewares
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || '*',
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
+app.use(cookieParser());
+
+// CSRF Protection middleware based on Origin/Referer header verification
+const csrfProtection = (req, res, next) => {
+  if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
+    const origin = req.headers.origin;
+    const referer = req.headers.referer;
+    const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:3000';
+
+    if (origin && origin !== allowedOrigin) {
+      return res.status(403).json({ message: 'CSRF Protection: Origin mismatch' });
+    }
+    if (!origin && referer) {
+      try {
+        const refererOrigin = new URL(referer).origin;
+        if (refererOrigin !== allowedOrigin) {
+          return res.status(403).json({ message: 'CSRF Protection: Referer mismatch' });
+        }
+      } catch (err) {
+        return res.status(400).json({ message: 'CSRF Protection: Invalid Referer header' });
+      }
+    }
+  }
+  next();
+};
+
+app.use(csrfProtection);
 
 // Rate Limiting for auth routes
 const authLimiter = rateLimit({
@@ -126,12 +155,20 @@ app.post('/api/auth/register', authLimiter, async (req, res) => {
       role: finalRole,
     });
 
+    const token = generateToken(user);
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
     res.status(201).json({
       _id: user._id || user.id,
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user),
+      token,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -144,6 +181,14 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
     const user = await dbHelper.findUserByEmail(normalizedEmail);
     if (user && user.password && (await bcrypt.compare(password, user.password))) {
+      const token = generateToken(user);
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+      });
+
       res.json({
         _id: user._id || user.id,
         name: user.name,
@@ -151,7 +196,7 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
         role: user.role,
         addresses: user.addresses || [],
         wishlist: user.wishlist || [],
-        token: generateToken(user),
+        token,
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
@@ -671,6 +716,51 @@ app.post('/api/orders', async (req, res) => {
     return res.status(400).json({ message: 'No items in order' });
   }
   try {
+    // 1. Server-side price and amount calculations validation
+    let calculatedSubtotal = 0;
+    for (const item of items) {
+      const product = await dbHelper.findProductById(item.productId);
+      if (!product) {
+        return res.status(400).json({ message: `Product not found: ${item.productId}` });
+      }
+      
+      const activePrice = product.discountPrice && product.discountPrice < product.price 
+        ? product.discountPrice 
+        : product.price;
+
+      calculatedSubtotal += activePrice * item.quantity;
+    }
+
+    let calculatedDiscount = 0;
+    if (couponApplied && couponApplied.code) {
+      const coupon = await dbHelper.findCouponByCode(couponApplied.code);
+      if (coupon) {
+        if (coupon.discountType === 'percentage') {
+          calculatedDiscount = (calculatedSubtotal * coupon.discountValue) / 100;
+        } else {
+          calculatedDiscount = coupon.discountValue;
+        }
+      }
+    }
+
+    const calculatedShipping = calculatedSubtotal >= 1000 ? 0 : 99;
+    const calculatedGrandTotal = Math.max(0, calculatedSubtotal - calculatedDiscount + calculatedShipping);
+
+    // Strictly validate calculated grand total against client-provided grand total
+    const diff = Math.abs(calculatedGrandTotal - totals.grandTotal);
+    if (diff > 0.5) {
+      console.warn(`[SECURITY WARNING] Suspicious transaction pattern detected! Client-sent grandTotal (${totals.grandTotal}) does not match server-calculated grandTotal (${calculatedGrandTotal}) for user: ${userId || 'Guest'}. Possible price tampering attempt.`);
+      return res.status(400).json({ message: 'Transaction rejected: price calculation mismatch.' });
+    }
+
+    // Force server-calculated totals to guarantee integrity
+    const verifiedTotals = {
+      subtotal: calculatedSubtotal,
+      shipping: calculatedShipping,
+      discount: calculatedDiscount,
+      grandTotal: calculatedGrandTotal,
+    };
+
     // Generate simulated tracking number
     const trackingNumber = 'NX-' + Math.floor(100000 + Math.random() * 900000);
     
@@ -686,7 +776,7 @@ app.post('/api/orders', async (req, res) => {
       paymentMethod,
       paymentStatus,
       couponApplied,
-      totals,
+      totals: verifiedTotals,
       trackingNumber,
     });
 
