@@ -64,8 +64,25 @@ app.set('trust proxy', 1);
 
 // Security Middlewares
 app.use(helmet());
+const allowedOrigins = (process.env.ALLOWED_ORIGIN || process.env.CLIENT_URL || 'http://localhost:3000')
+  .split(',')
+  .map(origin => origin.trim());
+
+// Auto-allow localhost origins in development
+if (process.env.NODE_ENV !== 'production') {
+  if (!allowedOrigins.includes('http://localhost:3000')) allowedOrigins.push('http://localhost:3000');
+  if (!allowedOrigins.includes('http://127.0.0.1:3000')) allowedOrigins.push('http://127.0.0.1:3000');
+}
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'), false);
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
