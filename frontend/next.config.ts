@@ -3,11 +3,11 @@ import type { NextConfig } from "next";
 // Production CSP (enforces upgrade-insecure-requests on production servers)
 const cspHeaderProd = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
+  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://skinimage.onrender.com https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net;
+  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -19,11 +19,11 @@ const cspHeaderProd = `
 // Development CSP (omits upgrade-insecure-requests so local HTTP development on port 3000 doesn't crash)
 const cspHeaderDev = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
+  img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://skinimage.onrender.com https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
+  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -84,14 +84,6 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'connect.facebook.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.facebook.com',
       },
     ],
   },

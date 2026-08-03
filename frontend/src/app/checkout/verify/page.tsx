@@ -5,7 +5,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { API_URL } from '@/config';
-import * as fpixel from '@/utils/fpixel';
 import { CheckCircle2, XCircle, Loader2, ShoppingBag, ArrowRight } from 'lucide-react';
 
 function VerifyPaymentContent() {
@@ -36,23 +35,7 @@ function VerifyPaymentContent() {
         if (!res.ok) throw new Error(data.message || 'Payment verification failed.');
 
         if (data.success) {
-          // Fetch order details for Meta Pixel & CAPI Purchase tracking
-          try {
-            const orderRes = await fetch(`${API_URL}/orders/${orderId}`);
-            if (orderRes.ok) {
-              const orderData = await orderRes.json();
-              fpixel.trackPurchase({
-                id: orderData._id || orderData.id,
-                total: orderData.totals?.grandTotal || 0,
-                items: orderData.items ? orderData.items.map((item: any) => ({ id: item.productId })) : [],
-                email: orderData.guestInfo?.email || '',
-                phone: orderData.guestInfo?.phone || '',
-                name: orderData.guestInfo?.name || ''
-              });
-            }
-          } catch (trackErr) {
-            console.error('Failed to track purchase via Meta:', trackErr);
-          }
+
 
           if (isMounted) {
             setStatus('success');

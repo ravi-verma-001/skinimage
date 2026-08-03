@@ -7,7 +7,6 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { Star, Heart, ShoppingCart, ShieldCheck, RefreshCcw, ChevronDown, CheckCircle2, Award } from 'lucide-react';
 import toast from 'react-hot-toast';
-import * as fpixel from '@/utils/fpixel';
 
 import { API_URL } from '@/config';
 import { getOptimizedMediaUrl } from '@/utils/cloudinary';
@@ -767,15 +766,7 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
     fetchProductDetails();
   }, [id]);
 
-  useEffect(() => {
-    if (product) {
-      fpixel.trackViewContent({
-        id: product._id || product.id || id,
-        name: product.name,
-        price: product.discountPrice || product.price
-      });
-    }
-  }, [product, id]);
+
 
   if (loading) {
     return (
@@ -827,12 +818,6 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
       discountPrice: product.discountPrice,
       quantity,
       image: product.images?.[0] || '',
-    });
-    fpixel.trackAddToCart({
-      id: product._id || product.id,
-      name: product.name,
-      price: product.discountPrice || product.price,
-      quantity
     });
     toast.success(`${product.name} added to cart!`);
   };
