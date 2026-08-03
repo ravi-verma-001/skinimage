@@ -7,7 +7,7 @@ const cspHeaderProd = `
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net;
+  connect-src 'self' https://skinimage.onrender.com https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -23,7 +23,7 @@ const cspHeaderDev = `
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.facebook.com https://connect.facebook.net https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
+  connect-src 'self' https://skinimage.onrender.com https://connect.facebook.net https://www.facebook.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';

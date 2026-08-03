@@ -15,6 +15,7 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID || 'dummy_cli
 const https = require('https');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const { z } = require('zod');
 
 function httpsRequest(url, options, data = null) {
   return new Promise((resolve, reject) => {
@@ -1175,6 +1176,138 @@ const optionalProtect = async (req, res, next) => {
 
 app.post('/api/skin-analyzer/analyze', optionalProtect, analyzeSkin);
 app.get('/api/skin-analyzer/reports', protect, getReports);
+
+// --- FACEBOOK CONVERSIONS API (CAPI) ENDPOINT ---
+const capiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30, // limit each IP to 30 requests per minute
+  message: { success: false, error: 'Too many requests. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const fbConversionSchema = z.object({
+  eventName: z.string().min(1, 'Event name is required'),
+  eventId: z.string().optional().nullable(),
+  userData: z.object({
+    email: z.string().email('Invalid email format').optional().or(z.literal('')).nullable(),
+    phone: z.string().optional().nullable(),
+    firstName: z.string().optional().nullable(),
+    lastName: z.string().optional().nullable(),
+    clientUserAgent: z.string().optional().nullable(),
+    clientIpAddress: z.string().optional().nullable(),
+  }).optional().nullable(),
+  customData: z.object({
+    value: z.number().optional().nullable(),
+    contentIds: z.array(z.union([z.string(), z.number()])).optional().nullable(),
+    contentType: z.string().optional().nullable(),
+    contentName: z.string().optional().nullable(),
+    orderId: z.string().optional().nullable(),
+  }).optional().nullable(),
+  sourceUrl: z.string().optional().or(z.literal('')).nullable(),
+});
+
+function sha256(data) {
+  if (!data) return '';
+  return crypto
+    .createHash('sha256')
+    .update(data.trim().toLowerCase())
+    .digest('hex');
+}
+
+app.post('/api/fb-conversion', capiLimiter, async (req, res) => {
+  try {
+    const FB_PIXEL_ID = process.env.FB_PIXEL_ID;
+    const FB_ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN;
+
+    if (!FB_PIXEL_ID || !FB_ACCESS_TOKEN) {
+      console.warn('Meta CAPI: FB_PIXEL_ID or FB_ACCESS_TOKEN environment variables are missing.');
+      return res.status(500).json({ success: false, error: 'Meta integration not configured' });
+    }
+
+    const validationResult = fbConversionSchema.safeParse(req.body);
+    if (!validationResult.success) {
+      return res.status(400).json({
+        success: false,
+        error: 'Validation failed',
+        details: validationResult.error.issues.map(err => `${err.path.join('.')}: ${err.message}`)
+      });
+    }
+
+    const { eventName, eventId, userData: rawUserData, customData: rawCustomData, sourceUrl } = validationResult.data;
+    const userData = rawUserData || {};
+    const customData = rawCustomData || {};
+
+    const clientUserAgent = req.headers['user-agent'] || userData.clientUserAgent || '';
+    const clientIpAddress =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.ip ||
+      userData.clientIpAddress ||
+      '127.0.0.1';
+
+    const hashedUserData = {
+      client_ip_address: clientIpAddress,
+      client_user_agent: clientUserAgent,
+    };
+
+    if (userData.email) {
+      hashedUserData.em = [sha256(userData.email)];
+    }
+    if (userData.phone) {
+      const cleanPhone = userData.phone.replace(/\D/g, '');
+      hashedUserData.ph = [sha256(cleanPhone)];
+    }
+    if (userData.firstName) {
+      hashedUserData.fn = [sha256(userData.firstName)];
+    }
+    if (userData.lastName) {
+      hashedUserData.ln = [sha256(userData.lastName)];
+    }
+
+    const eventPayload = {
+      event_name: eventName,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventId || undefined,
+      event_source_url: sourceUrl || req.headers['referer'] || '',
+      action_source: 'website',
+      user_data: hashedUserData,
+      custom_data: {
+        currency: 'INR',
+        value: customData.value || undefined,
+        content_ids: customData.contentIds || undefined,
+        content_type: customData.contentType || 'product',
+        content_name: customData.contentName || undefined,
+        order_id: customData.orderId || undefined,
+      },
+    };
+
+    const response = await httpsRequest(
+      `https://graph.facebook.com/v19.0/${FB_PIXEL_ID}/events`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+      {
+        data: [eventPayload],
+        access_token: FB_ACCESS_TOKEN,
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error('Meta Graph API Error:', result);
+      return res.status(response.status).json({ success: false, error: result.error?.message || 'Graph API call failed' });
+    }
+
+    return res.json({ success: true, result });
+  } catch (error) {
+    console.error('CAPI Server Route Error:', error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 // Add a startup test message
 app.get('/', (req, res) => {

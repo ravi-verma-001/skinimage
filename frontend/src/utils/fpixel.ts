@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID_HERE';
 
 // Global declaration for fbq function on window
@@ -45,7 +47,7 @@ export const sendToCAPI = async (
       }
     }
 
-    fetch('/api/fb-conversion', {
+    fetch(`${API_URL}/fb-conversion`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
