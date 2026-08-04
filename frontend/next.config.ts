@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const cspHeaderProd = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://accounts.google.com;
-  style-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://accounts.google.com;
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
   connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net https://accounts.google.com;
@@ -21,7 +21,7 @@ const cspHeaderProd = `
 const cspHeaderDev = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://accounts.google.com;
-  style-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://accounts.google.com;
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
   connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net https://accounts.google.com http://localhost:* ws://localhost:* wss://localhost:*;
