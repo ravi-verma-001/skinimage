@@ -43,7 +43,7 @@ const ProductSchema = new mongoose.Schema({
   benefits: [{ type: String }],
   howToUse: { type: String },
   skinType: [{ type: String }],
-  specs: { type: Map, of: String },
+  specs: { type: mongoose.Schema.Types.Mixed },
   rating: { type: Number, default: 5 },
   reviewsCount: { type: Number, default: 0 },
   isFeatured: { type: Boolean, default: false },

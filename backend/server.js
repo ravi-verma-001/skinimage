@@ -137,9 +137,31 @@ const generateToken = (user) => {
 };
 
 // Connect to Database and Seed
-connectDB().then(() => {
+connectDB().then(async () => {
   if (!getDBMode()) {
-    dbHelper.seedMongoDB();
+    await dbHelper.seedMongoDB();
+    
+    // Force-update specs for all products on startup to ensure sizes are correct in MongoDB
+    try {
+      const ProductModel = mongoose.model('Product');
+      const productsData = [
+        { sku: "SK-HYDRA-FW", specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" } },
+        { sku: "SK-VITC-GLOW", specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" } },
+        { sku: "SK-NIACIN-MOIST", specs: { "Volume": "50gm", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" } },
+        { sku: "SK-BENZOTREE-FW", specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" } },
+        { sku: "SK-CPEPTIDE-SRM", specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" } },
+        { sku: "SK-PDRN-SRM", specs: { "Volume": "30ml", "Active Ingredients": "0.5% PDRN, Peptides, EGF", "Cruelty-Free": "Yes" } },
+        { sku: "SK-CENTELLA-SOOTH", specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" } },
+        { sku: "SK-SPF50-SUN", specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" } },
+        { sku: "SK-SQUALANE-OIL", specs: { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" } }
+      ];
+      for (const p of productsData) {
+        await ProductModel.updateOne({ sku: p.sku }, { $set: { specs: p.specs } });
+      }
+      console.log('Force-updated all product specs in MongoDB on startup.');
+    } catch (err) {
+      console.error('Failed to force-update product specs:', err);
+    }
   }
 });
 
