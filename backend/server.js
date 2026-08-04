@@ -94,15 +94,14 @@ const csrfProtection = (req, res, next) => {
   if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
     const origin = req.headers.origin;
     const referer = req.headers.referer;
-    const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:3000';
 
-    if (origin && origin !== allowedOrigin) {
+    if (origin && !allowedOrigins.includes(origin) && !allowedOrigins.includes('*')) {
       return res.status(403).json({ message: 'CSRF Protection: Origin mismatch' });
     }
     if (!origin && referer) {
       try {
         const refererOrigin = new URL(referer).origin;
-        if (refererOrigin !== allowedOrigin) {
+        if (!allowedOrigins.includes(refererOrigin) && !allowedOrigins.includes('*')) {
           return res.status(403).json({ message: 'CSRF Protection: Referer mismatch' });
         }
       } catch (err) {
