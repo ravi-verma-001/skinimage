@@ -3,11 +3,12 @@ import type { NextConfig } from "next";
 // Production CSP (enforces upgrade-insecure-requests on production servers)
 const cspHeaderProd = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://accounts.google.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net;
+  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net https://accounts.google.com;
+  frame-src 'self' https://accounts.google.com;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -19,11 +20,12 @@ const cspHeaderProd = `
 // Development CSP (omits upgrade-insecure-requests so local HTTP development on port 3000 doesn't crash)
 const cspHeaderDev = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://accounts.google.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https://res.cloudinary.com https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com;
   media-src 'self' https://res.cloudinary.com;
-  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net http://localhost:* ws://localhost:* wss://localhost:*;
+  connect-src 'self' https://skinimage.onrender.com https://www.google-analytics.com https://stats.g.doubleclick.net https://accounts.google.com http://localhost:* ws://localhost:* wss://localhost:*;
+  frame-src 'self' https://accounts.google.com;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
