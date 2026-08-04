@@ -888,6 +888,7 @@ const seedMongoDB = async () => {
         ];
         faceSerum.price = 899.00;
         faceSerum.discountPrice = undefined;
+        faceSerum.specs = { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" };
         await faceSerum.save();
         console.log('Successfully updated/verified AHA & BHA Face Serum in MongoDB.');
       }

@@ -68,7 +68,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: true,
+    specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },
   {
     _id: "p3",
@@ -83,7 +84,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false
+    isNewArrival: false,
+    specs: { "Volume": "50gm", "Protection": "SPF 50 / PA++++", "Cruelty-Free": "Yes", "Non-Comedogenic": "Yes" }
   },
   {
     _id: "p4",
@@ -114,7 +116,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: true,
-    isNewArrival: false
+    isNewArrival: false,
+    specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" }
   },
   {
     _id: "p6",
@@ -129,7 +132,8 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false
+    isNewArrival: false,
+    specs: { "Volume": "30ml", "Active Ingredients": "0.5% PDRN, Peptides, EGF", "Cruelty-Free": "Yes" }
   },
   {
     _id: "p7",
