@@ -16,7 +16,7 @@ export const FloatingAnalyzer: React.FC = () => {
       
       {/* WhatsApp Button */}
       <Link
-        href="https://wa.me/919818660316"
+        href="https://wa.me/918130274162"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-4 py-3 shadow-[0_10px_35px_rgba(37,211,102,0.35)] border border-green-400/20 hover:scale-105 active:scale-95 transition-all duration-300 group"

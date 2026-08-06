@@ -182,7 +182,7 @@ export default function FaqClient() {
           </p>
           <div className="pt-2">
             <Link
-              href="https://wa.me/919818660316"
+              href="https://wa.me/918130274162"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#5B2A8C] hover:bg-[#5B2A8C]/95 text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm uppercase tracking-wider"
