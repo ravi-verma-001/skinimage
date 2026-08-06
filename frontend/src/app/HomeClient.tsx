@@ -518,7 +518,7 @@ export default function HomeClient() {
               
               <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
                 <img
-                  src={getOptimizedMediaUrl('/skinimage-skincare-active-ingredients.jpg', { width: 480, height: 600 })}
+                  src={getOptimizedMediaUrl('https://res.cloudinary.com/qm72f5jf/image/upload/v1786013638/Skin_Product_og1i7a.png', { width: 480, height: 600 })}
                   alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
                   loading="lazy"
                   width={480}
