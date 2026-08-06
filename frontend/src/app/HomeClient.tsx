@@ -516,14 +516,13 @@ export default function HomeClient() {
               {/* Outer decorative border decoration */}
               <div className="absolute -inset-2 sm:-inset-4 rounded-3xl border border-stone-250/20 pointer-events-none scale-98" />
               
-              <div className="relative aspect-[4/5] w-full max-w-[480px] overflow-hidden rounded-2xl bg-stone-100 border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
+              <div className="relative w-full max-w-[480px] overflow-hidden rounded-2xl bg-white border border-stone-200/40 shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1 group">
                 <img
-                  src={getOptimizedMediaUrl('https://res.cloudinary.com/qm72f5jf/image/upload/v1786013638/Skin_Product_og1i7a.png', { width: 480, height: 600 })}
+                  src={getOptimizedMediaUrl('https://res.cloudinary.com/qm72f5jf/image/upload/v1786013638/Skin_Product_og1i7a.png', { width: 480, crop: 'fit' })}
                   alt="Skinimage Skincare premium serums made with clinically inspired active ingredients for healthy, glowing skin."
                   loading="lazy"
                   width={480}
-                  height={600}
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  className="w-full h-auto object-contain transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
               </div>
             </div>
