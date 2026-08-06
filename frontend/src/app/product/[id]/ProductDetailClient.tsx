@@ -214,7 +214,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "p6",
     sku: "SK-PDRN-SRM",
-    name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
+    name: "Dr. PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
     category: "Serum",
     price: 1440.00,
     stock: 110,

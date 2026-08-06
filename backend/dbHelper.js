@@ -336,7 +336,7 @@ const DUMMY_PRODUCTS = [
   {
     id: "p6",
     sku: "SK-PDRN-SRM",
-    name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
+    name: "Dr. PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
     category: "Serum",
     price: 1440.00,
     stock: 110,
@@ -719,9 +719,9 @@ const seedMongoDB = async () => {
       }
 
       // Update Plumping Serum to PDRN Regenerating Serum if it exists
-      const oldPlumpingSerum = await Product.findOne({ $or: [{ sku: "SK-HYALURONIC-PLUMP" }, { name: "Triple Hyaluronic Acid + B5 Plumping Serum" }, { sku: "SK-PDRN-SRM" }, { name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum" }] });
+      const oldPlumpingSerum = await Product.findOne({ $or: [{ sku: "SK-HYALURONIC-PLUMP" }, { name: "Triple Hyaluronic Acid + B5 Plumping Serum" }, { sku: "SK-PDRN-SRM" }, { name: "Dr. PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum" }, { name: "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum" }] });
       if (oldPlumpingSerum) {
-        oldPlumpingSerum.name = "PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum";
+        oldPlumpingSerum.name = "Dr. PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum";
         oldPlumpingSerum.sku = "SK-PDRN-SRM";
         oldPlumpingSerum.category = "Serum";
         oldPlumpingSerum.price = 1440.00;
