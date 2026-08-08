@@ -11,6 +11,210 @@ import { FALLBACK_PRODUCTS } from '@/fallbackProducts';
 
 // Local fallback array is replaced by imported FALLBACK_PRODUCTS
 
+const INGREDIENTS_LIST = [
+  {
+    name: "Panthenol (Pro-Vitamin B5)",
+    origin: "Japan",
+    flag: (
+      <svg viewBox="0 0 3 2" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <rect width="3" height="2" fill="white" />
+        <circle cx="1.5" cy="1" r="0.6" fill="#BC002D" />
+      </svg>
+    )
+  },
+  {
+    name: "Centella Asiatica Extract - 2%",
+    origin: "Korea",
+    flag: (
+      <svg viewBox="0 0 3 2" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <rect width="3" height="2" fill="white" />
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
+          <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
+          <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
+          <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
+        </g>
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <g transform="translate(-0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="-0.02" x2="-0.02" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.02" x2="0.15" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(-0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.15" y1="0" x2="-0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+        </g>
+      </svg>
+    )
+  },
+  {
+    name: "Sodium Hyaluronate - 0.2%",
+    origin: "Korea",
+    flag: (
+      <svg viewBox="0 0 3 2" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <rect width="3" height="2" fill="white" />
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
+          <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
+          <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
+          <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
+        </g>
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <g transform="translate(-0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="-0.02" x2="-0.02" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.02" x2="0.15" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(-0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+        </g>
+      </svg>
+    )
+  },
+  {
+    name: "Matrixyl® Peptide Complex - 2%",
+    origin: "Germany",
+    flag: (
+      <svg viewBox="0 0 5 3" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm shrink-0">
+        <rect width="5" height="1" y="0" fill="black" />
+        <rect width="5" height="1" y="1" fill="#DD0000" />
+        <rect width="5" height="1" y="2" fill="#FFCC00" />
+      </svg>
+    )
+  },
+  {
+    name: "Tasman Pepper™ AF - 1%",
+    origin: "Australia",
+    flag: (
+      <svg viewBox="0 0 60 30" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <clipPath id="union-jack-clip-slider">
+          <rect width="30" height="15" />
+        </clipPath>
+        <rect width="60" height="30" fill="#000033" />
+        <g clipPath="url(#union-jack-clip-slider)">
+          <rect width="30" height="15" fill="#000033" />
+          <line x1="0" y1="0" x2="30" y2="15" stroke="#FFFFFF" strokeWidth="3" />
+          <line x1="30" y1="0" x2="0" y2="15" stroke="#FFFFFF" strokeWidth="3" />
+          <line x1="0" y1="0" x2="30" y2="15" stroke="#CC0000" strokeWidth="2" />
+          <line x1="30" y1="0" x2="0" y2="15" stroke="#CC0000" strokeWidth="2" />
+          <line x1="15" y1="0" x2="15" y2="15" stroke="#FFFFFF" strokeWidth="5" />
+          <line x1="0" y1="7.5" x2="30" y2="7.5" stroke="#FFFFFF" strokeWidth="5" />
+          <line x1="15" y1="0" x2="15" y2="15" stroke="#CC0000" strokeWidth="3" />
+          <line x1="0" y1="7.5" x2="30" y2="7.5" stroke="#CC0000" strokeWidth="3" />
+        </g>
+        <g transform="translate(15, 22.5) scale(0.65)" fill="#FFFFFF">
+          <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
+        </g>
+        <g transform="translate(45, 24) scale(0.35)" fill="#FFFFFF">
+          <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
+        </g>
+        <g transform="translate(37.5, 12.5) scale(0.35)" fill="#FFFFFF">
+          <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
+        </g>
+        <g transform="translate(45, 6) scale(0.35)" fill="#FFFFFF">
+          <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
+        </g>
+        <g transform="translate(52.5, 11) scale(0.35)" fill="#FFFFFF">
+          <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
+        </g>
+        <g transform="translate(48, 16.5) scale(0.25)" fill="#FFFFFF">
+          <polygon points="0,-5 1.5,-1.5 5,-1.5 2,1 3,4.5 0,2.5 -3,4.5 -2,1 -5,-1.5 -1.5,-1.5" />
+        </g>
+      </svg>
+    )
+  },
+  {
+    name: "Camellia Japonica Flower Extract",
+    origin: "Japan",
+    flag: (
+      <svg viewBox="0 0 3 2" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <rect width="3" height="2" fill="white" />
+        <circle cx="1.5" cy="1" r="0.6" fill="#BC002D" />
+      </svg>
+    )
+  },
+  {
+    name: "Ceramide NP",
+    origin: "Korea",
+    flag: (
+      <svg viewBox="0 0 3 2" className="w-9 h-6 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
+        <rect width="3" height="2" fill="white" />
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
+          <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
+          <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
+          <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
+        </g>
+        <g transform="translate(1.5, 1.0) rotate(-33.7)">
+          <g transform="translate(-0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="-0.02" x2="-0.02" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.02" x2="0.15" y2="-0.02" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(-0.8, 0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+          <g transform="translate(0.8, -0.53) rotate(90)">
+            <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
+            <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
+            <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
+          </g>
+        </g>
+      </svg>
+    )
+  }
+];
+
 const getFallbackTrending = (): ProductType[] => {
   const pdrn = FALLBACK_PRODUCTS.find(p => p._id === "p6");
   const milktoner = FALLBACK_PRODUCTS.find(p => p._id === "p9");
@@ -165,6 +369,58 @@ export default function HomeClient() {
             height={480}
             className="w-full h-auto max-h-[380px] md:max-h-[480px] object-cover block scale-105 origin-center"
           />
+        </div>
+      </section>
+
+      {/* Global Ingredients Slider Section */}
+      <section className="bg-stone-50/60 py-5 border-b border-stone-200/80 overflow-hidden relative">
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee-custom {
+            display: flex;
+            width: max-content;
+            animation: marquee 35s linear infinite;
+          }
+          .animate-marquee-custom:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        
+        <div className="flex items-center">
+          {/* Section title left side (desktop only) */}
+          <div className="px-6 border-r border-stone-200/80 hidden md:block shrink-0 relative z-10 bg-stone-50/60">
+            <span className="text-[10px] font-bold text-[#5B2A8C] tracking-[0.15em] uppercase">
+              Global Ingredients
+            </span>
+          </div>
+          
+          <div className="overflow-hidden w-full relative">
+            <div className="animate-marquee-custom flex gap-6 items-center">
+              {/* Original Track */}
+              {INGREDIENTS_LIST.map((item, idx) => (
+                <div key={idx} className="inline-flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                  {item.flag}
+                  <div className="flex flex-col text-left">
+                    <span className="text-[#5B2A8C] font-semibold text-xs tracking-tight leading-none">{item.name}</span>
+                    <span className="text-stone-400 text-[9px] uppercase font-bold tracking-wider mt-1">{item.origin}</span>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicated Track for Seamless Loop */}
+              {INGREDIENTS_LIST.map((item, idx) => (
+                <div key={`dup-${idx}`} className="inline-flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                  {item.flag}
+                  <div className="flex flex-col text-left">
+                    <span className="text-[#5B2A8C] font-semibold text-xs tracking-tight leading-none">{item.name}</span>
+                    <span className="text-stone-400 text-[9px] uppercase font-bold tracking-wider mt-1">{item.origin}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -651,287 +907,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Global Ingredients Spotlight */}
-      <section className="py-20 bg-[#FAF9F6] relative overflow-hidden">
-        {/* Subtle Decorative glow background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-purple-100/30 rounded-full blur-[120px] pointer-events-none -z-10" />
-        
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-[32px] border border-stone-200/60 shadow-[0_15px_40px_rgba(0,0,0,0.03)] p-6 sm:p-10 md:p-14 relative z-10">
-            {/* Header */}
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-[#5B2A8C] font-semibold text-xs sm:text-sm tracking-[0.25em] uppercase">
-                GLOBAL INGREDIENTS. TRUSTED ORIGINS.
-              </h2>
-            </div>
-
-            {/* Content Columns */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 relative">
-              {/* Vertical Separator Line (visible on desktop) */}
-              <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] bg-stone-200 -translate-x-1/2" />
-
-              {/* Left Column */}
-              <div className="flex flex-col divide-y divide-stone-100">
-                {/* 1. Panthenol */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 3 2" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <rect width="3" height="2" fill="white" />
-                      <circle cx="1.5" cy="1" r="0.6" fill="#BC002D" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Panthenol (Pro-Vitamin B5)
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Japan</p>
-                  </div>
-                </div>
-
-                {/* 2. Centella Asiatica */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 3 2" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <rect width="3" height="2" fill="white" />
-                      {/* Taegeuk: angled at ~33.69 degrees */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
-                        <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
-                        <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
-                      </g>
-                      {/* Trigrams */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        {/* Geon (top-left) */}
-                        <g transform="translate(-0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        {/* Gon (bottom-right) */}
-                        <g transform="translate(0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        {/* Ri (bottom-left) */}
-                        <g transform="translate(-0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        {/* Gam (top-right) */}
-                        <g transform="translate(0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Centella Asiatica Extract - 2%
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Korea</p>
-                  </div>
-                </div>
-
-                {/* 3. Sodium Hyaluronate */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 3 2" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <rect width="3" height="2" fill="white" />
-                      {/* Taegeuk: angled at ~33.69 degrees */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
-                        <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
-                        <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
-                      </g>
-                      {/* Trigrams */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        <g transform="translate(-0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(-0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Sodium Hyaluronate - 0.2%
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Korea</p>
-                  </div>
-                </div>
-
-                {/* 4. Matrixyl */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 5 3" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm shrink-0">
-                      <rect width="5" height="1" y="0" fill="black" />
-                      <rect width="5" height="1" y="1" fill="#DD0000" />
-                      <rect width="5" height="1" y="2" fill="#FFCC00" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Matrixyl® Peptide Complex - 2%
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Germany</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="flex flex-col divide-y divide-stone-100">
-                {/* 1. Tasman Pepper */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 60 30" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <clipPath id="union-jack-clip">
-                        <rect width="30" height="15" />
-                      </clipPath>
-                      <rect width="60" height="30" fill="#000033" />
-                      <g clipPath="url(#union-jack-clip)">
-                        <rect width="30" height="15" fill="#000033" />
-                        <line x1="0" y1="0" x2="30" y2="15" stroke="#FFFFFF" strokeWidth="3" />
-                        <line x1="30" y1="0" x2="0" y2="15" stroke="#FFFFFF" strokeWidth="3" />
-                        <line x1="0" y1="0" x2="30" y2="15" stroke="#CC0000" strokeWidth="2" />
-                        <line x1="30" y1="0" x2="0" y2="15" stroke="#CC0000" strokeWidth="2" />
-                        <line x1="15" y1="0" x2="15" y2="15" stroke="#FFFFFF" strokeWidth="5" />
-                        <line x1="0" y1="7.5" x2="30" y2="7.5" stroke="#FFFFFF" strokeWidth="5" />
-                        <line x1="15" y1="0" x2="15" y2="15" stroke="#CC0000" strokeWidth="3" />
-                        <line x1="0" y1="7.5" x2="30" y2="7.5" stroke="#CC0000" strokeWidth="3" />
-                      </g>
-                      <g transform="translate(15, 22.5) scale(0.65)" fill="#FFFFFF">
-                        <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
-                      </g>
-                      <g transform="translate(45, 24) scale(0.35)" fill="#FFFFFF">
-                        <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
-                      </g>
-                      <g transform="translate(37.5, 12.5) scale(0.35)" fill="#FFFFFF">
-                        <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
-                      </g>
-                      <g transform="translate(45, 6) scale(0.35)" fill="#FFFFFF">
-                        <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
-                      </g>
-                      <g transform="translate(52.5, 11) scale(0.35)" fill="#FFFFFF">
-                        <polygon points="0,-6 1.5,-2 5.5,-3 3,-0.5 4.5,3.5 0,1.5 -4.5,3.5 -3,-0.5 -5.5,-3 -1.5,-2" />
-                      </g>
-                      <g transform="translate(48, 16.5) scale(0.25)" fill="#FFFFFF">
-                        <polygon points="0,-5 1.5,-1.5 5,-1.5 2,1 3,4.5 0,2.5 -3,4.5 -2,1 -5,-1.5 -1.5,-1.5" />
-                      </g>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Tasman Pepper™ AF - 1%
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Australia</p>
-                  </div>
-                </div>
-
-                {/* 2. Camellia Japonica */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 3 2" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <rect width="3" height="2" fill="white" />
-                      <circle cx="1.5" cy="1" r="0.6" fill="#BC002D" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Camellia Japonica Flower Extract
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Japan</p>
-                  </div>
-                </div>
-
-                {/* 3. Ceramide NP */}
-                <div className="flex items-center gap-4 py-4 md:py-6 first:pt-0 last:pb-0">
-                  <div className="flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 3 2" className="w-12 h-8 border border-stone-200 shadow-sm rounded-sm bg-white shrink-0">
-                      <rect width="3" height="2" fill="white" />
-                      {/* Taegeuk: angled at ~33.69 degrees */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 0 0.5 0" fill="#0F4C81" />
-                        <path d="M -0.5 0 A 0.5 0.5 0 0 1 0.5 0" fill="#CD1C3C" />
-                        <circle cx="-0.25" cy="0" r="0.25" fill="#CD1C3C" />
-                        <circle cx="0.25" cy="0" r="0.25" fill="#0F4C81" />
-                      </g>
-                      {/* Trigrams */}
-                      <g transform="translate(1.5, 1.0) rotate(-33.7)">
-                        <g transform="translate(-0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(-0.8, 0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="-0.02" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                        <g transform="translate(0.8, -0.53) rotate(90)">
-                          <line x1="-0.15" y1="-0.08" x2="-0.02" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="-0.08" x2="0.15" y2="-0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="black" strokeWidth="0.025" />
-                          <line x1="-0.15" y1="0.08" x2="-0.02" y2="0.08" stroke="black" strokeWidth="0.025" />
-                          <line x1="0.02" y1="0.08" x2="0.15" y2="0.08" stroke="black" strokeWidth="0.025" />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-[#5B2A8C] font-medium text-sm sm:text-base tracking-tight leading-snug">
-                      Ceramide NP
-                    </h3>
-                    <p className="text-stone-500 text-xs sm:text-sm mt-0.5">Korea</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Global Ingredients Spotlight has been moved as a slider below the hero video */}
 
       {/* AI Skin Analyzer Banner */}
       <section className="py-20 bg-white border-t border-stone-200 overflow-hidden">
