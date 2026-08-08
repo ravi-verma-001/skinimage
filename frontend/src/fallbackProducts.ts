@@ -33,7 +33,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     description: "Oil Cleanser is the perfect first step in your double-cleansing routine. It effortlessly melts away stubborn makeup, sunscreen, and impurities, while nourishing your skin barrier — leaving your face soft, hydrated, and never greasy.",
     rating: 5.0,
     reviewsCount: 0,
-    isFeatured: true,
+    isFeatured: false,
     isBestSeller: true,
     isNewArrival: true,
     ingredients: [
@@ -98,7 +98,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     description: "The best solution for acne-prone skin — Benzotree Face Wash. Specially formulated to target breakouts, excess oil, and clogged pores.",
     rating: 5.0,
     reviewsCount: 0,
-    isFeatured: false,
+    isFeatured: true,
     isBestSeller: false,
     isNewArrival: false,
     specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" }
@@ -114,7 +114,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     description: "Skinimage C-Peptide Super Face Serum is an advanced anti-ageing and skin-repair formulation designed to lock in moisture, strengthen the skin barrier, and visibly reduce fine lines and wrinkles for smoother, firmer, and youthful-looking skin. This high-performance serum is powered by a multi-peptide complex including Acetyl Hexapeptide-8 and Copper Tripeptide-1 to help boost collagen production, improve skin elasticity, and minimize the appearance of expression lines, supported by Niacinamide to refine skin texture and strengthen the barrier, and Hyaluronic Acid to deeply hydrate and plump the skin. It is further enriched with Adenosine to help reduce wrinkles, Allantoin to soothe and calm the skin, Sodium PCA and Betaine to maintain optimal moisture balance, and Amino Acids to support skin repair and resilience. Lightweight and fast-absorbing, this serum works effectively as the first step of skincare to enhance skin smoothness, firmness, and overall radiance with consistent use.",
     rating: 5.0,
     reviewsCount: 0,
-    isFeatured: false,
+    isFeatured: true,
     isBestSeller: true,
     isNewArrival: false,
     specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" }
@@ -162,7 +162,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
     rating: 5.0,
     reviewsCount: 0,
-    isFeatured: true,
+    isFeatured: false,
     isBestSeller: true,
     isNewArrival: true,
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }

@@ -13,15 +13,15 @@ import { FALLBACK_PRODUCTS } from '@/fallbackProducts';
 
 const getFallbackTrending = (): ProductType[] => {
   const pdrn = FALLBACK_PRODUCTS.find(p => p._id === "p6");
-  const cpeptide = FALLBACK_PRODUCTS.find(p => p._id === "p5");
-  const benzotree = FALLBACK_PRODUCTS.find(p => p._id === "p4");
   const milktoner = FALLBACK_PRODUCTS.find(p => p._id === "p9");
+  const oilcleanser = FALLBACK_PRODUCTS.find(p => p._id === "p1");
+  const ahabhafw = FALLBACK_PRODUCTS.find(p => p._id === "p8");
   
   return [
     pdrn || FALLBACK_PRODUCTS[5],
-    cpeptide || FALLBACK_PRODUCTS[4],
-    benzotree || FALLBACK_PRODUCTS[3],
-    milktoner || FALLBACK_PRODUCTS[8]
+    milktoner || FALLBACK_PRODUCTS[8],
+    oilcleanser || FALLBACK_PRODUCTS[0],
+    ahabhafw || FALLBACK_PRODUCTS[7]
   ].filter(Boolean) as ProductType[];
 };
 
@@ -68,9 +68,9 @@ export default function HomeClient() {
           const allData = await allRes.json();
           const filteredTrending = allData.filter((p: any) => 
             p.name.toLowerCase().includes("pdrn regenerating serum") || 
-            p.name.toLowerCase().includes("c-peptide") || 
-            p.name.toLowerCase().includes("benzotree") || 
-            p.name.toLowerCase().includes("milk barrier repair")
+            p.name.toLowerCase().includes("milk barrier repair") || 
+            p.name.toLowerCase().includes("oil cleanser") || 
+            p.name.toLowerCase().includes("aha bha face wash")
           );
           if (filteredTrending.length > 0) {
             trending = filteredTrending;

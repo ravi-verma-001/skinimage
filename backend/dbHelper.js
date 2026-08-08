@@ -176,7 +176,7 @@ const DUMMY_PRODUCTS = [
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Formulation": "Oil-to-milk" },
     rating: 4.8,
     reviewsCount: 142,
-    isFeatured: true,
+    isFeatured: false,
     isBestSeller: true,
     isNewArrival: true
   },
@@ -289,7 +289,7 @@ const DUMMY_PRODUCTS = [
     specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" },
     rating: 4.6,
     reviewsCount: 88,
-    isFeatured: false,
+    isFeatured: true,
     isBestSeller: false,
     isNewArrival: false
   },
@@ -329,7 +329,7 @@ const DUMMY_PRODUCTS = [
     specs: { "Volume": "30ml", "Active Ingredients": "6-Peptide Complex", "Cruelty-Free": "Yes" },
     rating: 4.8,
     reviewsCount: 167,
-    isFeatured: false,
+    isFeatured: true,
     isBestSeller: true,
     isNewArrival: false
   },
@@ -441,7 +441,7 @@ const DUMMY_PRODUCTS = [
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" },
     rating: 4.8,
     reviewsCount: 210,
-    isFeatured: true,
+    isFeatured: false,
     isBestSeller: true,
     isNewArrival: true
   },
