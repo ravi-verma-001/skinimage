@@ -43,38 +43,57 @@ export default function HomeClient() {
   const [isBannerVisible, setIsBannerVisible] = useState(true);
 
   useEffect(() => {
+    let isLoaded = false;
+
+    // Timeout fallback: if API doesn't load in 3.5 seconds, display fallback data immediately
+    const fallbackTimer = setTimeout(() => {
+      if (!isLoaded) {
+        console.log("Home API took too long. Loading fallback products...");
+        setProducts(FALLBACK_PRODUCTS.filter(p => p.isFeatured));
+        setTrendingProducts(getFallbackTrending());
+        setLoading(false);
+      }
+    }, 3500);
+
     async function fetchProducts() {
       try {
         const res = await fetch(`${API_URL}/products?isFeatured=true`);
         if (!res.ok) throw new Error('API Error');
         const data = await res.json();
-        setProducts(data.length > 0 ? data : FALLBACK_PRODUCTS);
 
         // Fetch trending
         const allRes = await fetch(`${API_URL}/products`);
+        let trending = getFallbackTrending();
         if (allRes.ok) {
           const allData = await allRes.json();
-          const trending = allData.filter((p: any) => 
+          const filteredTrending = allData.filter((p: any) => 
             p.name.toLowerCase().includes("pdrn regenerating serum") || 
             p.name.toLowerCase().includes("c-peptide") || 
             p.name.toLowerCase().includes("benzotree") || 
             p.name.toLowerCase().includes("milk barrier repair")
           );
-          if (trending.length > 0) {
-            setTrendingProducts(trending);
-            return;
+          if (filteredTrending.length > 0) {
+            trending = filteredTrending;
           }
         }
-        setTrendingProducts(getFallbackTrending());
+
+        isLoaded = true;
+        clearTimeout(fallbackTimer);
+        setProducts(data.length > 0 ? data : FALLBACK_PRODUCTS.filter(p => p.isFeatured));
+        setTrendingProducts(trending);
       } catch (err) {
         console.warn('Backend API connection failed, loading premium fallback products.', err);
-        setProducts(FALLBACK_PRODUCTS);
-        setTrendingProducts(getFallbackTrending());
+        if (!isLoaded) {
+          setProducts(FALLBACK_PRODUCTS.filter(p => p.isFeatured));
+          setTrendingProducts(getFallbackTrending());
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchProducts();
+
+    return () => clearTimeout(fallbackTimer);
   }, []);
 
   useEffect(() => {

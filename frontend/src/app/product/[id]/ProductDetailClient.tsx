@@ -739,31 +739,54 @@ export default function ProductDetailClient({ id, initialProduct }: ProductDetai
   const [emailConfirm, setEmailConfirm] = useState('');
   const [submittingReview, setSubmittingReview] = useState(false);
 
-  const fetchProductDetails = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${API_URL}/products/${id}`);
-      if (!res.ok) throw new Error('Product not found');
-      const data = await res.json();
-      setProduct(data);
-      setActiveImage(data.images?.[0] || '');
-    } catch (err) {
-      console.warn('API error fetching product details. Falling back to local mock item.', err);
-      const fallback = DUMMY_PRODUCTS.find(p => p.id === id) || DUMMY_PRODUCTS[0];
-      setProduct(fallback);
-      setActiveImage(fallback.images?.[0] || '');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let fallbackTimer: NodeJS.Timeout;
+
+    const fetchProductDetails = async () => {
+      let isLoaded = false;
+      setLoading(true);
+
+      fallbackTimer = setTimeout(() => {
+        if (!isLoaded) {
+          console.log("Product detail API took too long. Loading fallback...");
+          const fallback = DUMMY_PRODUCTS.find(p => p.id === id) || DUMMY_PRODUCTS[0];
+          setProduct(fallback);
+          setActiveImage(fallback.images?.[0] || '');
+          setLoading(false);
+        }
+      }, 3500);
+
+      try {
+        const res = await fetch(`${API_URL}/products/${id}`);
+        if (!res.ok) throw new Error('Product not found');
+        const data = await res.json();
+        
+        isLoaded = true;
+        clearTimeout(fallbackTimer);
+        setProduct(data);
+        setActiveImage(data.images?.[0] || '');
+      } catch (err) {
+        console.warn('API error fetching product details. Falling back to local mock item.', err);
+        if (!isLoaded) {
+          const fallback = DUMMY_PRODUCTS.find(p => p.id === id) || DUMMY_PRODUCTS[0];
+          setProduct(fallback);
+          setActiveImage(fallback.images?.[0] || '');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (initialProduct && (initialProduct._id === id || initialProduct.id === id)) {
       setProduct(initialProduct);
       setActiveImage(initialProduct.images?.[0] || '');
       setLoading(false);
     }
     fetchProductDetails();
+
+    return () => {
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+    };
   }, [id]);
 
 

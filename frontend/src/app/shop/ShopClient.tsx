@@ -54,6 +54,16 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
       return;
     }
 
+    let isLoaded = false;
+
+    const fallbackTimer = setTimeout(() => {
+      if (!isLoaded) {
+        console.log("Shop API took too long. Loading fallback products...");
+        setProducts(getFilteredFallback());
+        setLoading(false);
+      }
+    }, 3500);
+
     async function fetchProducts() {
       setLoading(true);
       try {
@@ -66,15 +76,22 @@ export default function ShopClient({ initialProducts = [], initialCategory = '' 
         const res = await fetch(`${API_URL}/products?${queryParams.toString()}`);
         if (!res.ok) throw new Error('API request failed');
         const data = await res.json();
+        
+        isLoaded = true;
+        clearTimeout(fallbackTimer);
         setProducts(data.length > 0 ? data : getFilteredFallback());
       } catch (err) {
         console.warn('API error, using local fallback filtration logic.', err);
-        setProducts(getFilteredFallback());
+        if (!isLoaded) {
+          setProducts(getFilteredFallback());
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchProducts();
+
+    return () => clearTimeout(fallbackTimer);
   }, [activeCategory, activeSkinType, searchQuery, activeSort, initialProducts, initialCategory]);
 
   const getFilteredFallback = () => {
