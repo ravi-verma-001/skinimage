@@ -283,7 +283,7 @@ const DUMMY_PRODUCTS = [
     rating: 4.7,
     reviewsCount: 64,
     isFeatured: false,
-    isBestSeller: false,
+    isBestSeller: true,
     isNewArrival: false,
     reviews: []
   },

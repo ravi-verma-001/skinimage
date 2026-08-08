@@ -147,7 +147,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: false,
-    isBestSeller: false,
+    isBestSeller: true,
     isNewArrival: false,
     specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" }
   },
