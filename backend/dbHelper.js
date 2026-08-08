@@ -177,7 +177,7 @@ const DUMMY_PRODUCTS = [
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true
   },
   {
@@ -442,7 +442,7 @@ const DUMMY_PRODUCTS = [
     rating: 4.8,
     reviewsCount: 210,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true
   },
   {

@@ -166,8 +166,10 @@ connectDB().then(async () => {
       const featuredSkus = ["SK-CPEPTIDE-SRM", "SK-BENZOTREE-FW", "SK-VITC-GLOW", "SK-NIACIN-MOIST"];
       await ProductModel.updateMany({ sku: { $in: featuredSkus } }, { $set: { isFeatured: true } });
       await ProductModel.updateMany({ sku: { $nin: featuredSkus } }, { $set: { isFeatured: false } });
+
+      await ProductModel.updateMany({ sku: { $in: ["SK-HYDRA-FW", "SK-SPF50-SUN"] } }, { $set: { isBestSeller: false } });
       
-      console.log('Force-updated all product specs, isFeatured, and isNewArrival flags in MongoDB on startup.');
+      console.log('Force-updated all product specs, isFeatured, isBestSeller, and isNewArrival flags in MongoDB on startup.');
     } catch (err) {
       console.error('Failed to force-update product specs:', err);
     }

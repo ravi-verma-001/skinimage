@@ -34,7 +34,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true,
     ingredients: [
       "Plant-Derived Squalane – Moisture barrier restoration & deep hydration",
@@ -163,7 +163,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true,
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },

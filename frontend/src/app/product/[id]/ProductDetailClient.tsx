@@ -47,7 +47,7 @@ const DUMMY_PRODUCTS = [
     rating: 4.8,
     reviewsCount: 142,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true,
     reviews: [
       { id: "r1", userName: "Sophia L.", rating: 5, comment: "Absolutely love it. My skin barrier was ruined and this helped repair it completely.", createdAt: "2026-06-12" },
@@ -323,7 +323,7 @@ const DUMMY_PRODUCTS = [
     rating: 4.8,
     reviewsCount: 210,
     isFeatured: false,
-    isBestSeller: true,
+    isBestSeller: false,
     isNewArrival: true,
     reviews: []
   },
