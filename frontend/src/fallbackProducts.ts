@@ -67,7 +67,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: true,
-    isBestSeller: false,
+    isBestSeller: true,
     isNewArrival: false,
     specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },
@@ -99,7 +99,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     rating: 5.0,
     reviewsCount: 0,
     isFeatured: true,
-    isBestSeller: false,
+    isBestSeller: true,
     isNewArrival: false,
     specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" }
   },

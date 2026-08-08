@@ -168,6 +168,7 @@ connectDB().then(async () => {
       await ProductModel.updateMany({ sku: { $nin: featuredSkus } }, { $set: { isFeatured: false } });
 
       await ProductModel.updateMany({ sku: { $in: ["SK-HYDRA-FW", "SK-SPF50-SUN"] } }, { $set: { isBestSeller: false } });
+      await ProductModel.updateMany({ sku: { $in: ["SK-VITC-GLOW", "SK-BENZOTREE-FW"] } }, { $set: { isBestSeller: true } });
       
       console.log('Force-updated all product specs, isFeatured, isBestSeller, and isNewArrival flags in MongoDB on startup.');
     } catch (err) {
