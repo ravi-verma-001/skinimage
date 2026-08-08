@@ -7,80 +7,23 @@ import { Sparkles, ArrowRight, ShieldCheck, Award, Heart, CheckCircle2, ChevronD
 
 import { API_URL } from '@/config';
 import { getOptimizedMediaUrl } from '@/utils/cloudinary';
+import { FALLBACK_PRODUCTS } from '@/fallbackProducts';
 
-// Fallback dummy products in case API is loading or fails
-const FALLBACK_PRODUCTS: ProductType[] = [
-  {
-    _id: "p1",
-    name: "Oil Cleanser",
-    category: "Cleanser",
-    price: 1329.00,
-    stock: 85,
-    images: ["/cleanser.png", "/CleanserVideo.mp4"],
-    description: "Skinimage Oil Cleanser (10+ Nourishing Botanical Oils + Plant-Derived Squalane + Amla, Bhringraj & Brahmi Extracts) is a luxury-grade, deep-cleansing oil-to-milk formula. It effortlessly dissolves water-resistant makeup, long-wear sunscreen, excess sebum, and urban pollutants.",
-    rating: 5.0,
-    reviewsCount: 0,
-    isFeatured: true,
-    isBestSeller: true
-  },
-  {
-    _id: "p2",
-    name: "AHA & BHA Face Serum",
-    category: "Serum",
-    price: 899.00,
-    stock: 50,
-    images: ["/aha_bha_face_serum.jpg"],
-    description: "AHA & BHA Face Serum is an advanced exfoliating skincare formulation designed to remove dead skin cells, refine skin texture, and promote a clearer, brighter, and more youthful complexion with regular use.",
-    rating: 5.0,
-    reviewsCount: 0,
-    isFeatured: true,
-    isNewArrival: true
-  },
-  {
-    _id: "p3",
-    name: "UV-Aurora Sunscreen",
-    category: "Sunscreen",
-    price: 798.00,
-    stock: 120,
-    images: ["/uv_aurora_sunscreen.png"],
-    description: "Skinimage UV-Aurora The Lightest 1% Hyaluronic Acid Aqua Sunscreen Gel SPF 50 PA++++ is an ultra-lightweight, fast-absorbing sunscreen formulated to provide broad-spectrum protection against UVA and UVB rays while delivering deep hydration and a non-greasy, water-light feel suitable for daily use. This advanced aqua sunscreen gel is powered by key ingredients such as Hyaluronic Acid to deeply hydrate and maintain skin moisture, Homosalate and Octyl Methoxy Cinnamate to provide effective UVB protection, Tinosorb M for broad-spectrum UVA and UVB defense, Zinc PCA to help balance oil and support skin clarity, Vitamin E for antioxidant protection, Kakadu Plum Extract to support skin radiance and environmental defense, Silk Protein Extract for a smooth and soft skin finish, Aristoflex AVC for lightweight gel texture, Allantoin to soothe and calm the skin, and Melanin to enhance photoprotection. Designed for all skin types, this sunscreen spreads effortlessly, absorbs quickly without white cast, and helps protect skin from sun damage, premature ageing, and dehydration when applied regularly as directed.",
-    rating: 5.0,
-    reviewsCount: 0,
-    isFeatured: true,
-    isBestSeller: true
-  },
-  {
-    _id: "p8",
-    name: "AHA BHA Face Wash",
-    category: "Cleanser",
-    price: 799.00,
-    stock: 150,
-    images: ["/aha_bha_face_wash.jpg"],
-    description: "Meet your new daily essential — AHA BHA Face Wash, formulated to tackle uneven skin tone, acne, and excess oil all in one step, without stripping your skin.",
-    rating: 5.0,
-    reviewsCount: 0,
-    isFeatured: true,
-    isBestSeller: true
-  }
-];
+// Local fallback array is replaced by imported FALLBACK_PRODUCTS
 
-const getFallbackTrending = (): ProductType[] => [
-  FALLBACK_PRODUCTS[0],
-  {
-    _id: "p6",
-    name: "Dr. PDRN Regenerating Serum with Peptides & Growth Factors | Advanced Skin Repair & Anti-Aging Serum",
-    category: "Serum",
-    price: 1440.00,
-    stock: 110,
-    images: ["/pdrn_regenerating_serum.jpg"],
-    description: "Give your skin the tools to repair and renew itself with PDRN Regenerating Serum — an advanced formula built on DNA repair technology and clinically studied peptides. Designed for anyone looking to restore firmness, improve elasticity, and support long-term skin recovery.",
-    rating: 5.0,
-    reviewsCount: 0,
-    isFeatured: false,
-    isBestSeller: false,
-    isNewArrival: false
-  }
-];
+const getFallbackTrending = (): ProductType[] => {
+  const pdrn = FALLBACK_PRODUCTS.find(p => p._id === "p6");
+  const cpeptide = FALLBACK_PRODUCTS.find(p => p._id === "p5");
+  const benzotree = FALLBACK_PRODUCTS.find(p => p._id === "p4");
+  const milktoner = FALLBACK_PRODUCTS.find(p => p._id === "p9");
+  
+  return [
+    pdrn || FALLBACK_PRODUCTS[5],
+    cpeptide || FALLBACK_PRODUCTS[4],
+    benzotree || FALLBACK_PRODUCTS[3],
+    milktoner || FALLBACK_PRODUCTS[8]
+  ].filter(Boolean) as ProductType[];
+};
 
 export default function HomeClient() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -112,8 +55,10 @@ export default function HomeClient() {
         if (allRes.ok) {
           const allData = await allRes.json();
           const trending = allData.filter((p: any) => 
-            p.name.toLowerCase().includes("oil cleanser") || 
-            p.name.toLowerCase().includes("pdrn regenerating serum")
+            p.name.toLowerCase().includes("pdrn regenerating serum") || 
+            p.name.toLowerCase().includes("c-peptide") || 
+            p.name.toLowerCase().includes("benzotree") || 
+            p.name.toLowerCase().includes("milk barrier repair")
           );
           if (trending.length > 0) {
             setTrendingProducts(trending);
@@ -237,9 +182,9 @@ export default function HomeClient() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-md mx-auto justify-items-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto justify-items-center">
             {loading ? (
-              [...Array(2)].map((_, i) => (
+              [...Array(4)].map((_, i) => (
                 <div key={i} className="animate-pulse flex flex-col rounded-2xl border border-stone-100 p-4 bg-stone-50/50 space-y-4 w-full max-w-[220px]">
                   <div className="bg-stone-200/80 aspect-[4/5] w-full rounded-xl"></div>
                   <div className="h-3 bg-stone-200/80 rounded w-1/4 mt-2"></div>
