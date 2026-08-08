@@ -48,7 +48,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 142,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false,
+    isNewArrival: true,
     reviews: [
       { id: "r1", userName: "Sophia L.", rating: 5, comment: "Absolutely love it. My skin barrier was ruined and this helped repair it completely.", createdAt: "2026-06-12" },
       { id: "r2", userName: "Marcus T.", rating: 4, comment: "Very gentle cleanser. No fragrance, which is great. Cleanses well.", createdAt: "2026-07-02" }
@@ -93,7 +93,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 98,
     isFeatured: true,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     reviews: []
   },
   {
@@ -167,7 +167,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 88,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     reviews: []
   },
   {
@@ -249,7 +249,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 189,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false,
+    isNewArrival: true,
     reviews: []
   },
   {
@@ -284,7 +284,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 64,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     reviews: []
   },
   {
@@ -324,7 +324,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 210,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false,
+    isNewArrival: true,
     reviews: []
   },
   {
@@ -364,7 +364,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 118,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false,
+    isNewArrival: true,
     reviews: []
   }
 ];

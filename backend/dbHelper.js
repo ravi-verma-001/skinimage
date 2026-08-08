@@ -178,7 +178,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 142,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false
+    isNewArrival: true
   },
   {
     id: "p2",
@@ -219,7 +219,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 98,
     isFeatured: true,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: false
   },
   {
     id: "p3",
@@ -291,7 +291,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 88,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: false
   },
   {
     id: "p5",
@@ -370,7 +370,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 189,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false
+    isNewArrival: true
   },
   {
     id: "p7",
@@ -404,7 +404,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 64,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true
+    isNewArrival: false
   },
   {
     id: "p8",
@@ -443,7 +443,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 210,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false
+    isNewArrival: true
   },
   {
     id: "p9",
@@ -482,7 +482,7 @@ const DUMMY_PRODUCTS = [
     reviewsCount: 118,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false
+    isNewArrival: true
   },
 ];
 

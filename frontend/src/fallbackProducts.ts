@@ -35,7 +35,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false,
+    isNewArrival: true,
     ingredients: [
       "Plant-Derived Squalane – Moisture barrier restoration & deep hydration",
       "Argan & Rosehip Seed Oils – Anti-aging, skin repair & elasticity",
@@ -68,7 +68,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     specs: { "Volume": "30ml", "Active Ingredients": "10% AHA BHA Complex", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },
   {
@@ -100,7 +100,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     specs: { "Volume": "100ml", "Active Ingredients": "Benzoyl Peroxide 1%, Tea Tree Oil", "Cruelty-Free": "Yes" }
   },
   {
@@ -132,7 +132,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false,
+    isNewArrival: true,
     specs: { "Volume": "30ml", "Active Ingredients": "0.5% PDRN, Peptides, EGF", "Cruelty-Free": "Yes" }
   },
   {
@@ -148,7 +148,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: true,
+    isNewArrival: false,
     specs: { "Volume": "100ml", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Hypoallergenic": "Yes" }
   },
   {
@@ -164,7 +164,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: true,
     isBestSeller: true,
-    isNewArrival: false,
+    isNewArrival: true,
     specs: { "Volume": "100ml", "pH Range": "5.5 - 6.0", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes" }
   },
   {
@@ -181,7 +181,7 @@ export const FALLBACK_PRODUCTS: ProductType[] = [
     reviewsCount: 0,
     isFeatured: false,
     isBestSeller: false,
-    isNewArrival: false,
+    isNewArrival: true,
     specs: { "Volume": "100ml", "pH Range": "5.5", "Cruelty-Free": "Yes", "Fragrance-Free": "Yes", "Alcohol-Free": "Yes" }
   }
 ];

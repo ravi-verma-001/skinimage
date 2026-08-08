@@ -158,7 +158,12 @@ connectDB().then(async () => {
       for (const p of productsData) {
         await ProductModel.updateOne({ sku: p.sku }, { $set: { specs: p.specs } });
       }
-      console.log('Force-updated all product specs in MongoDB on startup.');
+      
+      const newArrivalSkus = ["SK-HYDRA-FW", "SK-SPF50-SUN", "SK-PDRN-SRM", "SK-SQUALANE-OIL"];
+      await ProductModel.updateMany({ sku: { $in: newArrivalSkus } }, { $set: { isNewArrival: true } });
+      await ProductModel.updateMany({ sku: { $nin: newArrivalSkus } }, { $set: { isNewArrival: false } });
+      
+      console.log('Force-updated all product specs and isNewArrival flags in MongoDB on startup.');
     } catch (err) {
       console.error('Failed to force-update product specs:', err);
     }
